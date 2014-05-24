@@ -44,6 +44,7 @@ namespace HackUCIProject
         public StartScreen(SpriteBatch spriteBatch, Vector2 location, int width, int height, SpriteFont singleSpriteFont)
             : base(spriteBatch, location, width, height)
         {
+            _spriteFontList = new List<SpriteFont>();
             _spriteFontList.Add(singleSpriteFont);
         }
 
