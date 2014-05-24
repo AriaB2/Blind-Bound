@@ -111,19 +111,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnimatedSprite.cs" />
+    <Compile Include="BaseReciever.cs" />
+    <Compile Include="BaseSender.cs" />
     <Compile Include="BaseSprite.cs" />
     <Compile Include="Camera2DMatrix.cs" />
     <Compile Include="GameScreen.cs" />
+    <Compile Include="Dungeon.cs" />
+    <Compile Include="Interfaces\ITriggerable.cs" />
+    <Compile Include="CoreTypes\InputManager.cs" />
+    <Compile Include="CoreTypes\InputManagerComponent.cs" />
     <Compile Include="Global.cs" />
-    <Compile Include="InputManager.cs" />
-    <Compile Include="InputManagerComponent.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="IXNA.cs" />
     <Compile Include="MovingSprite.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Switch.cs" />
     <Compile Include="Screen.cs" />
+    <Compile Include="StartScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
