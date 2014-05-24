@@ -80,13 +80,13 @@ namespace HackUCIProject
             _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(1905,821), Color.White, batch);
 
             Bridge reciever3 = new Bridge(BridgeSide.Left);
-            reciever3.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(1161, 925), Color.Green, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
+            reciever3.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(713, 881), Color.Green, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
             _senders[_senders.Count - 1].ObjectBeingTriggered = reciever3;
             _sprites.Add(reciever3);
             _senders.Add(new BaseSender(TriggerType.hotPlates));
             _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(14, 540), Color.White, batch);
             Bridge reciever4 = new Bridge(BridgeSide.Right);
-            reciever4.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(759, 925), Color.Blue, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
+            reciever4.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(310, 882), Color.Blue, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
             _senders[_senders.Count - 1].ObjectBeingTriggered = reciever4;
             _sprites.Add(reciever4);
             
