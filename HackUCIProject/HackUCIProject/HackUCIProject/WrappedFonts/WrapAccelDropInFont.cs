@@ -8,12 +8,12 @@ using FontEffectsLib.FontTypes;
 
 namespace HackUCIProject.WrappedFonts
 {
-        public class WrapAccelDropInFont : DropInFont, IXNA
+        public class WrapAccelDropInFont : AccelDropInFont, IXNA
         {
             private SpriteBatch _spriteBatch;
 
             public WrapAccelDropInFont(SpriteFont font, Vector2 startPosition, Vector2 endPosition, Vector2 dropSpeed, Color tintColor, Vector2 accel, SpriteBatch spriteBatch)
-                : base(font, startPosition, endPosition, dropSpeed, tintColor)
+                : base(font, startPosition, endPosition, dropSpeed, tintColor, accel)
             {
                 _spriteBatch = spriteBatch;
             }
