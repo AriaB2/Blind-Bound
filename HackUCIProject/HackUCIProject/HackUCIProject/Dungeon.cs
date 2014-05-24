@@ -51,13 +51,38 @@ namespace HackUCIProject
         {
             //temporary hardcoded level to have some sort of product. In the future will implement an xml format or something
 
-            
+
 
             _players = new Player[4];
             _senders = new List<BaseSender>();
             _sprites = new List<IXNA>();
 
             //player load logic goes here;
+            
+
+            _senders.Add(new BaseSender());
+            _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(100, 100), Color.White, batch);
+
+            
+
+
+            Bridge reciever = new Bridge(BridgeSide.Left);
+            reciever.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(1116, 113), Color.Red, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
+            _senders[_senders.Count - 1].ObjectBeingTriggered = reciever;
+            _sprites.Add(reciever);
+            _senders.Add(new BaseSender());
+            _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(1000, 100), Color.White, batch);
+            Bridge reciever2 = new Bridge(BridgeSide.Right);
+            reciever2.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(1520, 113), Color.Red, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
+            _senders[_senders.Count - 1].ObjectBeingTriggered = reciever2;
+            _sprites.Add(reciever2);
+            //after adding and loading all senders to the list of senders
+            foreach (BaseSender sender in _senders)
+            {
+                _sprites.Add(sender);
+            }
+            base.LoadContent(content, assetName, location, tint, batch);
+
             for (int i = 0; i < _players.Length; i++)
             {
                 _players[i] = new Player((PlayerIndex)i);
@@ -67,16 +92,6 @@ namespace HackUCIProject
                 _sprites.Add(_players[i]);
             }
 
-            _senders.Add(new BaseSender());
-            _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(100,100), Color.Red, batch);
-
-            //after adding and loading all senders to the list of senders
-            foreach (BaseSender sender in _senders)
-            {
-                _sprites.Add(sender);
-            }
-            base.LoadContent(content, assetName, location, tint, batch);
-
             _players[0].Location = new Vector2(30, 30);
             _players[0].Tint = Color.Blue;
             _players[1].Location = new Vector2(Width - _players[1].Width-10, 10);
@@ -85,7 +100,10 @@ namespace HackUCIProject
             _players[2].Tint = Color.Red;
             _players[3].Location = new Vector2(Width-_players[3].Width - 10, Height - _players[3].Height - 10);
             _players[3].Tint = Color.Yellow;
+
             _drawn = new RenderTarget2D(_spriteBatch.GraphicsDevice, Convert.ToInt32(Width), Convert.ToInt32(Height));
+
+
         }
 
 
@@ -120,7 +138,7 @@ namespace HackUCIProject
                 }
             }
 
-            
+
             base.Update(gameTime);
         }
 
@@ -129,7 +147,7 @@ namespace HackUCIProject
             _spriteBatch.GraphicsDevice.SetRenderTarget(_drawn);
             _spriteBatch.Begin();
 
-           
+
             base.Draw();
 
 
@@ -144,13 +162,13 @@ namespace HackUCIProject
 
         public override void Draw()
         {
-           
+
             base.Draw();
             foreach (IXNA sprite in _sprites)
             {
                 sprite.Draw();
             }
-            
+
         }
     }
 }
