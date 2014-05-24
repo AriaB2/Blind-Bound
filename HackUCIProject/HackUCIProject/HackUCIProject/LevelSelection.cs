@@ -10,6 +10,9 @@ namespace HackUCIProject
     public class LevelSelection : Screen
     {
         protected BaseSprite _map;
+        protected BaseSprite _playButton;
+        protected BaseSprite _backButton;
+
 
         public LevelSelection( SpriteBatch spriteBatch, Vector2 location, int width, int height):
             base( spriteBatch, location, width, height)
@@ -21,7 +24,16 @@ namespace HackUCIProject
             _map = new BaseSprite();
             _map.LoadContent(content, "LevelMap/SacredDonutLevel", new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width / 2, _spriteBatch.GraphicsDevice.Viewport.Height / 2), Color.White, 0f, Vector2.Zero, new Vector2(.25f, .25f), SpriteEffects.None,_spriteBatch, 0f);
             _map.Origin = new Vector2(_map.Image.Width / 2, _map.Image.Height / 2);
+            
+            _playButton = new BaseSprite();
+            _playButton.LoadContent(content, "LevelMap/PlayButton", new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width / 3, _spriteBatch.GraphicsDevice.Viewport.Height * 5 / 6), Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, _spriteBatch, 0f);
+            _playButton.Origin = new Vector2(_playButton.Image.Width / 2, _playButton.Image.Height / 2);
+            _backButton = new BaseSprite();
+            _backButton.LoadContent(content, "LevelMap/BackButton", new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width * 2 / 3, _spriteBatch.GraphicsDevice.Viewport.Height * 5 / 6), Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, _spriteBatch, 0f);
+            _backButton.Origin = new Vector2(_backButton.Image.Width / 2, _backButton.Image.Height / 2);
             _sprites.Add(_map);
+            _sprites.Add(_playButton);
+            _sprites.Add(_backButton);
         }
 
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
