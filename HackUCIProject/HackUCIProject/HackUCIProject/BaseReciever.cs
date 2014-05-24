@@ -23,7 +23,6 @@ namespace HackUCIProject
         }
         public virtual void Trigger()
         {
-            
             _triggered = !_triggered;
         }
     }
