@@ -14,10 +14,6 @@ public class MovingSprite : AnimatedSprite
         set { _speed = value; }
     }
 
-    #endregion
-
-    #region
-
     public virtual void LoadContent(ContentManager content, string assetName, Texture2D image, Vector2 location, Color tint, float rotation, Vector2 origin, Vector2 scale, SpriteEffects spriteEffects, Vector2 speed, float layerDepth, SpriteBatch spriteBatch)
     {
         _speed = speed;
