@@ -124,6 +124,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Screen.cs" />
     <Compile Include="StartScreen.cs" />
+    <Compile Include="WrapDropInFont.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

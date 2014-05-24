@@ -42,8 +42,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="StartMenuFont.spritefont">
-      <Name>StartMenuFont</Name>
+    <Compile Include="StartScreenSpriteFont.spritefont">
+      <Name>StartScreenSpriteFont</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>

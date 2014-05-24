@@ -9,20 +9,22 @@ using FontEffectsLib.FontTypes;
 
 namespace HackUCIProject
 {
-    class StartScreen : Screen
-    {
-        private DropInFont _firstText;
-        
 
-        public StartScreen(SpriteBatch spriteBatch, Vector2 location, int width, int height)
+    public class StartScreen : Screen 
+    {
+        private WrapDropInFont _dropInFont;
+        private SpriteFont _spriteFont;
+
+        public StartScreen(SpriteBatch spriteBatch, Vector2 location, int width, int height, SpriteFont spriteFont)
             :base(spriteBatch, location, width, height)
         {
-            
+            _spriteFont = spriteFont;
         }
 
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content)
         {
-            _firstText = new DropInFont(content.Load<SpriteFont>("SpriteScreenSpriteFont"), new Vector2(0, 0), new Vector2(300, 300), new Vector2(5, 5), Color.White);
+            _dropInFont = new WrapDropInFont(_spriteFont, _location, new Vector2(300, 300), new Vector2(5, 5), Color.White, _spriteBatch);
+            _sprites.Add(_dropInFont);
         }
     }
 }
