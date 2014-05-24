@@ -24,9 +24,9 @@ namespace HackUCIProject
             {
                 if (_frame != null)
                 {
-                    return _location.X + _frame.Value.Width - _origin.X;
+                    return _location.X + (_frame.Value.Width * _scale.X) - _origin.X;
                 }
-                return _location.X + _image.Width - _origin.X;
+                return _location.X + (_image.Width * _scale.X) - _origin.X;
             }
         }
 
@@ -44,9 +44,9 @@ namespace HackUCIProject
             {
                 if (_frame != null)
                 {
-                    return _location.Y - _origin.Y + _frame.Value.Height;
+                    return _location.Y - _origin.Y + (_frame.Value.Height*_scale.Y);
                 }
-                return _location.Y - _origin.Y + _image.Height;
+                return _location.Y - _origin.Y + (_image.Height * _scale.Y);
             }
         }
 
