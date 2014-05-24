@@ -15,6 +15,7 @@ namespace HackUCIProject
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        InputManagerComponent input;
 
         public Game1()
         {
@@ -31,7 +32,7 @@ namespace HackUCIProject
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            input = new InputManagerComponent();
         }
 
         protected override void UnloadContent()
@@ -41,6 +42,7 @@ namespace HackUCIProject
 
         protected override void Update(GameTime gameTime)
         {
+            input.Update();
 
             base.Update(gameTime);
         }
@@ -48,7 +50,7 @@ namespace HackUCIProject
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            
             base.Draw(gameTime);
         }
     }
