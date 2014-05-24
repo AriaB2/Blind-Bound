@@ -13,6 +13,7 @@ namespace HackUCIProject
     public class StartScreen : Screen 
     {
         private WrapDropInFont _dropInFont;
+
         private SpriteFont _spriteFont;
 
         public StartScreen(SpriteBatch spriteBatch, Vector2 location, int width, int height, SpriteFont spriteFont)
@@ -23,7 +24,10 @@ namespace HackUCIProject
 
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content)
         {
-            _dropInFont = new WrapDropInFont(_spriteFont, _location, new Vector2(300, 300), new Vector2(5, 5), Color.White, _spriteBatch);
+            _dropInFont = new WrapDropInFont(_spriteFont, _location, new Vector2(300, 300), new Vector2(5, 5), Color.Black, _spriteBatch);
+            _dropInFont.Text.Append("NameOfGame");
+            
+            _dropInFont.EnableShadow = false;
             _sprites.Add(_dropInFont);
         }
     }

@@ -16,10 +16,10 @@ namespace HackUCIProject
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        
 
 
         InputManagerComponent input;
+
         Dictionary<ScreenState, Screen> _screens;
         StartScreen startScreen;
 
@@ -41,13 +41,16 @@ namespace HackUCIProject
             input = new InputManagerComponent();
             startScreen = new StartScreen(spriteBatch, new Vector2(10, 10), GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, Content.Load<SpriteFont>("StartScreenSpriteFont"));
 
-           
+
             Global.CurrentScreen = ScreenState.none; //TODO: CHANGE TO START MENU
 
             _screens.Add(ScreenState.game, new GameScreen(spriteBatch, Vector2.Zero, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
             _screens.Add(ScreenState.levelSelection, new LevelSelection(spriteBatch, Vector2.Zero, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
             _screens.Add(ScreenState.startMenu, startScreen);
-            
+
+
+            _screens.Add(ScreenState.game, new GameScreen(spriteBatch, Vector2.Zero, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
+            _screens.Add(ScreenState.startMenu, startScreen);
 
             foreach (Screen screen in _screens.Values)
             {
@@ -55,8 +58,10 @@ namespace HackUCIProject
             }
 
 
+
             Global.CurrentScreen = ScreenState.game; //TODO: CHANGE TO START MENU
         }
+
         protected override void UnloadContent()
         {
             
@@ -66,7 +71,9 @@ namespace HackUCIProject
         {
             input.Update();
 
-            
+
+            //update screen when screens are created.
+            _screens[Global.CurrentScreen].Update(gameTime);
 
             //update screen when screens are created.
             _screens[Global.CurrentScreen].Update(gameTime);
@@ -77,6 +84,8 @@ namespace HackUCIProject
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+
+
             foreach (Screen screen in _screens.Values)
             {
                 screen.Render();
@@ -84,6 +93,7 @@ namespace HackUCIProject
 
             //Draw screen when screens are created
             _screens[Global.CurrentScreen].Draw();
+
             
             base.Draw(gameTime);
         }
