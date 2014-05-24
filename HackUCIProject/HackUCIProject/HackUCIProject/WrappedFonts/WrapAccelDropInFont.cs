@@ -8,19 +8,19 @@ using FontEffectsLib.FontTypes;
 
 namespace HackUCIProject.WrappedFonts
 {
-    public class WrapAccelDropInFont : AccelDropInFont, IXNA
-    {
-        private SpriteBatch _spriteBatch;
-        
-        public WrapAccelDropInFont(SpriteFont font, Vector2 startPosition, Vector2 endPosition, Vector2 dropSpeed, Color tintColor, Vector2 accel, SpriteBatch spriteBatch)
-            :base(font, startPosition, endPosition, dropSpeed, tintColor, accel)
+        public class WrapAccelDropInFont : DropInFont, IXNA
         {
-            _spriteBatch = spriteBatch;
+            private SpriteBatch _spriteBatch;
+
+            public WrapAccelDropInFont(SpriteFont font, Vector2 startPosition, Vector2 endPosition, Vector2 dropSpeed, Color tintColor, Vector2 accel, SpriteBatch spriteBatch)
+                : base(font, startPosition, endPosition, dropSpeed, tintColor)
+            {
+                _spriteBatch = spriteBatch;
+            }
+
+            public void Draw()
+            {
+                base.Draw(_spriteBatch);
+            }
         }
-        
-        public void Draw()
-        {
-            base.Draw(_spriteBatch);
-        }
-    }
-}
+ }

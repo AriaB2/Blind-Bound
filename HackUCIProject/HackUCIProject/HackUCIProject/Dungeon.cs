@@ -50,13 +50,13 @@ namespace HackUCIProject
             for (int i = 0; i < _players.Length; i++)
             {
                 _players[i] = new Player((PlayerIndex)i);
-                _players[i].LoadContent(content, "Square", new Vector2(100, 100), Color.White, batch);
+                _players[i].LoadContent(content, "Square", new Vector2(300, 140), Global.MainColors[i], batch, "KeyMap");
                 _players[i].Speed = Vector2.One;
                 _players[i].SetOriginCenter();
                 _sprites.Add(_players[i]);
-                
             }
-
+            _senders.Add(new BaseSender());
+            _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(100,100), Color.Red, batch);
             //after adding and loading all senders to the list of senders
             foreach (BaseSender sender in _senders)
             {
@@ -80,7 +80,7 @@ namespace HackUCIProject
                     if (_players[i].HitBox.Intersects(sender.HitBox))
                     {
                         PlayerIndex currentPlayer = (PlayerIndex)i;
-                        if (InputManager.GetCurrentPlayerState(currentPlayer).Buttons.A == ButtonState.Pressed && InputManager.GetLastPlayerState(currentPlayer).Buttons.A == ButtonState.Released)
+                        if (InputManager.GetCurrentPlayerState(currentPlayer).Buttons.A == ButtonState.Pressed && InputManager.GetLastPlayerState(currentPlayer).Buttons.A != ButtonState.Pressed)
                         {
                             if (_players[i].Tint == sender.Tint)
                             {

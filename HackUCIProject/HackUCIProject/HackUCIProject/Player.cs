@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace HackUCIProject
 {
-    public class Player : MovingSprite
+    public class Player : PixelDetectionSprite
     {
         private PlayerIndex _playerIndex;
 
