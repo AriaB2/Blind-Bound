@@ -22,7 +22,7 @@ namespace HackUCIProject
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content)
         {
             Color[] _colors = { Color.Pink, Color.Black, Color.Red, Color.Green };
-            _dungeon.LoadContent(content, "LevelMap/SacredDonutLevel", Vector2.Zero, Color.White, _spriteBatch);
+            _dungeon.LoadContent(content, "LevelMap/SacredDonutLevelWhite-05", Vector2.Zero, Color.White, _spriteBatch);
             int y = 0;
 
             for (int row = 0; row < 2; row++)
