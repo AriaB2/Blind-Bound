@@ -38,14 +38,14 @@ namespace HackUCIProject
             _map.Origin = new Vector2(_map.Image.Width / 2, _map.Image.Height / 2);
             
             _playButton = new BaseSprite();
-            _playButton.LoadContent(content, "LevelMap/PlayButton", new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width / 3, _spriteBatch.GraphicsDevice.Viewport.Height * 5 / 6), Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, _spriteBatch, 0f);
-            //_playButton.Origin = new Vector2(_playButton.Image.Width / 2, _playButton.Image.Height / 2);
+            _playButton.LoadContent(content, "LevelMap/PlayButton", new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width / 3, _spriteBatch.GraphicsDevice.Viewport.Height * 7 / 8), Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, _spriteBatch, 0f);
+            _playButton.Origin = new Vector2(_playButton.Image.Width / 2, _playButton.Image.Height / 2);
             _backButton = new BaseSprite();
-            _backButton.LoadContent(content, "LevelMap/BackButton", new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width * 2 / 3, _spriteBatch.GraphicsDevice.Viewport.Height * 5 / 6), Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, _spriteBatch, 0f);
-            //_backButton.Origin = new Vector2(_backButton.Image.Width / 2, _backButton.Image.Height / 2);
+            _backButton.LoadContent(content, "LevelMap/BackButton", new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width * 2 / 3, _spriteBatch.GraphicsDevice.Viewport.Height * 7 / 8), Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, _spriteBatch, 0f);
+            _backButton.Origin = new Vector2(_backButton.Image.Width / 2, _backButton.Image.Height / 2);
             _highlight = new BaseSprite();
             _highlight.LoadContent(content, "LevelMap/HighLight", _playButton.Location, Color.White * .3f, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, _spriteBatch, 0f);
-            //_highlight.Origin = new Vector2(_highlight.Image.Width / 2, _highlight.Image.Height / 2);
+            _highlight.Origin = new Vector2(_highlight.Image.Width / 2, _highlight.Image.Height / 2);
             //_highlightTint = .5f;
             //_tintIncrement = .1f;
             //_color[0] = Color.Red;
@@ -90,6 +90,17 @@ namespace HackUCIProject
                 else
                 {
                     _highlight.Location = _playButton.Location;
+                }
+            }
+            if (InputManager.CurrentPlayer1State.IsButtonDown(Buttons.A) && InputManager.LastPlayer1State.IsButtonUp(Buttons.A))
+            {
+                if (_highlight.Location == _playButton.Location)
+                {
+                    Global.CurrentScreen = ScreenState.game;
+                }
+                else
+                {
+                    Global.CurrentScreen = ScreenState.startMenu;
                 }
             }
             base.Update(gameTime);
