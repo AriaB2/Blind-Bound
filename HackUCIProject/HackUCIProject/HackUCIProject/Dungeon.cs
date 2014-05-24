@@ -52,7 +52,9 @@ namespace HackUCIProject
                 _players[i] = new Player((PlayerIndex)i);
                 _players[i].LoadContent(content, "Square", new Vector2(100, 100), Color.White, batch);
                 _players[i].Speed = Vector2.One;
+                _players[i].SetOriginCenter();
                 _sprites.Add(_players[i]);
+                
             }
 
             //after adding and loading all senders to the list of senders

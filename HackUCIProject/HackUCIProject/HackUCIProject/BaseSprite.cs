@@ -127,6 +127,16 @@ namespace HackUCIProject
         //functions
         #region
 
+        public void SetOriginCenter()
+        {
+            if (_frame != null)
+            {
+                _origin = new Vector2(_frame.Value.Width / 2, _frame.Value.Height / 2);
+                return;
+            }
+            _origin = new Vector2(_image.Width / 2, _image.Height / 2);
+        }
+
         public virtual void Update(GameTime gameTime)
         {
             UpdateHitBox(); 
