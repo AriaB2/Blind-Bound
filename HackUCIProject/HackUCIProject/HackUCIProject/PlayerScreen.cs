@@ -15,7 +15,7 @@ namespace HackUCIProject
             base(spriteBatch, location, width, height)
         {
             _player = player;
-            _backGroundColor = Color.Pink;
+            _backGroundColor = Color.White;
         }
 
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content)

@@ -58,9 +58,9 @@ namespace HackUCIProject
         }
 
         public override void Draw()
-        {
+        {//_dungeon.Draw();
             base.Draw();
-
+            
             foreach (PlayerScreen playerScreen in _playerScreens)
             {
                 playerScreen.Draw();
