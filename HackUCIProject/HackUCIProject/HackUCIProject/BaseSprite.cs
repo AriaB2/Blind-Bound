@@ -126,7 +126,7 @@ public class BaseSprite
 
     public virtual void Update(GameTime gameTime)
     {
-        UpdateHitBox();
+        UpdateHitBox(); 
     }
 
     public void UpdateHitBox()
