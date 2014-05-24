@@ -16,7 +16,7 @@ namespace HackUCIProject
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         InputManagerComponent input;
-
+        Dictionary<ScreenState, Screen> _screens;
         StartScreen startScreen;
 
         public Game1()
@@ -27,7 +27,7 @@ namespace HackUCIProject
 
         protected override void Initialize()
         {
-
+            _screens = new Dictionary<ScreenState, Screen>();
             base.Initialize();
         }
 
@@ -37,18 +37,15 @@ namespace HackUCIProject
             input = new InputManagerComponent();
             startScreen = new StartScreen(spriteBatch, new Vector2(10, 10), GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, Content.Load<SpriteFont>("StartScreenSpriteFont"));
 
-<<<<<<< HEAD
-=======
             _screens.Add(ScreenState.game, new GameScreen(spriteBatch, Vector2.Zero, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
-
+            _screens.Add(ScreenState.levelSelection, new LevelSelection(spriteBatch, Vector2.Zero, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
 
             foreach (Screen screen in _screens.Values)
             {
                 screen.LoadContent(Content);
             }
 
-            Global.CurrentScreen = ScreenState.game; //TODO: CHANGE TO START MENU
->>>>>>> c2479981046a652219bdec7f6afd8cb4b60d093c
+            Global.CurrentScreen = ScreenState.levelSelection; //TODO: CHANGE TO START MENU
         }
         protected override void UnloadContent()
         {
@@ -58,21 +55,14 @@ namespace HackUCIProject
         protected override void Update(GameTime gameTime)
         {
             input.Update();
-
-<<<<<<< HEAD
-=======
             //update screen when screens are created.
             _screens[Global.CurrentScreen].Update(gameTime);
-
->>>>>>> c2479981046a652219bdec7f6afd8cb4b60d093c
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-<<<<<<< HEAD
-=======
 
             foreach (Screen screen in _screens.Values)
             {
@@ -81,8 +71,6 @@ namespace HackUCIProject
 
             //Draw screen when screens are created
             _screens[Global.CurrentScreen].Draw();
-
->>>>>>> c2479981046a652219bdec7f6afd8cb4b60d093c
             
             base.Draw(gameTime);
         }
