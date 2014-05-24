@@ -57,12 +57,18 @@ namespace HackUCIProject
                 
             }
 
+
             //after adding and loading all senders to the list of senders
             foreach (BaseSender sender in _senders)
             {
                 _sprites.Add(sender);
             }
             base.LoadContent(content, assetName, location, tint, batch);
+
+
+            _players[1].Location = new Vector2(Width - _players[1].Width, 0);
+            _players[2].Location = new Vector2(0, Height - _players[2].Height);
+            _players[3].Location = new Vector2(Width - _players[3].Width, Height - _players[3].Height);
         }
 
 

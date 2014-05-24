@@ -11,7 +11,7 @@ namespace HackUCIProject
     public abstract class Screen : IXNA
     {
         protected List<IXNA> _sprites;
-        private RenderTarget2D _screen;
+        protected RenderTarget2D _screen;
         protected SpriteBatch _spriteBatch;
         protected Vector2 _location;
         protected Color _backGroundColor;
@@ -20,6 +20,7 @@ namespace HackUCIProject
         {
             get
             {
+                
                 return _backGroundColor;
             }
             set
