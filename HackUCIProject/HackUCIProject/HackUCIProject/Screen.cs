@@ -56,10 +56,7 @@ namespace HackUCIProject
                 _spriteBatch.GraphicsDevice.SetRenderTarget(null);
                 _spriteBatch.Begin();
 
-                foreach (BaseSprite sprite in _sprites)
-                {
-                    sprite.Draw();
-                }
+                _spriteBatch.Draw(_screen, _location, Color.White);
 
                 _spriteBatch.End();
             }
