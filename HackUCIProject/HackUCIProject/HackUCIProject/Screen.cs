@@ -14,6 +14,7 @@ namespace HackUCIProject
         private RenderTarget2D _screen;
         protected SpriteBatch _spriteBatch;
         protected Vector2 _location;
+        protected Color _backGroundColor;
 
         protected bool _isVisible;
 
@@ -23,6 +24,7 @@ namespace HackUCIProject
             _isVisible = true;
             _sprites = new List<IXNA>();
             _spriteBatch = spriteBatch;
+            _backGroundColor = Color.White;
         }
 
         public abstract void LoadContent(ContentManager content);
@@ -38,6 +40,7 @@ namespace HackUCIProject
         public void Render()
         {
             _spriteBatch.GraphicsDevice.SetRenderTarget(_screen);
+            _spriteBatch.GraphicsDevice.Clear(_backGroundColor);
             _spriteBatch.Begin();
 
             foreach (IXNA sprite in _sprites)

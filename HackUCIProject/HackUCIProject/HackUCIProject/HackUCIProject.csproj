@@ -115,6 +115,7 @@
     <Compile Include="BaseSender.cs" />
     <Compile Include="BaseSprite.cs" />
     <Compile Include="Camera2DMatrix.cs" />
+    <Compile Include="GameScreen.cs" />
     <Compile Include="Dungeon.cs" />
     <Compile Include="Interfaces\ITriggerable.cs" />
     <Compile Include="CoreTypes\InputManager.cs" />
