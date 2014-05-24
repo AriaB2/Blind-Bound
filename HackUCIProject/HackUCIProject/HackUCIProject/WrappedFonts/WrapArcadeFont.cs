@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework;
 
 namespace HackUCIProject.WrappedFonts
 {
-    class WrapArcadeFont : ArcadeFont, IXNA
+    public class WrapArcadeFont : ArcadeFont, IXNA
     {
         private SpriteBatch _spriteBatch;
 

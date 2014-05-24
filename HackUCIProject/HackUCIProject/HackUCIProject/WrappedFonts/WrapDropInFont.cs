@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 
 namespace HackUCIProject
 {
-    class WrapDropInFont : DropInFont, IXNA
+    public class WrapDropInFont : DropInFont, IXNA
     {
         private SpriteBatch _spriteBatch;
 
