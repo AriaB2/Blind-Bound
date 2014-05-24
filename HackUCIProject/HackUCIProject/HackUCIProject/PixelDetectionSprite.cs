@@ -21,7 +21,7 @@ namespace HackUCIProject
         private bool canMoveHorizontally;
         private bool canMoveVertically;
 
-        public override void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime, Vector2 boundaries)
         {
             Rectangle areaToCheck = new Rectangle((int)Left, (int)Top, 0, 0);
             Color[] pixels;
@@ -32,18 +32,23 @@ namespace HackUCIProject
                 areaToCheck.X -= 1;
                 if (areaToCheck.X <= 0)
                 {
+                    canMoveHorizontally = false;
                     areaToCheck.X = 0;
                 }
                 areaToCheck.Height = (int)Height;
                 areaToCheck.Width = 1;
-                pixels = new Color[areaToCheck.Width * areaToCheck.Height];
-                _keyMap.GetData<Color>(0, areaToCheck, pixels, 0, pixels.Length);
-                foreach (Color c in pixels)
+                
+                if (canMoveHorizontally)
                 {
-                    if (c == Color.Black)
+                    pixels = new Color[areaToCheck.Width * areaToCheck.Height];
+                    _keyMap.GetData<Color>(0, areaToCheck, pixels, 0, pixels.Length);
+                    foreach (Color c in pixels)
                     {
-                        canMoveHorizontally = false;
-                        break;
+                        if (c == Color.Black)
+                        {
+                            canMoveHorizontally = false;
+                            break;
+                        }
                     }
                 }
             }
@@ -52,14 +57,22 @@ namespace HackUCIProject
                 areaToCheck.X = (int)Right;
                 areaToCheck.Height =  (int)Height;
                 areaToCheck.Width = 1;
-                pixels = new Color[areaToCheck.Width * areaToCheck.Height];
-                _keyMap.GetData<Color>(0, areaToCheck, pixels, 0, pixels.Length);
-                foreach (Color c in pixels)
+                if (areaToCheck.Right + areaToCheck.Width >= boundaries.X)
                 {
-                    if (c == Color.Black)
+                    canMoveHorizontally = false;
+                }
+
+                if (canMoveHorizontally)
+                {
+                    pixels = new Color[areaToCheck.Width * areaToCheck.Height];
+                    _keyMap.GetData<Color>(0, areaToCheck, pixels, 0, pixels.Length);
+                    foreach (Color c in pixels)
                     {
-                        canMoveHorizontally = false;
-                        break;
+                        if (c == Color.Black)
+                        {
+                            canMoveHorizontally = false;
+                            break;
+                        }
                     }
                 }
             }
@@ -70,17 +83,22 @@ namespace HackUCIProject
                 if (areaToCheck.Y <= 0)
                 {
                     areaToCheck.Y = 0;
+                    canMoveVertically = false;
                 }
                 areaToCheck.Width = (int)Width;
                 areaToCheck.Height = 1;
-                pixels = new Color[areaToCheck.Width * areaToCheck.Height];
-                _keyMap.GetData<Color>(0, areaToCheck, pixels, 0, pixels.Length);
-                foreach (Color c in pixels)
+
+                if (canMoveVertically)
                 {
-                    if (c == Color.Black)
+                    pixels = new Color[areaToCheck.Width * areaToCheck.Height];
+                    _keyMap.GetData<Color>(0, areaToCheck, pixels, 0, pixels.Length);
+                    foreach (Color c in pixels)
                     {
-                        canMoveVertically = false;
-                        break;
+                        if (c == Color.Black)
+                        {
+                            canMoveVertically = false;
+                            break;
+                        }
                     }
                 }
             }
@@ -90,14 +108,22 @@ namespace HackUCIProject
                 areaToCheck.Y = (int)Bottom;
                 areaToCheck.Width = (int)Width;
                 areaToCheck.Height = 1;
-                pixels = new Color[areaToCheck.Width * areaToCheck.Height];
-                _keyMap.GetData<Color>(0, areaToCheck, pixels, 0, pixels.Length);
-                foreach (Color c in pixels)
+                if (areaToCheck.Bottom >= boundaries.Y)
                 {
-                    if (c == Color.Black)
+                    canMoveVertically = false;
+                }
+
+                if (canMoveVertically)
+                {
+                    pixels = new Color[areaToCheck.Width * areaToCheck.Height];
+                    _keyMap.GetData<Color>(0, areaToCheck, pixels, 0, pixels.Length);
+                    foreach (Color c in pixels)
                     {
-                        canMoveVertically = false;
-                        break;
+                        if (c == Color.Black)
+                        {
+                            canMoveVertically = false;
+                            break;
+                        }
                     }
                 }
             }

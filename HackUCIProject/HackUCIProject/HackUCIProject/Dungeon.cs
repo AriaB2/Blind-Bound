@@ -77,7 +77,7 @@ namespace HackUCIProject
             }
             base.LoadContent(content, assetName, location, tint, batch);
 
-            _players[0].Location = new Vector2(10, 10); ;
+            _players[0].Location = new Vector2(30, 30);
             _players[0].Tint = Color.White;
             _players[1].Location = new Vector2(Width - _players[1].Width-10, 10);
             _players[1].Tint = Color.Purple;
@@ -92,6 +92,11 @@ namespace HackUCIProject
             foreach (IXNA sprite in _sprites)
             {
                 sprite.Update(gameTime);
+            }
+
+            foreach (Player player in _players)
+            {
+                player.Update(gameTime, new Vector2(Width, Height));
             }
 
             for (int i = 0; i < _players.Length; i++)
@@ -122,14 +127,14 @@ namespace HackUCIProject
             _spriteBatch.GraphicsDevice.SetRenderTarget(_drawn);
             _spriteBatch.Begin();
 
+           
+            base.Draw();
+
+
             foreach (IXNA sprite in _sprites)
             {
                 sprite.Draw();
             }
-            base.Draw();
-            
-
-
             _spriteBatch.End();
 
             _spriteBatch.GraphicsDevice.SetRenderTarget(null);
@@ -137,11 +142,12 @@ namespace HackUCIProject
 
         public override void Draw()
         {
+           
+            base.Draw();
             foreach (IXNA sprite in _sprites)
             {
                 sprite.Draw();
             }
-            base.Draw();
             
         }
     }

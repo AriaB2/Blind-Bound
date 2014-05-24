@@ -9,7 +9,6 @@ namespace HackUCIProject
 {
     public class GameScreen : Screen
     {
-
         PlayerScreen[] _playerScreens;
         Dungeon _dungeon = new Dungeon();
 

@@ -11,6 +11,14 @@ namespace HackUCIProject
     public abstract class Screen : IXNA
     {
         protected List<IXNA> _sprites;
+
+        public List<IXNA> Sprites
+        {
+            get
+            {
+                return _sprites;
+            }
+        }
         protected RenderTarget2D _screen;
         protected SpriteBatch _spriteBatch;
         protected Vector2 _location;
@@ -70,6 +78,7 @@ namespace HackUCIProject
             _spriteBatch.GraphicsDevice.SetRenderTarget(_screen);
             _spriteBatch.GraphicsDevice.Clear(_backGroundColor);
             _spriteBatch.Begin(_sortMode, _blendState, _samplerState, _depthStencilState, _rasterizerState, null, _camera.GetTransformation(_spriteBatch.GraphicsDevice));
+            
             
             foreach (IXNA sprite in _sprites)
             {

@@ -19,10 +19,10 @@ namespace HackUCIProject
         {
             _playerIndex = player;
         }
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, Vector2 boundaries)
         {
             _speed = new Vector2(InputManager.GetCurrentPlayerState(_playerIndex).ThumbSticks.Left.X, -InputManager.GetCurrentPlayerState(_playerIndex).ThumbSticks.Left.Y);
-            base.Update(gameTime);
+            base.Update(gameTime, boundaries);
         }
     }
 }
