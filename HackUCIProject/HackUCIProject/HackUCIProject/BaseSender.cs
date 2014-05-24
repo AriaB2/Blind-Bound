@@ -26,6 +26,21 @@ namespace HackUCIProject
             _objectBeingTriggered.Trigger();
             _triggered = !_triggered;
         }
-        
+
+        private TriggerType _triggerType;
+
+        public BaseSender(TriggerType triggerType):
+            base()
+        {
+            _triggerType = triggerType;
+        }
+
+        public TriggerType TriggerType
+        {
+            get
+            {
+                return _triggerType;
+            }
+        }
     }
 }
