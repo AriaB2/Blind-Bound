@@ -15,8 +15,8 @@ namespace HackUCIProject
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
-
+        SpriteFont font;
+        TimeSpan fpsCounter = new TimeSpan();
 
         InputManagerComponent input;
 
@@ -28,7 +28,7 @@ namespace HackUCIProject
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
-
+        List<SpriteFont> spriteFontList = new List<SpriteFont>();
         protected override void Initialize()
         {
             _screens = new Dictionary<ScreenState, Screen>();
@@ -40,7 +40,9 @@ namespace HackUCIProject
             spriteBatch = new SpriteBatch(GraphicsDevice);
             input = new InputManagerComponent();
 
-            List<SpriteFont> spriteFontList = new List<SpriteFont>();
+            
+
+            
             for (int i = 0; i < 7; i++)
             {
                 spriteFontList.Add(Content.Load<SpriteFont>("Fonts/StartScreenSpriteFont" + i.ToString()));
@@ -71,30 +73,41 @@ namespace HackUCIProject
         {
             
         }
-
+        int fps;
         protected override void Update(GameTime gameTime)
         {
             input.Update();
 
-
+            fpsCounter += gameTime.ElapsedGameTime;
+            if (fpsCounter >= TimeSpan.FromSeconds(1))
+            {
+                fps = framesDrawn;
+                fpsCounter = TimeSpan.Zero;
+                framesDrawn = 0;
+            }
             //update screen when screens are created.
             _screens[Global.CurrentScreen].Update(gameTime);
 
             base.Update(gameTime);
         }
-
+        int framesDrawn;
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            //spriteBatch.Begin();
-
+            
+            
+            
             //Draw screen when screens are created
             _screens[Global.CurrentScreen].Render();
             _screens[Global.CurrentScreen].Draw();
+
             
-            //spriteBatch.End();
-            
+            spriteBatch.Begin();
+            spriteBatch.DrawString(spriteFontList[0], string.Format("{0}", fps), Vector2.Zero, Color.White);
+            spriteBatch.End();
+
+            framesDrawn++;
             base.Draw(gameTime);
         }
     }

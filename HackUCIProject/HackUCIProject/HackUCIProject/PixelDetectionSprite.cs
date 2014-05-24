@@ -30,7 +30,11 @@ namespace HackUCIProject
             if (_speed.X < 0)
             {
                 areaToCheck.X -= 1;
-                areaToCheck.Height = (_frame != null) ? _frame.Value.Height : _image.Height;
+                if (areaToCheck.X <= 0)
+                {
+                    areaToCheck.X = 0;
+                }
+                areaToCheck.Height = (int)Height;
                 areaToCheck.Width = 1;
                 pixels = new Color[areaToCheck.Width * areaToCheck.Height];
                 _keyMap.GetData<Color>(0, areaToCheck, pixels, 0, pixels.Length);
@@ -46,7 +50,7 @@ namespace HackUCIProject
             else if (_speed.X > 0)
             {
                 areaToCheck.X = (int)Right;
-                areaToCheck.Height = (_frame != null) ? _frame.Value.Height : _image.Height;
+                areaToCheck.Height =  (int)Height;
                 areaToCheck.Width = 1;
                 pixels = new Color[areaToCheck.Width * areaToCheck.Height];
                 _keyMap.GetData<Color>(0, areaToCheck, pixels, 0, pixels.Length);
@@ -59,10 +63,15 @@ namespace HackUCIProject
                     }
                 }
             }
-            else if (_speed.Y < 0)
+            if (_speed.Y < 0)
             {
+                areaToCheck.X = (int)Left;
                 areaToCheck.Y -= 1;
-                areaToCheck.Width = (_frame != null) ? _frame.Value.Width : _image.Width;
+                if (areaToCheck.Y <= 0)
+                {
+                    areaToCheck.Y = 0;
+                }
+                areaToCheck.Width = (int)Width;
                 areaToCheck.Height = 1;
                 pixels = new Color[areaToCheck.Width * areaToCheck.Height];
                 _keyMap.GetData<Color>(0, areaToCheck, pixels, 0, pixels.Length);
@@ -77,8 +86,9 @@ namespace HackUCIProject
             }
             else if (_speed.Y > 0)
             {
+                areaToCheck.X = (int)Left;
                 areaToCheck.Y = (int)Bottom;
-                areaToCheck.Width = (_frame != null) ? _frame.Value.Width : _image.Width;
+                areaToCheck.Width = (int)Width;
                 areaToCheck.Height = 1;
                 pixels = new Color[areaToCheck.Width * areaToCheck.Height];
                 _keyMap.GetData<Color>(0, areaToCheck, pixels, 0, pixels.Length);

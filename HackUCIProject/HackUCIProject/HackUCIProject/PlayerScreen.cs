@@ -25,20 +25,20 @@ namespace HackUCIProject
         }
 
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content)
-        {
+        {    
             //...
         }
-
+                                                                     
         public override void Update(GameTime gameTime)
         {
-
+            _camera.Pos = _player.Location;
             base.Update(gameTime);
         }
 
         public override void Render()
         {
             _dungeon.Render();
-            Rectangle visibleArea = new Rectangle(Convert.ToInt32(_player.Location.X - _width / 2),Convert.ToInt32( _player.Location.Y - _height / 2), _width, _height);
+            Rectangle visibleArea = new Rectangle((int)_camera.Pos.X,(int)_camera.Pos.Y, _width, _height);
 
             Color[] pixels = new Color[visibleArea.Width * visibleArea.Height];
             if (visibleArea.X < 0)

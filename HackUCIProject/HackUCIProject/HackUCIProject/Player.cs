@@ -19,7 +19,7 @@ namespace HackUCIProject
         {
             _playerIndex = player;
         }
-        public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             _speed = new Vector2(InputManager.GetCurrentPlayerState(_playerIndex).ThumbSticks.Left.X, -InputManager.GetCurrentPlayerState(_playerIndex).ThumbSticks.Left.Y);
             base.Update(gameTime);

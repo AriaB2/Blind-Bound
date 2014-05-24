@@ -44,6 +44,11 @@ namespace HackUCIProject
 
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
+            for (int i = 0; i < _playerScreens.Length; i++)
+            {
+                _playerScreens[i].Update(gameTime);
+            }
+
             base.Update(gameTime);
         }
 
