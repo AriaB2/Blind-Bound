@@ -4,3 +4,9 @@ C:\Users\Dust\Documents\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProj
 C:\Users\Dust\Documents\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProject\bin\x86\Debug\HackUCIProject.pdb
 C:\Users\Dust\Documents\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProject\obj\x86\Debug\HackUCIProject.exe
 C:\Users\Dust\Documents\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProject\obj\x86\Debug\HackUCIProject.pdb
+C:\Users\Zero\Documents\BitBucket\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProject\bin\x86\Debug\HackUCIProject.exe
+C:\Users\Zero\Documents\BitBucket\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProject\bin\x86\Debug\HackUCIProject.pdb
+C:\Users\Zero\Documents\BitBucket\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProject\obj\x86\Debug\HackUCIProject.csprojResolveAssemblyReference.cache
+C:\Users\Zero\Documents\BitBucket\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProject\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Zero\Documents\BitBucket\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProject\obj\x86\Debug\HackUCIProject.exe
+C:\Users\Zero\Documents\BitBucket\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProject\obj\x86\Debug\HackUCIProject.pdb

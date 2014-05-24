@@ -1,1 +1,2 @@
 C:\Users\Dust\Documents\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProjectContent\obj\x86\Debug\HackUCIProjectContent.contentprojResolveAssemblyReference.cache
+C:\Users\Zero\Documents\BitBucket\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProjectContent\obj\x86\Debug\HackUCIProjectContent.contentprojResolveAssemblyReference.cache
