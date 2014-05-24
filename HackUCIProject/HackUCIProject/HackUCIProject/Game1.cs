@@ -41,9 +41,6 @@ namespace HackUCIProject
             input = new InputManagerComponent();
             startScreen = new StartScreen(spriteBatch, new Vector2(10, 10), GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, Content.Load<SpriteFont>("StartScreenSpriteFont"));
 
-
-            Global.CurrentScreen = ScreenState.none; //TODO: CHANGE TO START MENU
-
             _screens.Add(ScreenState.game, new GameScreen(spriteBatch, Vector2.Zero, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
             _screens.Add(ScreenState.levelSelection, new LevelSelection(spriteBatch, Vector2.Zero, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
             _screens.Add(ScreenState.startMenu, startScreen);
@@ -55,7 +52,7 @@ namespace HackUCIProject
 
 
 
-            Global.CurrentScreen = ScreenState.startMenu; //TODO: CHANGE TO START MENU
+            Global.CurrentScreen = ScreenState.game; //TODO: CHANGE TO START MENU
         }
 
         protected override void UnloadContent()
@@ -71,8 +68,6 @@ namespace HackUCIProject
             //update screen when screens are created.
             _screens[Global.CurrentScreen].Update(gameTime);
 
-            //update screen when screens are created.
-            _screens[Global.CurrentScreen].Update(gameTime);
             base.Update(gameTime);
         }
 
