@@ -39,8 +39,14 @@ namespace HackUCIProject
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             input = new InputManagerComponent();
-            startScreen = new StartScreen(spriteBatch, new Vector2(10, 10), GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, Content.Load<SpriteFont>("StartScreenSpriteFont"));
 
+            List<SpriteFont> spriteFontList = new List<SpriteFont>();
+            for (int i = 0; i < 7; i++)
+            {
+                spriteFontList.Add(Content.Load<SpriteFont>("Fonts/StartScreenSpriteFont" + i.ToString()));
+            }
+
+            startScreen = new StartScreen(spriteBatch, new Vector2(10, 10), GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, spriteFontList);
 
             Global.CurrentScreen = ScreenState.none; //TODO: CHANGE TO START MENU
 
