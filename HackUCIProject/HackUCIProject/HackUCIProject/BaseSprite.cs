@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace HackUCIProject
 {
-    public class BaseSprite
+    public class BaseSprite : IXNA
     {
         //variables
         #region
@@ -127,10 +127,10 @@ namespace HackUCIProject
         //functions
         #region
 
-    public virtual void Update(GameTime gameTime)
-    {
-        UpdateHitBox(); 
-    }
+        public virtual void Update(GameTime gameTime)
+        {
+            UpdateHitBox(); 
+        }
 
 
 
