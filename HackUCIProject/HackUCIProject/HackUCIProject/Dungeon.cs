@@ -152,7 +152,26 @@ namespace HackUCIProject
                 }
             }
 
+            foreach (BaseSender sender in _senders)
+            {
+                if (sender.TriggerType == TriggerType.hotPlates)
+                {
+                    bool on = false;
+                    foreach (Player player in _players)
+                    {
+                        if (player.HitBox.Intersects(sender.HitBox))
+                        {
+                            on = true;
+                            break;
+                        }
+                    }
 
+                    if (on && !sender.Triggered || !on && sender.Triggered)
+                    {
+                        sender.Trigger();
+                    }
+                }
+            }
             base.Update(gameTime);
         }
 
