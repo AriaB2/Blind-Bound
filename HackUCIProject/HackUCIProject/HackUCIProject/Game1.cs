@@ -65,7 +65,7 @@ namespace HackUCIProject
 
             Global.CurrentScreen = ScreenState.levelSelection; //TODO: CHANGE TO START MENU
             Global.CurrentScreen = ScreenState.game; //TODO: CHANGE TO START MENU
-            Global.CurrentScreen = ScreenState.startMenu;
+            Global.CurrentScreen = ScreenState.game;
         }
         protected override void UnloadContent()
         {
@@ -87,16 +87,10 @@ namespace HackUCIProject
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-
-
-            foreach (Screen screen in _screens.Values)
-            {
-                screen.Render();
-            }
             //spriteBatch.Begin();
 
             //Draw screen when screens are created
-            
+            _screens[Global.CurrentScreen].Render();
             _screens[Global.CurrentScreen].Draw();
             
             //spriteBatch.End();

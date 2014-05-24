@@ -13,6 +13,16 @@ namespace HackUCIProject
     {
         private List<IXNA> _sprites;
 
+        private RenderTarget2D _drawn;
+
+        public RenderTarget2D Drawn
+        {
+            get
+            {
+                return _drawn;
+            }
+        }
+
         public List<IXNA> Sprites
         {
             get { return _sprites; }
@@ -41,6 +51,7 @@ namespace HackUCIProject
         {
             //temporary hardcoded level to have some sort of product. In the future will implement an xml format or something
 
+            
 
             _players = new Player[4];
             _senders = new List<BaseSender>();
@@ -66,10 +77,13 @@ namespace HackUCIProject
             }
             base.LoadContent(content, assetName, location, tint, batch);
 
-
+            _players[0].Location = Vector2.Zero;
+            _players[0].Tint = Color.White;
             _players[1].Location = new Vector2(Width - _players[1].Width, 0);
+            _players[1].Tint = Color.Purple;
             _players[2].Location = new Vector2(0, Height - _players[2].Height);
             _players[3].Location = new Vector2(Width - _players[3].Width, Height - _players[3].Height);
+            _drawn = new RenderTarget2D(_spriteBatch.GraphicsDevice, Convert.ToInt32(Width), Convert.ToInt32(Height));
         }
 
 
@@ -103,6 +117,24 @@ namespace HackUCIProject
             base.Update(gameTime);
         }
 
+        public void Render()
+        {
+            _spriteBatch.GraphicsDevice.SetRenderTarget(_drawn);
+            _spriteBatch.Begin();
+
+            foreach (IXNA sprite in _sprites)
+            {
+                sprite.Draw();
+            }
+            base.Draw();
+            
+
+
+            _spriteBatch.End();
+
+            _spriteBatch.GraphicsDevice.SetRenderTarget(null);
+        }
+
         public override void Draw()
         {
             foreach (IXNA sprite in _sprites)
@@ -110,6 +142,7 @@ namespace HackUCIProject
                 sprite.Draw();
             }
             base.Draw();
+            
         }
     }
 }

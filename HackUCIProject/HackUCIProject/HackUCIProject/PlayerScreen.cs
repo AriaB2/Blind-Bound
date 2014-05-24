@@ -37,6 +37,7 @@ namespace HackUCIProject
 
         public override void Render()
         {
+            _dungeon.Render();
             Rectangle visibleArea = new Rectangle(Convert.ToInt32(_player.Location.X - _width / 2),Convert.ToInt32( _player.Location.Y - _height / 2), _width, _height);
 
             Color[] pixels = new Color[visibleArea.Width * visibleArea.Height];
@@ -58,7 +59,8 @@ namespace HackUCIProject
                 visibleArea.Y = _dungeon.Image.Height - _height;
             }
 
-            _dungeon.Image.GetData<Color>(0, visibleArea, pixels, 0, visibleArea.Width * visibleArea.Height);
+            _dungeon.Drawn.GetData<Color>(0, visibleArea, pixels, 0, pixels.Length);
+            //_dungeon.Image.GetData<Color>(0, visibleArea, pixels, 0, visibleArea.Width * visibleArea.Height);
 
             //_spriteBatch.GraphicsDevice.SetRenderTarget(null);
             _screen.SetData<Color>(pixels);
