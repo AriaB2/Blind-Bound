@@ -10,6 +10,7 @@ namespace HackUCIProject
         none,
         startMenu,
         levelSelection,
+        game,
         levelComplete,
         option
         //add defeat screen

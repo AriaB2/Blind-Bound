@@ -39,8 +39,15 @@ namespace HackUCIProject
             spriteBatch = new SpriteBatch(GraphicsDevice);
             input = new InputManagerComponent();
 
+            _screens.Add(ScreenState.game, new GameScreen(spriteBatch, Vector2.Zero, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
 
-            Global.CurrentScreen = ScreenState.none; //TODO: CHANGE TO START MENU
+
+            foreach (Screen screen in _screens.Values)
+            {
+                screen.LoadContent(Content);
+            }
+
+            Global.CurrentScreen = ScreenState.game; //TODO: CHANGE TO START MENU
         }
 
         protected override void UnloadContent()
@@ -53,7 +60,7 @@ namespace HackUCIProject
             input.Update();
 
             //update screen when screens are created.
-            //_screens[Global.CurrentScreen].Update(gameTime);
+            _screens[Global.CurrentScreen].Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -68,7 +75,7 @@ namespace HackUCIProject
             }
 
             //Draw screen when screens are created
-            //_screens[Global.CurrentScreen].Draw();
+            _screens[Global.CurrentScreen].Draw();
 
             
             base.Draw(gameTime);
