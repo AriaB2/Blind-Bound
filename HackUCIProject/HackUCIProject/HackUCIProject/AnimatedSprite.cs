@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class AnimatedSprite : BaseSprite
     {
 
-        //TODO: FINISH THIS CLASS
         protected List<Rectangle> _frames;
 
         public List<Rectangle> FramesArray
