@@ -13,7 +13,7 @@ namespace HackUCIProject.WrappedFonts
     {
         private SpriteBatch _spriteBatch;
 
-        public WrapArcadeFont(SpriteFont font, Vector2 position, Color colors[], SpriteBatch spriteBatch)
+        public WrapArcadeFont(SpriteFont font, Vector2 position, Color[] colors, SpriteBatch spriteBatch)
             :base(font, position, colors)
         {
             _spriteBatch = spriteBatch;
