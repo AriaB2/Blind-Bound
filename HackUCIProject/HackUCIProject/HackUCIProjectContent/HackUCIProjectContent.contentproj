@@ -134,8 +134,20 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+
     <Compile Include="LevelMap\SacredDonutLevelWhite-05.png">
       <Name>SacredDonutLevelWhite-05</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="LevelMap\BridgeExtended.png">
+      <Name>BridgeExtended</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="LevelMap\BridgeRetracted.png">
+      <Name>BridgeRetracted</Name>
+
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
