@@ -15,7 +15,12 @@ namespace HackUCIProject
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+
         InputManagerComponent input;
+
+        Dictionary<ScreenState, Screen> _screens;
+
 
         public Game1()
         {
@@ -25,7 +30,7 @@ namespace HackUCIProject
 
         protected override void Initialize()
         {
-
+            _screens = new Dictionary<ScreenState, Screen>();
             base.Initialize();
         }
 
@@ -33,6 +38,9 @@ namespace HackUCIProject
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             input = new InputManagerComponent();
+
+
+            Global.CurrentScreen = ScreenState.none; //TODO: CHANGE TO START MENU
         }
 
         protected override void UnloadContent()
@@ -44,12 +52,24 @@ namespace HackUCIProject
         {
             input.Update();
 
+            //update screen when screens are created.
+            //_screens[Global.CurrentScreen].Update(gameTime);
+
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            foreach (Screen screen in _screens.Values)
+            {
+                screen.Render();
+            }
+
+            //Draw screen when screens are created
+            //_screens[Global.CurrentScreen].Draw();
+
             
             base.Draw(gameTime);
         }

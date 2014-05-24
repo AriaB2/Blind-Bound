@@ -5,11 +5,11 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace PGCGame.CoreTypes
+namespace HackUCIProject
 {
     public class Camera2DMatrix
     {
-        //stolen from PGC Game. Credit to either Stan or Glen. Great Minds Robotics! Woo!
+        //From PGC Game. Credit to either Stan or Glen. Great Minds Robotics! Woo!
         protected float _zoom; // Camera Zoom
         public Matrix _transform; // Matrix Transform
         public Vector2 _pos; // Camera Position
