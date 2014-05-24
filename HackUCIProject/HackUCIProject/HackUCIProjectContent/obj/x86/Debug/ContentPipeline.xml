@@ -10,6 +10,15 @@
       <Output>C:\Users\Dust\Documents\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProject\bin\x86\Debug\Content\StartScreenSpriteFont.xnb</Output>
       <Time>2014-05-24T00:52:22.5087557-07:00</Time>
     </Item>
+    <Item>
+      <Source>Square.png</Source>
+      <Name>Square</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Dust\Documents\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProject\bin\x86\Debug\Content\Square.xnb</Output>
+      <Time>2014-05-24T02:16:08.9592522-07:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

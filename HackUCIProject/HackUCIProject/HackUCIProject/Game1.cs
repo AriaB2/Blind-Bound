@@ -16,6 +16,7 @@ namespace HackUCIProject
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        Dungeon d1 = new Dungeon();
 
         InputManagerComponent input;
 
@@ -39,8 +40,9 @@ namespace HackUCIProject
             spriteBatch = new SpriteBatch(GraphicsDevice);
             input = new InputManagerComponent();
 
-
+            d1.LoadContent(Content, "Square", Vector2.Zero, Color.White, spriteBatch);
             Global.CurrentScreen = ScreenState.none; //TODO: CHANGE TO START MENU
+            
         }
 
         protected override void UnloadContent()
@@ -51,7 +53,7 @@ namespace HackUCIProject
         protected override void Update(GameTime gameTime)
         {
             input.Update();
-
+            d1.Update(gameTime);
             //update screen when screens are created.
             //_screens[Global.CurrentScreen].Update(gameTime);
 
@@ -66,7 +68,9 @@ namespace HackUCIProject
             {
                 screen.Render();
             }
-
+            spriteBatch.Begin();
+            d1.Draw();
+            spriteBatch.End();
             //Draw screen when screens are created
             //_screens[Global.CurrentScreen].Draw();
 
