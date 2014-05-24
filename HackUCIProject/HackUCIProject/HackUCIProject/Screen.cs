@@ -8,9 +8,9 @@ using Microsoft.Xna.Framework.Content;
 
 namespace HackUCIProject
 {
-    public abstract class Screen
+    public abstract class Screen : IXNA
     {
-        protected List<BaseSprite> _sprites;
+        protected List<IXNA> _sprites;
         private RenderTarget2D _screen;
         protected SpriteBatch _spriteBatch;
         protected Vector2 _location;
@@ -21,7 +21,7 @@ namespace HackUCIProject
         {
             _screen = new RenderTarget2D(spriteBatch.GraphicsDevice, width, height);
             _isVisible = true;
-            _sprites = new List<BaseSprite>();
+            _sprites = new List<IXNA>();
             _spriteBatch = spriteBatch;
         }
 
@@ -29,10 +29,9 @@ namespace HackUCIProject
 
         public virtual void Update(GameTime gameTime)
         {
-            foreach (BaseSprite sprite in _sprites)
+            foreach (IXNA sprite in _sprites)
             {
                 sprite.Update(gameTime);
-                sprite.UpdateHitBox();
             }
         }
 
@@ -41,7 +40,7 @@ namespace HackUCIProject
             _spriteBatch.GraphicsDevice.SetRenderTarget(_screen);
             _spriteBatch.Begin();
 
-            foreach (BaseSprite sprite in _sprites)
+            foreach (IXNA sprite in _sprites)
             {
                 sprite.Draw();
             }
