@@ -45,7 +45,7 @@ namespace HackUCIProject
                 screen.LoadContent(Content);
             }
 
-            Global.CurrentScreen = ScreenState.levelSelection; //TODO: CHANGE TO START MENU
+            Global.CurrentScreen = ScreenState.game; //TODO: CHANGE TO START MENU
         }
         protected override void UnloadContent()
         {
