@@ -78,11 +78,13 @@ namespace HackUCIProject
             base.LoadContent(content, assetName, location, tint, batch);
 
             _players[0].Location = new Vector2(30, 30);
-            _players[0].Tint = Color.White;
+            _players[0].Tint = Color.Blue;
             _players[1].Location = new Vector2(Width - _players[1].Width-10, 10);
-            _players[1].Tint = Color.Purple;
+            _players[1].Tint = Color.Green;
             _players[2].Location = new Vector2(10, Height - _players[2].Height);
+            _players[2].Tint = Color.Red;
             _players[3].Location = new Vector2(Width-_players[3].Width - 10, Height - _players[3].Height - 10);
+            _players[3].Tint = Color.Yellow;
             _drawn = new RenderTarget2D(_spriteBatch.GraphicsDevice, Convert.ToInt32(Width), Convert.ToInt32(Height));
         }
 
