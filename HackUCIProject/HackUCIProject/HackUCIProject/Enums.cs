@@ -25,4 +25,10 @@ namespace HackUCIProject
         levelComplete,
         //add defeat and timer later (the quicker you finish the game, the 
     }
+
+    public enum BridgeSide
+    {
+        Left,
+        Right
+    }
 }
