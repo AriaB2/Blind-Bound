@@ -16,3 +16,6 @@ C:\Users\Aria\Documents\Visual Studio 2010\Projects\hackuciproject\HackUCIProjec
 C:\Users\Aria\Documents\Visual Studio 2010\Projects\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProject\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Aria\Documents\Visual Studio 2010\Projects\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProject\obj\x86\Debug\HackUCIProject.exe
 C:\Users\Aria\Documents\Visual Studio 2010\Projects\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProject\obj\x86\Debug\HackUCIProject.pdb
+C:\Users\Aria\Documents\Visual Studio 2010\Projects\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProject\bin\x86\Debug\FontEffectsLib.dll
+C:\Users\Aria\Documents\Visual Studio 2010\Projects\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProject\bin\x86\Debug\FontEffectsLib.pdb
+C:\Users\Aria\Documents\Visual Studio 2010\Projects\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProject\bin\x86\Debug\FontEffectsLib.xml
