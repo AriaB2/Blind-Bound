@@ -14,8 +14,28 @@ namespace HackUCIProject
         private RenderTarget2D _screen;
         protected SpriteBatch _spriteBatch;
         protected Vector2 _location;
+        protected Color _backGroundColor;
 
+        public Color BackGroundColor
+        {
+            get
+            {
+                return _backGroundColor;
+            }
+            set
+            {
+                _backGroundColor = value;
+            }
+        }
+        
         protected bool _isVisible;
+
+        protected SpriteSortMode _sortMode;
+        protected BlendState _blendState;
+        protected SamplerState _samplerState;
+        protected DepthStencilState _depthStencilState;
+        protected RasterizerState _rasterizerState;
+        protected Camera2DMatrix _camera;
 
         public Screen(SpriteBatch spriteBatch, Vector2 location, int width, int height)
         {
@@ -23,6 +43,15 @@ namespace HackUCIProject
             _isVisible = true;
             _sprites = new List<IXNA>();
             _spriteBatch = spriteBatch;
+            _backGroundColor = Color.White;
+            _location = location;
+
+            _sortMode = SpriteSortMode.Deferred;
+            _blendState = BlendState.AlphaBlend;
+            _samplerState = SamplerState.LinearClamp;
+            _rasterizerState = RasterizerState.CullCounterClockwise;
+            _camera = new Camera2DMatrix();
+            _camera.Pos = location + new Vector2(width / 2, height / 2);
         }
 
         public abstract void LoadContent(ContentManager content);
@@ -35,11 +64,12 @@ namespace HackUCIProject
             }
         }
 
-        public void Render()
+        public virtual void Render()
         {
             _spriteBatch.GraphicsDevice.SetRenderTarget(_screen);
-            _spriteBatch.Begin();
-
+            _spriteBatch.GraphicsDevice.Clear(_backGroundColor);
+            _spriteBatch.Begin(_sortMode, _blendState, _samplerState, _depthStencilState, _rasterizerState, null, _camera.GetTransformation(_spriteBatch.GraphicsDevice));
+            
             foreach (IXNA sprite in _sprites)
             {
                 sprite.Draw();
@@ -48,7 +78,7 @@ namespace HackUCIProject
             _spriteBatch.End();
         }
 
-        public void Draw()
+        public virtual void Draw()
         {
             if (_isVisible)
             {
