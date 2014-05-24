@@ -15,12 +15,10 @@ namespace HackUCIProject
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-<<<<<<< HEAD
 
         Dungeon d1 = new Dungeon();
 
-=======
->>>>>>> 12aa6bf10c397a70b365325a4280d412ac5ef1fb
+
         InputManagerComponent input;
         Dictionary<ScreenState, Screen> _screens;
         StartScreen startScreen;
@@ -43,22 +41,21 @@ namespace HackUCIProject
             input = new InputManagerComponent();
             startScreen = new StartScreen(spriteBatch, new Vector2(10, 10), GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, Content.Load<SpriteFont>("StartScreenSpriteFont"));
 
-<<<<<<< HEAD
             d1.LoadContent(Content, "Square", Vector2.Zero, Color.White, spriteBatch);
             Global.CurrentScreen = ScreenState.none; //TODO: CHANGE TO START MENU
-            
-        }
-=======
+
             _screens.Add(ScreenState.game, new GameScreen(spriteBatch, Vector2.Zero, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
             _screens.Add(ScreenState.levelSelection, new LevelSelection(spriteBatch, Vector2.Zero, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
+            _screens.Add(ScreenState.startMenu, startScreen);
+
 
             foreach (Screen screen in _screens.Values)
             {
                 screen.LoadContent(Content);
             }
->>>>>>> 12aa6bf10c397a70b365325a4280d412ac5ef1fb
 
-            Global.CurrentScreen = ScreenState.game; //TODO: CHANGE TO START MENU
+
+            Global.CurrentScreen = ScreenState.startMenu; //TODO: CHANGE TO START MENU
         }
         protected override void UnloadContent()
         {
@@ -68,10 +65,9 @@ namespace HackUCIProject
         protected override void Update(GameTime gameTime)
         {
             input.Update();
-<<<<<<< HEAD
+
             d1.Update(gameTime);
-=======
->>>>>>> 12aa6bf10c397a70b365325a4280d412ac5ef1fb
+
             //update screen when screens are created.
             _screens[Global.CurrentScreen].Update(gameTime);
             base.Update(gameTime);

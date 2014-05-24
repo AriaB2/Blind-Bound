@@ -29,8 +29,8 @@ namespace HackUCIProject
                 int x = 0;
                 for (int col = 0; col < 2; col++)
                 {
-                    _playerScreens[row * 2 + col] = new PlayerScreen(_spriteBatch, new Vector2(x, y), _spriteBatch.GraphicsDevice.Viewport.Width / 2 - 1, _spriteBatch.GraphicsDevice.Viewport.Height / 2 - 1, new Player());
-                    _playerScreens[row * 2 + col].BackGroundColor = _colors[row * 2 + col];
+                    //_playerScreens[row * 2 + col] = new PlayerScreen(_spriteBatch, new Vector2(x, y), _spriteBatch.GraphicsDevice.Viewport.Width / 2 - 1, _spriteBatch.GraphicsDevice.Viewport.Height / 2 - 1, new Player());
+                    //_playerScreens[row * 2 + col].BackGroundColor = _colors[row * 2 + col];
                     x += _spriteBatch.GraphicsDevice.Viewport.Width / 2;
                 }
                 y += _spriteBatch.GraphicsDevice.Viewport.Height / 2;
@@ -49,7 +49,7 @@ namespace HackUCIProject
         {
             foreach (PlayerScreen playerScreen in _playerScreens)
             {
-                playerScreen.Render();
+                //playerScreen.Render();
             }
             base.Render();
         }
@@ -59,7 +59,7 @@ namespace HackUCIProject
             base.Draw();
             foreach (PlayerScreen playerScreen in _playerScreens)
             {
-                playerScreen.Draw();
+                //playerScreen.Draw();
             }
         }
 
