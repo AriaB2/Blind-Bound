@@ -39,7 +39,7 @@ namespace HackUCIProject
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             input = new InputManagerComponent();
-            startScreen = new StartScreen(spriteBatch, new Vector2(10, 10), GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, Content.Load<SpriteFont>("StartScreenSpriteFont"));
+            startScreen = new StartScreen(spriteBatch, new Vector2(10, 10), GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, Content.Load<SpriteFont>("StartScreenSpriteFont0"));
 
 
             Global.CurrentScreen = ScreenState.none; //TODO: CHANGE TO START MENU
@@ -55,7 +55,7 @@ namespace HackUCIProject
 
 
 
-            Global.CurrentScreen = ScreenState.startMenu; //TODO: CHANGE TO START MENU
+            Global.CurrentScreen = ScreenState.levelSelection; //TODO: CHANGE TO START MENU
         }
 
         protected override void UnloadContent()
