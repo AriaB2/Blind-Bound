@@ -21,6 +21,7 @@ namespace HackUCIProject
             _dungeon = dungeon;
             _width = width;
             _height = height;
+            _backGroundColor = Color.White;
         }
 
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content)

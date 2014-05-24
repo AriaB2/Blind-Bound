@@ -10,6 +10,46 @@ namespace HackUCIProject
         //variables
         #region
 
+        public float Left
+        {
+            get
+            {
+                return _location.X - Origin.X;
+            }
+        }
+
+        public float Right
+        {
+            get
+            {
+                if (_frame != null)
+                {
+                    return _location.X + (_frame.Value.Width * _scale.X) - _origin.X;
+                }
+                return _location.X + (_image.Width * _scale.X) - _origin.X;
+            }
+        }
+
+        public float Top
+        {
+            get
+            {
+                return _location.Y - _origin.Y;
+            }
+        }
+
+        public float Bottom
+        {
+            get
+            {
+                if (_frame != null)
+                {
+                    return _location.Y - _origin.Y + (_frame.Value.Height*_scale.Y);
+                }
+                return _location.Y - _origin.Y + (_image.Height * _scale.Y);
+            }
+        }
+
         protected Texture2D _image;
 
         public Texture2D Image

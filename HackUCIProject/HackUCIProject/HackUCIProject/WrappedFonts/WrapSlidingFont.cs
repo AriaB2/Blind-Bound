@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 
 namespace HackUCIProject.WrappedFonts
 {
-    class WrapSlidingFont : SlidingFont, IXNA
+    public class WrapSlidingFont : SlidingFont, IXNA
     {
         private SpriteBatch _spriteBatch;
 
