@@ -5,7 +5,7 @@ using System.Text;
 
 namespace HackUCIProject
 {
-    class Player : BaseSprite
+    public class Player : BaseSprite
     {
     }
 }

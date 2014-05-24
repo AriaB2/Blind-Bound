@@ -2,13 +2,13 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>StartMenuFont.spritefont</Source>
-      <Name>StartMenuFont</Name>
+      <Source>StartScreenSpriteFont.spritefont</Source>
+      <Name>StartScreenSpriteFont</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Aria\Documents\Visual Studio 2010\Projects\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProject\bin\x86\Debug\Content\StartMenuFont.xnb</Output>
-      <Time>2014-05-24T00:35:39.0363726-07:00</Time>
+      <Output>C:\Users\Dust\Documents\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProject\bin\x86\Debug\Content\StartScreenSpriteFont.xnb</Output>
+      <Time>2014-05-24T00:52:22.5087557-07:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -16,10 +16,10 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Aria\Documents\Visual Studio 2010\Projects\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProjectContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Aria\Documents\Visual Studio 2010\Projects\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProject\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Aria\Documents\Visual Studio 2010\Projects\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProjectContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Aria\Documents\Visual Studio 2010\Projects\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProject\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Dust\Documents\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProjectContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Dust\Documents\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProject\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Dust\Documents\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProjectContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Dust\Documents\hackuciproject\HackUCIProject\HackUCIProject\HackUCIProject\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
@@ -47,8 +47,8 @@
         <Value>2010-08-23T12:41:18-07:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2013-04-07T20:21:49.8053616-07:00</Value>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2013-05-20T21:00:18.5371479-07:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>
