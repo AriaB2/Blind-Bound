@@ -139,6 +139,16 @@ namespace HackUCIProject
             doorReciever2.Scale *= .75f;
             _sprites.Add(doorReciever2);
 
+            BaseSender greenSpot2 = new BaseSender(TriggerType.hotPlates);
+            greenSpot2.LoadContent(content, "LevelMap\\HotSpot", new Vector2(1075, 506), Color.Green, batch);
+            Door doorReciever4 = new Door();
+            _sprites.Add(greenSpot2);
+            _senders.Add(greenSpot2);
+            doorReciever4.LoadContent(content, "LevelMap\\Door-07", new Vector2(930, 765), Color.Green, batch);
+            _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(doorReciever4);
+            doorReciever4.Scale *= .75f;
+            _sprites.Add(doorReciever4);
+
             BaseSender yellowSpot1 = new BaseSender(TriggerType.hotPlates);
             yellowSpot1.LoadContent(content, "LevelMap\\HotSpot", new Vector2(1377, 901), Color.Yellow, batch);
             TrapDoor trapDoorReciever = new TrapDoor();
@@ -150,13 +160,13 @@ namespace HackUCIProject
             _sprites.Add(trapDoorReciever);
 
             BaseSender yellowSpot2 = new BaseSender(TriggerType.hotPlates);
-            yellowSpot2.LoadContent(content, "LevelMap\\HotSpot", new Vector2(1883, 502), Color.Yellow, batch);
+            yellowSpot2.LoadContent(content, "LevelMap\\HotSpot", new Vector2(1871, 506), Color.Yellow, batch);
             TrapDoor trapDoorReciever3 = new TrapDoor();
             _sprites.Add(yellowSpot2);
             _senders.Add(yellowSpot2);
-            trapDoorReciever3.LoadContent(content, "LevelMap\\TrapdoorOpen", new Vector2(387, 518), Color.Yellow, batch);
+            trapDoorReciever3.LoadContent(content, "LevelMap\\TrapdoorOpen", new Vector2(388, 515), Color.Yellow, batch);
             _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(trapDoorReciever3);
-            trapDoorReciever3.Scale *= .20f;
+            trapDoorReciever3.Scale *= .22f;
             _sprites.Add(trapDoorReciever3);
 
             BaseSender redSpot1 = new BaseSender(TriggerType.hotPlates);
@@ -169,6 +179,16 @@ namespace HackUCIProject
             trapDoorReciever2.Scale *= .20f;
             _sprites.Add(trapDoorReciever2);
 
+            BaseSender redSpot2 = new BaseSender(TriggerType.hotPlates);
+            redSpot2.LoadContent(content, "LevelMap\\HotSpot", new Vector2(937, 656), Color.Red, batch);
+            Door doorReciever3 = new Door();
+            _sprites.Add(redSpot2);
+            _senders.Add(redSpot2);
+            doorReciever3.LoadContent(content, "LevelMap\\Door-07", new Vector2(1218, 498), Color.Red, batch);
+            _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(doorReciever3);
+            doorReciever3.Scale *= .75f;
+            doorReciever3.Rotation = (float)(Math.PI / 2);
+            _sprites.Add(doorReciever3);
             //after adding and loading all senders to the list of senders
 
             foreach (BaseSender sender in _senders)
