@@ -64,27 +64,31 @@ namespace HackUCIProject
 
             _senders.Add(new BaseSender(TriggerType.hotPlates));
             _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(14, 824), Color.White, batch);
-
-            
-
-
             Bridge reciever = new Bridge(BridgeSide.Left);
             reciever.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(1116, 113), Color.Red, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
             _senders[_senders.Count - 1].ObjectBeingTriggered = reciever;
             _sprites.Add(reciever);
+
+            BaseSender blueSpot1 = new BaseSender(TriggerType.hotPlates);
+            blueSpot1.LoadContent(content, "LevelMap\\HotSpot", new Vector2(197, 1), Color.Blue, batch);
+            blueSpot1.ObjectBeingTriggered = reciever; // change this to blueDoor1
+            _sprites.Add(blueSpot1);
+
+
             _senders.Add(new BaseSender(TriggerType.hotPlates));
             _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(960,14), Color.White, batch);
             Bridge reciever2 = new Bridge(BridgeSide.Right);
             reciever2.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(1520, 113), Color.Yellow, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
             _senders[_senders.Count - 1].ObjectBeingTriggered = reciever2;
             _sprites.Add(reciever2);
-            _senders.Add(new BaseSender(TriggerType.hotPlates));
-            _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(1905,821), Color.White, batch);
 
             Bridge reciever3 = new Bridge(BridgeSide.Right);
+            _senders.Add(new BaseSender(TriggerType.hotPlates));
+            _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(1905, 821), Color.White, batch);
             reciever3.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(713, 881), Color.Green, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
             _senders[_senders.Count - 1].ObjectBeingTriggered = reciever3;
             _sprites.Add(reciever3);
+
             _senders.Add(new BaseSender(TriggerType.hotPlates));
             _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(14, 540), Color.White, batch);
             Bridge reciever4 = new Bridge(BridgeSide.Left);
@@ -157,25 +161,6 @@ namespace HackUCIProject
                 player.Update(gameTime);
             }
 
-            for (int i = 0; i < _players.Length; i++)
-            {
-                foreach (BaseSender sender in _senders)
-                {
-                    if (_players[i].HitBox.Intersects(sender.HitBox))
-                    {
-                        PlayerIndex currentPlayer = (PlayerIndex)i;
-                        if (InputManager.GetCurrentPlayerState(currentPlayer).Buttons.A == ButtonState.Pressed && InputManager.GetLastPlayerState(currentPlayer).Buttons.A != ButtonState.Pressed)
-                        {
-                            if (_players[i].Tint == sender.Tint)
-                            {
-                                sender.Trigger();
-                            }
-                        }
-                        break;
-                    }
-                }
-            }
-
             foreach (BaseSender sender in _senders)
             {
                 if (sender.TriggerType == TriggerType.hotPlates)
@@ -193,6 +178,24 @@ namespace HackUCIProject
                     if (on && !sender.IsTriggered || !on && sender.IsTriggered)
                     {
                         sender.Trigger();
+                    }
+                }
+                else if (sender.TriggerType == TriggerType.switches)
+                {
+                    for (int i = 0; i < _players.Length; i++)
+                    {
+                        if (_players[i].HitBox.Intersects(sender.HitBox))
+                        {
+                            PlayerIndex currentPlayer = (PlayerIndex)i;
+                            if (InputManager.GetCurrentPlayerState(currentPlayer).Buttons.A == ButtonState.Pressed && InputManager.GetLastPlayerState(currentPlayer).Buttons.A != ButtonState.Pressed)
+                            {
+                                if (_players[i].Tint == sender.Tint)
+                                {
+                                    sender.Trigger();
+                                }
+                            }
+                            break;
+                        }
                     }
                 }
             }
