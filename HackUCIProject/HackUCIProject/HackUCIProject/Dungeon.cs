@@ -235,7 +235,7 @@ namespace HackUCIProject
 
             _goal = new BaseSprite();
             _goal.LoadContent(content, "LevelMap/Goal", new Vector2(868, 585), Color.Pink, batch);
-            _sprites.Add(_goal);
+            //_sprites.Add(_goal);
 
         }
 
