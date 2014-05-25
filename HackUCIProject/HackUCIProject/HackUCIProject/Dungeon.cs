@@ -359,7 +359,7 @@ namespace HackUCIProject
                                 displayText = true;
                                 GamePadState input = InputManager.GetCurrentPlayerState(player.PlayerIndex);
                                 GamePadState oldInput = InputManager.GetLastPlayerState(player.PlayerIndex);
-                                if (input.IsButtonDown(Buttons.A) && !sender.IsTriggered && input.IsButtonUp(Buttons.A))
+                                if (input.IsButtonDown(Buttons.A) && oldInput.IsButtonUp(Buttons.A))
                                 {
                                     sender.Trigger();
                                 }
