@@ -39,7 +39,8 @@ namespace HackUCIProject
             }
 
             _sprites.Add(_dungeon);
-            
+            _dungeon.MapStart();
+
         }
 
         void _dungeon_MapChanged(object sender, EventArgs e)
