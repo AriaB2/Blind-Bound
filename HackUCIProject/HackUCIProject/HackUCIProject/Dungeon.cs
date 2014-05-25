@@ -159,9 +159,10 @@ namespace HackUCIProject
             for (int i = 0; i < _players.Length; i++)
             {
                 _players[i] = new Ghost((PlayerIndex)i);
-                _players[i].LoadContent(content, "Square", new Vector2(300, 140), Global.MainColors[i], batch, "LevelMap/SacredDonutLevelWhite-05");
+                _players[i].LoadContent(content, "Ghost", new Vector2(300, 140), Global.MainColors[i], batch, "LevelMap/SacredDonutLevelWhite-05");
                 _players[i].Speed = Vector2.One;
                 _players[i].SetOriginCenter();
+                _players[i].Scale = new Vector2(.1f, .1f);
                 _sprites.Add(_players[i]);
             }
 
