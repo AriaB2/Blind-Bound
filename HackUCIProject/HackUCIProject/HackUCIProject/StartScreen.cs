@@ -27,7 +27,7 @@ namespace HackUCIProject
         TimeSpan _elapsedGameTIme = new TimeSpan();
         TimeSpan _timeForScale = new TimeSpan(0, 0, 0, 0, 1);
 
-
+        bool resetScreen = false;
 
         int fadeFontStateNum = 0;
 
@@ -153,6 +153,19 @@ namespace HackUCIProject
         public override void Update(GameTime gameTime)
         {
 
+            if (resetScreen)
+            {
+                fadeFontStateNum = 0;
+                _titleFont.Reset();
+                for (int i = 0; i < menu.Length; i++)
+                {
+                    menu[i].Reset();
+                    menu[i].IsVisible = false;
+                    //menu[i].Slide();
+                    resetScreen = false;
+                }
+            }
+
             if (_titleFont.State == FadingFont.FontState.Fading)
             {
                 _elapsedGameTIme += gameTime.ElapsedGameTime;
@@ -204,14 +217,17 @@ namespace HackUCIProject
                 if (currentItem == 0)
                 {
                     Global.CurrentScreen = ScreenState.levelSelection;
+                    resetScreen = true;
                 }
                 else if (currentItem == 1)
                 {
                     Global.CurrentScreen = ScreenState.option;
+                    resetScreen = true;
                 }
                 else if (currentItem == 2)
                 {
                     Global.CurrentScreen = ScreenState.credits;
+                    resetScreen = true;
                 }
                 else if (currentItem == 3)
                 {
