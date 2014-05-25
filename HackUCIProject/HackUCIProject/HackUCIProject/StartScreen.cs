@@ -109,18 +109,18 @@ namespace HackUCIProject
             //_optionsFont.IsVisible = false;
             //_sprites.Add(_optionsFont);
 
-            _exitFont = new WrapSlidingFont(_spriteFontList[1], new Vector2(0, _spriteBatch.GraphicsDevice.Viewport.Height / 2 + 175), Vector2.Zero, 1.0f, Color.Black, _spriteBatch);
+            _exitFont = new WrapSlidingFont(_spriteFontList[1], new Vector2(0, _spriteBatch.GraphicsDevice.Viewport.Height / 2 + 125), Vector2.Zero, 1.0f, Color.Black, _spriteBatch);
             _exitFont.Text.Append("Exit");
             _exitFont.Origin = new Vector2(_exitFont.Font.MeasureString("Exit").X / 2, _exitFont.Font.MeasureString("Exit").Y / 2);
-            _exitFont.TargetPosition = new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width / 2, _spriteBatch.GraphicsDevice.Viewport.Height / 2 + 175);
+            _exitFont.TargetPosition = new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width / 2, _spriteBatch.GraphicsDevice.Viewport.Height / 2 + 125);
             _exitFont.EnableShadow = false;
             _exitFont.IsVisible = false;
             _sprites.Add(_exitFont);
 
-            _creditsFont = new WrapSlidingFont(_spriteFontList[1], new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width, _spriteBatch.GraphicsDevice.Viewport.Height / 2 + 125), Vector2.Zero, 1.0f, Color.Black, _spriteBatch);
+            _creditsFont = new WrapSlidingFont(_spriteFontList[1], new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width, _spriteBatch.GraphicsDevice.Viewport.Height / 2 + 75), Vector2.Zero, 1.0f, Color.Black, _spriteBatch);
             _creditsFont.Text.Append("Credits");
             _creditsFont.Origin = new Vector2(_exitFont.Font.MeasureString("Credits").X / 2, _exitFont.Font.MeasureString("Credits").Y / 2);
-            _creditsFont.TargetPosition = new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width / 2, _spriteBatch.GraphicsDevice.Viewport.Height / 2 + 125);
+            _creditsFont.TargetPosition = new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width / 2, _spriteBatch.GraphicsDevice.Viewport.Height / 2 + 75);
             _creditsFont.EnableShadow = false;
             _creditsFont.IsVisible = false;
             _sprites.Add(_creditsFont);
