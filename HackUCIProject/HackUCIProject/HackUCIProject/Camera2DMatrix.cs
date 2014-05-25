@@ -15,6 +15,7 @@ namespace HackUCIProject
         public Vector2 _pos; // Camera Position
         protected float _rotation; // Camera Rotation
 
+
         public Camera2DMatrix()
         {
             _zoom = 1.0f;

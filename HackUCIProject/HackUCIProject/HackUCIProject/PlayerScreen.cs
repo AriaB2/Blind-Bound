@@ -23,13 +23,32 @@ namespace HackUCIProject
             _height = height;
             _backGroundColor = Color.White;
             _sprites.Add(_dungeon);
+            _player.Camera = _camera;
+            _player.ScreenSize = new Vector2(_screen.Width, _screen.Height);
+            _dungeon.MapChanged += new EventHandler(_dungeon_MapChanged);
+
+            _localKeyMap = new Texture2D(_spriteBatch.GraphicsDevice, _screen.Width, _screen.Height);
+            _colorData = new Color[_screen.Width * _screen.Height];
+            _dungeon.Drawn.GetData<Color>(0, new Rectangle((int)_camera.Pos.X - _screen.Width / 2, (int)_camera.Pos.Y - (int)_screen.Height / 2, (int)_screen.Width, (int)_screen.Height), _colorData, 0, _colorData.Length);
+            _localKeyMap.SetData<Color>(_colorData);
+            _player.KeyMap = _localKeyMap;
+        }
+
+        void _dungeon_MapChanged(object sender, EventArgs e)
+        {
+            _localKeyMap = new Texture2D(_spriteBatch.GraphicsDevice, _screen.Width, _screen.Height);
+            _colorData = new Color[_screen.Width * _screen.Height];
+            _dungeon.Drawn.GetData<Color>(0, new Rectangle((int)_camera.Pos.X - _screen.Width / 2, (int)_camera.Pos.Y - (int)_screen.Height / 2, (int)_screen.Width, (int)_screen.Height), _colorData, 0, _colorData.Length);
+            _localKeyMap.SetData<Color>(_colorData);
+            _player.KeyMap = _localKeyMap;
         }
 
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content)
         {    
 
         }
-                                                                     
+        Texture2D _localKeyMap;
+        Color[] _colorData;         
         public override void Update(GameTime gameTime)
         {
             _camera.Pos = _player.Location;
@@ -49,6 +68,9 @@ namespace HackUCIProject
             {
                 _camera._pos.Y = _dungeon.Height - _screen.Height / 2;
             }
+
+           
+
             base.Update(gameTime);
         }
 

@@ -13,6 +13,8 @@ namespace HackUCIProject
     {
         private List<IXNA> _sprites;
 
+        public event EventHandler MapChanged;
+
         private RenderTarget2D _drawn;
 
         public RenderTarget2D Drawn
@@ -86,13 +88,13 @@ namespace HackUCIProject
             for (int i = 0; i < _players.Length; i++)
             {
                 _players[i] = new Player((PlayerIndex)i);
-                _players[i].LoadContent(content, "Square", new Vector2(300, 140), Global.MainColors[i], batch, "KeyMap");
+                _players[i].LoadContent(content, "Square", new Vector2(300, 140), Global.MainColors[i], batch, "LevelMap/SacredDonutLevelWhite-05");
                 _players[i].Speed = Vector2.One;
                 _players[i].SetOriginCenter();
                 _sprites.Add(_players[i]);
             }
 
-            _players[0].Location = new Vector2(30, 30);
+            _players[0].Location = new Vector2(100, 100);
             _players[0].Tint = Color.White;
             _players[1].Location = new Vector2(Width - _players[1].Width - 10, 10);
             _players[1].Tint = Color.Purple;
@@ -102,6 +104,8 @@ namespace HackUCIProject
 
 
         }
+
+       
 
 
         public override void Update(GameTime gameTime)
@@ -113,7 +117,7 @@ namespace HackUCIProject
 
             foreach (Player player in _players)
             {
-                player.Update(gameTime, new Vector2(Width, Height));
+                player.Update(gameTime);
             }
 
             for (int i = 0; i < _players.Length; i++)
@@ -128,6 +132,7 @@ namespace HackUCIProject
                             if (_players[i].Tint == sender.Tint)
                             {
                                 sender.Trigger();
+                                MapChanged(this, null);
                             }
                         }
                         break;

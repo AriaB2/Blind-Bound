@@ -18,12 +18,31 @@ namespace HackUCIProject
             set { _keyMap = value; }
         }
 
+        private Camera2DMatrix _camera;
+
+        public Camera2DMatrix Camera
+        {
+            get { return _camera; }
+            set { _camera = value; }
+        }
+
+        private Vector2 _screenSize;
+
+        public Vector2 ScreenSize
+        {
+            get { return _screenSize; }
+            set { _screenSize = value; }
+        }
+
+
+
         private bool canMoveHorizontally;
         private bool canMoveVertically;
 
-        public virtual void Update(GameTime gameTime, Vector2 boundaries)
+        public virtual void Update(GameTime gameTime)
         {
-            Rectangle areaToCheck = new Rectangle((int)Left, (int)Top, 0, 0);
+            Rectangle areaToCheck = new Rectangle((int)Left - ((int)_camera.Pos.X - (int)_screenSize.X / 2), (int)Top - ((int)_camera.Pos.Y - (int)_screenSize.Y / 2), 0, 0);
+            
             Color[] pixels;
             canMoveVertically = true;
             canMoveHorizontally = true;
@@ -49,17 +68,22 @@ namespace HackUCIProject
                             canMoveHorizontally = false;
                             break;
                         }
+                        else
+                        {
+                            break;
+                        }
                     }
                 }
             }
             else if (_speed.X > 0)
             {
-                areaToCheck.X = (int)Right;
-                areaToCheck.Height =  (int)Height;
+                areaToCheck.X = (int)Right - ((int)_camera.Pos.X - (int)_screenSize.X / 2);
+                areaToCheck.Height = (int)Height ;
                 areaToCheck.Width = 1;
-                if (areaToCheck.Right + areaToCheck.Width >= boundaries.X)
+                if (areaToCheck.Right + areaToCheck.Width >= _screenSize.X)
                 {
                     canMoveHorizontally = false;
+                    areaToCheck.X = (int)_screenSize.X - areaToCheck.Width-5;
                 }
 
                 if (canMoveHorizontally)
@@ -73,12 +97,16 @@ namespace HackUCIProject
                             canMoveHorizontally = false;
                             break;
                         }
+                        else
+                        {
+                            break;
+                        }
                     }
                 }
             }
             if (_speed.Y < 0)
             {
-                areaToCheck.X = (int)Left;
+                areaToCheck.X = (int)Left-((int)_camera.Pos.X - (int)_screenSize.X/2);
                 areaToCheck.Y -= 1;
                 if (areaToCheck.Y <= 0)
                 {
@@ -99,16 +127,20 @@ namespace HackUCIProject
                             canMoveVertically = false;
                             break;
                         }
+                        else
+                        {
+                            break;
+                        }
                     }
                 }
             }
             else if (_speed.Y > 0)
             {
-                areaToCheck.X = (int)Left;
-                areaToCheck.Y = (int)Bottom;
+                areaToCheck.X = (int)Left - ((int)_camera.Pos.X - (int)_screenSize.X / 2);
+                areaToCheck.Y = (int)Bottom - ((int)_camera.Pos.Y - (int)_screenSize.Y / 2);
                 areaToCheck.Width = (int)Width;
                 areaToCheck.Height = 1;
-                if (areaToCheck.Bottom >= boundaries.Y)
+                if (areaToCheck.Bottom >= _screenSize.Y)
                 {
                     canMoveVertically = false;
                 }
@@ -122,6 +154,10 @@ namespace HackUCIProject
                         if (c == Color.Black)
                         {
                             canMoveVertically = false;
+                            break;
+                        }
+                        else
+                        {
                             break;
                         }
                     }
@@ -147,9 +183,11 @@ namespace HackUCIProject
             base.Update(gameTime);
         }
 
+
         public void LoadContent(ContentManager content, string assetName, Vector2 location, Color tint, SpriteBatch batch, string keyMapAssetName)
         {
             _keyMap = content.Load<Texture2D>(keyMapAssetName);
+            
             base.LoadContent(content, assetName, location, tint, batch);
         }
     }
