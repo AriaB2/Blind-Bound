@@ -36,9 +36,9 @@ namespace HackUCIProject
             set { _sprites = value; }
         }
 
-        private Player[] _players;
+        private Ghost[] _players;
 
-        public Player[] Players
+        public Ghost[] Players
         {
             get { return _players; }
             set { _players = value; }
@@ -60,7 +60,7 @@ namespace HackUCIProject
 
 
 
-            _players = new Player[4];
+            _players = new Ghost[4];
             _senders = new List<BaseSender>();
             _sprites = new List<IXNA>();
 
@@ -158,7 +158,7 @@ namespace HackUCIProject
 
             for (int i = 0; i < _players.Length; i++)
             {
-                _players[i] = new Player((PlayerIndex)i);
+                _players[i] = new Ghost((PlayerIndex)i);
                 _players[i].LoadContent(content, "Square", new Vector2(300, 140), Global.MainColors[i], batch, "LevelMap/SacredDonutLevelWhite-05");
                 _players[i].Speed = Vector2.One;
                 _players[i].SetOriginCenter();
