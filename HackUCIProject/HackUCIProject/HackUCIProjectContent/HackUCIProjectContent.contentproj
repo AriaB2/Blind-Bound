@@ -136,6 +136,55 @@
   <ItemGroup>
     <Compile Include="StartScreenImage.png">
       <Name>StartScreenImage</Name>
+    </Compile>
+    <Compile Include="LevelMap\SacredDonutLevelWhite-05.png">
+      <Name>SacredDonutLevelWhite-05</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="LevelMap\BridgeExtended.png">
+      <Name>BridgeExtended</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="LevelMap\BridgeRetracted.png">
+      <Name>BridgeRetracted</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="LevelMap\Lever.png">
+      <Name>Lever</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="LevelMap\Door-07.png">
+      <Name>Door-07</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="LevelMap\TrapdoorFull.png">
+      <Name>TrapdoorFull</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="LevelMap\TrapdoorOpen.png">
+      <Name>TrapdoorOpen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="LevelMap\SacredDonutLevelWhiteWithWalls-05.png">
+      <Name>SacredDonutLevelWhiteWithWalls-05</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="LevelMap\HotSpot.png">
+      <Name>HotSpot</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

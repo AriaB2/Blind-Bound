@@ -10,6 +10,13 @@ namespace HackUCIProject
     public class PlayerScreen : Screen
     {
         Player _player;
+        public Player Player
+        {
+            get
+            {
+                return _player;
+            }
+        }
         Dungeon _dungeon;
         int _width;
         int _height;
@@ -23,13 +30,19 @@ namespace HackUCIProject
             _height = height;
             _backGroundColor = Color.White;
             _sprites.Add(_dungeon);
+            _player.Camera = _camera;
+            _player.ScreenSize = new Vector2(_screen.Width, _screen.Height);
+
+          
         }
+
+
 
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content)
         {    
 
         }
-                                                                     
+       
         public override void Update(GameTime gameTime)
         {
             _camera.Pos = _player.Location;
@@ -49,6 +62,9 @@ namespace HackUCIProject
             {
                 _camera._pos.Y = _dungeon.Height - _screen.Height / 2;
             }
+
+           
+
             base.Update(gameTime);
         }
 

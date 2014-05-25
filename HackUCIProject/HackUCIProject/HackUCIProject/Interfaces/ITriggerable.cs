@@ -7,7 +7,7 @@ namespace HackUCIProject
 {
     public interface ITriggerable
     {
-        bool Triggered { get; }
+        bool IsTriggered { get; }
 
         void Trigger();
     }

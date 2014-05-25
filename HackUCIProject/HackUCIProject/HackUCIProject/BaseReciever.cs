@@ -10,8 +10,8 @@ namespace HackUCIProject
 {
     public class BaseReciever : BaseSprite, ITriggerable
     {
-        private bool _triggered;
-        public bool Triggered
+        protected bool _triggered;
+        public bool IsTriggered
         {
             get { return _triggered; }
         }
@@ -23,7 +23,6 @@ namespace HackUCIProject
         }
         public virtual void Trigger()
         {
-            
             _triggered = !_triggered;
         }
     }

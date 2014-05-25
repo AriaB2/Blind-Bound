@@ -32,6 +32,7 @@ namespace HackUCIProject
         protected override void Initialize()
         {
             _screens = new Dictionary<ScreenState, Screen>();
+            //graphics.ToggleFullScreen();
             base.Initialize();
         }
 
@@ -98,7 +99,7 @@ namespace HackUCIProject
             
             
             
-            //Draw screen when screens are created
+            //Draw screen when screens are created`890.
             _screens[Global.CurrentScreen].Render();
             _screens[Global.CurrentScreen].Draw();
 
