@@ -188,12 +188,12 @@ namespace HackUCIProject
             redSpot2.ObjectsBeingTriggered.Add(redTrapDoor2);
 
 
-            //_senders.Add(new BaseSender(TriggerType.switches));
+            _senders.Add(new BaseSender(TriggerType.switches));
             _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(960, 14), Color.Green, batch);
             Bridge reciever3 = new Bridge(BridgeSide.Right);
             reciever3.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(713, 883), Color.Green, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
             _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(reciever3);
-            //_sprites.Add(reciever3);
+            _sprites.Add(reciever3);
 
 
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Media;
 
 namespace HackUCIProject
 {
@@ -15,6 +16,8 @@ namespace HackUCIProject
         TimeSpan timeElapsed;
         WrappedFonts.WrapArcadeFont _continueLabel;
         WrappedFonts.WrapAccelDropInFont _gameOverLabel;
+        Song song;
+        
 
         public GameScreen(SpriteBatch spriteBatch, Vector2 location, int width, int height):
             base(spriteBatch, location, width, height)
@@ -41,7 +44,8 @@ namespace HackUCIProject
                 }
                 y += _spriteBatch.GraphicsDevice.Viewport.Height / 2;
             }
-
+            song = content.Load<Song>("SoundEffects\\DST-3rdBallad");
+            MediaPlayer.Play(song);
             _sprites.Add(_dungeon);
             _dungeon.MapStart();
 
@@ -76,6 +80,7 @@ namespace HackUCIProject
 
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
+            
             timeElapsed += gameTime.ElapsedGameTime;
             for (int i = 0; i < _playerScreens.Length; i++)
             {
