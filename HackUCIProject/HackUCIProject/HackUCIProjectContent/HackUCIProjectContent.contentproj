@@ -217,11 +217,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SoundEffects\Door Close.mp3">
-      <Name>Door Close</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
     <Compile Include="SoundEffects\Door Open.mp3">
       <Name>Door Open</Name>
       <Importer>Mp3Importer</Importer>
