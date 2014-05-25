@@ -32,7 +32,7 @@ namespace HackUCIProject
         protected override void Initialize()
         {
             _screens = new Dictionary<ScreenState, Screen>();
-            //graphics.ToggleFullScreen();
+            graphics.ToggleFullScreen();
             base.Initialize();
         }
 
@@ -66,7 +66,7 @@ namespace HackUCIProject
                 screen.LoadContent(Content);
             }
 
-            Global.CurrentScreen = ScreenState.startMenu; //TODO: CHANGE TO START MENU
+            Global.CurrentScreen = ScreenState.game; //TODO: CHANGE TO START MENU
             //Global.CurrentScreen = ScreenState.game; //TODO: CHANGE TO START MENU
             //Global.CurrentScreen = ScreenState.startMenu;
     

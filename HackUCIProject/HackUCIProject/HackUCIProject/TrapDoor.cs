@@ -26,8 +26,8 @@ namespace HackUCIProject
 
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content, string assetName, Microsoft.Xna.Framework.Vector2 location, Microsoft.Xna.Framework.Color tint, SpriteBatch batch)
         {
-            _trapDoorDown = content.Load<Texture2D>("TrapdoorOpen");
-            _trapDoorUp = content.Load<Texture2D>("TrapdoorFull");
+            _trapDoorDown = content.Load<Texture2D>("LevelMap\\TrapdoorOpen");
+            _trapDoorUp = content.Load<Texture2D>("LevelMap\\TrapdoorFull");
             base.LoadContent(content, assetName, location, tint, batch);
         }
 
