@@ -77,53 +77,127 @@ namespace HackUCIProject
             _sprites = new List<IXNA>();
 
             //player load logic goes here;
+
+
+            BaseSender blueSwitch2 = new BaseSender(TriggerType.switches);
+            blueSwitch2.LoadContent(content, "LevelMap\\Lever", new Vector2(1, 540), Color.Blue, batch);
+            blueSwitch2.Scale *= .35f;
+            _senders.Add(blueSwitch2);
+
+            Bridge blueBridge2 = new Bridge(BridgeSide.Left);
+            blueBridge2.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(310, 883), Color.Blue, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
+            blueBridge2.SoundEffect = content.Load<SoundEffect>("SoundEffects/Clunk");
+
+            blueSwitch2.ObjectsBeingTriggered.Add(blueBridge2);
+            _sprites.Add(blueBridge2);
+
+
+            BaseSender blueSpot1 = new BaseSender(TriggerType.hotPlates);
+            blueSpot1.LoadContent(content, "LevelMap\\HotSpot", new Vector2(197, 1), Color.Blue, batch);
+            _senders.Add(blueSpot1);
+
+            Door blueDoor1 = new Door();
+            blueDoor1.LoadContent(content, "LevelMap\\Door-07", new Vector2(203, 945), Color.Blue, batch);
+            blueDoor1.SoundEffect = content.Load<SoundEffect>("SoundEffects/Door Open");
+            blueDoor1.Rotation = (float)(Math.PI / 2);
+            blueDoor1.Scale *= .75f;
+
+            blueSpot1.ObjectsBeingTriggered.Add(blueDoor1);
+            _sprites.Add(blueDoor1);
+
+            BaseSender yellowSpot2 = new BaseSender(TriggerType.hotPlates);
+            yellowSpot2.LoadContent(content, "LevelMap\\HotSpot", new Vector2(1377, 901), Color.Yellow, batch);
+            _senders.Add(yellowSpot2);
+
+            TrapDoor yellowTrapDoor2 = new TrapDoor();
+            yellowTrapDoor2.LoadContent(content, "LevelMap\\TrapdoorOpen", new Vector2(150, 345), Color.Yellow, batch);
+            yellowTrapDoor2.Scale *= .20f;
+            _sprites.Add(yellowTrapDoor2);
+
+
+            yellowSpot2.ObjectsBeingTriggered.Add(yellowTrapDoor2);
+
+
+            BaseSender redSwitch1 = new BaseSender(TriggerType.switches);
+            redSwitch1.LoadContent(content, "LevelMap\\Lever", new Vector2(0, 806), Color.Red, batch);
+            _senders.Add(redSwitch1);
+            redSwitch1.Scale *= .35f;
+
+            Bridge redBridge1 = new Bridge(BridgeSide.Left);
+            redBridge1.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(1116, 113), Color.Red, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
+            _sprites.Add(redBridge1);
             
-
-            _senders.Add(new BaseSender(TriggerType.switches));
-            _senders[_senders.Count - 1].LoadContent(content, "LevelMap\\Lever", new Vector2(0, 806), Color.Red, batch);
-            Bridge reciever = new Bridge(BridgeSide.Left);
-            reciever.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(1116, 113), Color.Red, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
-            _senders[0].Scale *= .35f;
-            _sprites.Add(reciever);
-            _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(reciever);
+            redSwitch1.ObjectsBeingTriggered.Add(redBridge1);
 
 
-            _senders.Add(new BaseSender(TriggerType.switches));
-            _senders[_senders.Count - 1].LoadContent(content, "LevelMap\\Lever", new Vector2(1920, 840), Color.Yellow, batch);
-            Bridge reciever2 = new Bridge(BridgeSide.Right);
-            reciever2.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(1518, 113), Color.Yellow, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
-            _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(reciever2);
-            _sprites.Add(reciever2);
-            _senders[1].Scale *= .35f;
-            _senders[1].Rotation = (float)Math.PI;
+            BaseSender yellowSwitch1 = new BaseSender(TriggerType.switches);
+            yellowSwitch1.LoadContent(content, "LevelMap\\Lever", new Vector2(1897, 820), Color.Yellow, batch);
+            yellowSwitch1.Scale *= .35f;
+            yellowSwitch1.SetOriginCenter();
+            yellowSwitch1.Rotation = (float)Math.PI;
+            yellowSwitch1.UpdateHitBox();
+            _senders.Add(yellowSwitch1);
 
-            _senders.Add(new BaseSender(TriggerType.switches));
+            Bridge yellowBridge1 = new Bridge(BridgeSide.Right);
+            yellowBridge1.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(1518, 113), Color.Yellow, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
+            yellowSwitch1.ObjectsBeingTriggered.Add(yellowBridge1);
+            _sprites.Add(yellowBridge1);
+
+            BaseSender yellowSpot3 = new BaseSender(TriggerType.hotPlates);
+            yellowSpot3.LoadContent(content, "LevelMap\\HotSpot", new Vector2(1872, 507), Color.Yellow, batch); //Change the location
+            _senders.Add(yellowSpot3);
+
+            TrapDoor yellowTrapDoor3 = new TrapDoor();
+            yellowTrapDoor3.LoadContent(content, "LevelMap\\TrapdoorOpen", new Vector2(388, 515), Color.Yellow, batch);
+            yellowTrapDoor3.Scale *= .22f;
+            _sprites.Add(yellowTrapDoor3);
+
+            yellowSpot3.ObjectsBeingTriggered.Add(yellowTrapDoor3);
+
+            BaseSender greenSpot1 = new BaseSender(TriggerType.hotPlates);
+            greenSpot1.LoadContent(content, "LevelMap\\HotSpot", new Vector2(1799, 264), Color.Green, batch);
+            _senders.Add(greenSpot1);
+
+            Door greenDoor1 = new Door();
+            greenDoor1.LoadContent(content, "LevelMap\\Door-07", new Vector2(68, 192), Color.Green, batch);
+            greenDoor1.Scale *= .75f;
+            _sprites.Add(greenDoor1);
+
+            greenSpot1.ObjectsBeingTriggered.Add(greenDoor1);
+
+            BaseSender greenSpot3 = new BaseSender(TriggerType.hotPlates);
+            greenSpot3.LoadContent(content, "LevelMap\\HotSpot", new Vector2(1075, 506), Color.Green, batch);
+            _senders.Add(greenSpot3);
+
+            Door greenDoor3 = new Door();
+            greenDoor3.LoadContent(content, "LevelMap\\Door-07", new Vector2(930, 765), Color.Green, batch);
+            greenDoor3.Scale *= .75f;
+            _sprites.Add(greenDoor3);
+
+            greenSpot3.ObjectsBeingTriggered.Add(greenDoor3);
+
+            BaseSender redSpot2 = new BaseSender(TriggerType.hotPlates);
+            redSpot2.LoadContent(content, "LevelMap\\HotSpot", new Vector2(939, 901), Color.Red, batch);
+            _senders.Add(redSpot2);
+
+            TrapDoor redTrapDoor2 = new TrapDoor();
+            redTrapDoor2.LoadContent(content, "LevelMap\\TrapdoorOpen", new Vector2(1722, 723), Color.Red, batch);
+            redTrapDoor2.Scale *= .20f;
+            _sprites.Add(redTrapDoor2);
+
+            redSpot2.ObjectsBeingTriggered.Add(redTrapDoor2);
+
+
+            //_senders.Add(new BaseSender(TriggerType.switches));
             _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(960, 14), Color.Green, batch);
             Bridge reciever3 = new Bridge(BridgeSide.Right);
             reciever3.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(713, 883), Color.Green, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
             _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(reciever3);
-            _sprites.Add(reciever3);
+            //_sprites.Add(reciever3);
 
-            _senders.Add(new BaseSender(TriggerType.switches));
-            _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(14, 540), Color.Blue, batch);
-            Bridge reciever4 = new Bridge(BridgeSide.Left);
-            reciever4.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(310, 883), Color.Blue, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
-            reciever4.SoundEffect = content.Load<SoundEffect>("SoundEffects/Clunk");
-            _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(reciever4);
 
-            _sprites.Add(reciever4);
 
-            BaseSender blueSpot1 = new BaseSender(TriggerType.hotPlates);
-            blueSpot1.LoadContent(content, "LevelMap\\HotSpot", new Vector2(197, 1), Color.Blue, batch);
-            Door doorReciever = new Door();
-            _sprites.Add(blueSpot1);
-            _senders.Add(blueSpot1);
-            doorReciever.LoadContent(content, "LevelMap\\Door-07", new Vector2(203, 945), Color.Blue, batch);
-            _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(doorReciever);
-            doorReciever.SoundEffect = content.Load<SoundEffect>("SoundEffects/Door Open");
-            doorReciever.Rotation = (float)(Math.PI / 2);
-            doorReciever.Scale *= .75f;
-            _sprites.Add(doorReciever);
+
 
             BaseSender blueSpot2 = new BaseSender(TriggerType.hotPlates);
             blueSpot2.LoadContent(content, "LevelMap\\HotSpot", new Vector2(604, 517), Color.Blue, batch);
@@ -146,61 +220,19 @@ namespace HackUCIProject
             _sprites.Add(blueDoors[0]);
             _sprites.Add(blueDoors[1]);
 
-            BaseSender greenSpot1 = new BaseSender(TriggerType.hotPlates);
-            greenSpot1.LoadContent(content, "LevelMap\\HotSpot", new Vector2(1799, 264), Color.Green, batch);
-            Door doorReciever2 = new Door();
-            _sprites.Add(greenSpot1);
-            _senders.Add(greenSpot1);
-            doorReciever2.LoadContent(content, "LevelMap\\Door-07", new Vector2(68 , 192), Color.Green, batch);
-            _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(doorReciever2);
-            doorReciever2.Scale *= .75f;
-            _sprites.Add(doorReciever2);
 
-            BaseSender greenSpot2 = new BaseSender(TriggerType.hotPlates);
-            greenSpot2.LoadContent(content, "LevelMap\\HotSpot", new Vector2(1075, 506), Color.Green, batch);
-            Door doorReciever4 = new Door();
-            _sprites.Add(greenSpot2);
-            _senders.Add(greenSpot2);
-            doorReciever4.LoadContent(content, "LevelMap\\Door-07", new Vector2(930, 765), Color.Green, batch);
-            _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(doorReciever4);
-            doorReciever4.Scale *= .75f;
-            _sprites.Add(doorReciever4);
 
-            BaseSender yellowSpot1 = new BaseSender(TriggerType.hotPlates);
-            yellowSpot1.LoadContent(content, "LevelMap\\HotSpot", new Vector2(1377, 901), Color.Yellow, batch);
-            TrapDoor trapDoorReciever = new TrapDoor();
-            _sprites.Add(yellowSpot1);
-            _senders.Add(yellowSpot1);
-            trapDoorReciever.LoadContent(content, "LevelMap\\TrapdoorOpen", new Vector2(150, 345), Color.Yellow, batch);
-            _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(trapDoorReciever);
-            trapDoorReciever.Scale *= .20f;
-            _sprites.Add(trapDoorReciever);
 
-            BaseSender yellowSpot2 = new BaseSender(TriggerType.hotPlates);
-            yellowSpot2.LoadContent(content, "LevelMap\\HotSpot", new Vector2(1871, 506), Color.Yellow, batch);
-            TrapDoor trapDoorReciever3 = new TrapDoor();
-            _sprites.Add(yellowSpot2);
-            _senders.Add(yellowSpot2);
-            trapDoorReciever3.LoadContent(content, "LevelMap\\TrapdoorOpen", new Vector2(388, 515), Color.Yellow, batch);
-            _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(trapDoorReciever3);
-            trapDoorReciever3.Scale *= .22f;
-            _sprites.Add(trapDoorReciever3);
 
-            BaseSender redSpot1 = new BaseSender(TriggerType.hotPlates);
-            redSpot1.LoadContent(content, "LevelMap\\HotSpot", new Vector2(939, 901), Color.Red, batch);
-            TrapDoor trapDoorReciever2 = new TrapDoor();
-            _sprites.Add(redSpot1);
-            _senders.Add(redSpot1);
-            trapDoorReciever2.LoadContent(content, "LevelMap\\TrapdoorOpen", new Vector2(1722, 723), Color.Red, batch);
-            _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(trapDoorReciever2);
-            trapDoorReciever2.Scale *= .20f;
-            _sprites.Add(trapDoorReciever2);
 
-            BaseSender redSpot2 = new BaseSender(TriggerType.hotPlates);
-            redSpot2.LoadContent(content, "LevelMap\\HotSpot", new Vector2(937, 656), Color.Red, batch);
+
+
+
+
+            BaseSender redSpot3 = new BaseSender(TriggerType.hotPlates);
+            redSpot3.LoadContent(content, "LevelMap\\HotSpot", new Vector2(937, 656), Color.Red, batch);
             Door doorReciever3 = new Door();
-            _sprites.Add(redSpot2);
-            _senders.Add(redSpot2);
+            _senders.Add(redSpot3);
             doorReciever3.LoadContent(content, "LevelMap\\Door-07", new Vector2(1218, 498), Color.Red, batch);
             _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(doorReciever3);
             doorReciever3.Scale *= .75f;
@@ -226,7 +258,7 @@ namespace HackUCIProject
             }
 
             _players[0].Location = new Vector2(100, 100);
-            _players[0].Tint = Color.White;
+            _players[0].Tint = Color.Blue;
             _players[1].Location = new Vector2(Width - _players[1].Width - 10, 50);
             _players[1].Tint = Color.Purple;
 
