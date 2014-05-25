@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 
 namespace HackUCIProject
 {
@@ -104,6 +105,7 @@ namespace HackUCIProject
             _senders.Add(blueSpot1);
             doorReciever.LoadContent(content, "LevelMap\\Door-07", new Vector2(203, 945), Color.Blue, batch);
             _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(doorReciever);
+            doorReciever.SoundEffect = content.Load<SoundEffect>("SoundEffects/Door Open");
             doorReciever.Rotation = (float)(Math.PI / 2);
             doorReciever.Scale *= .75f;
             _sprites.Add(doorReciever);
