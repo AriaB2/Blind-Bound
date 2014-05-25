@@ -33,6 +33,10 @@ namespace HackUCIProject
             {
                 return _gameState;
             }
+            set
+            {
+                _gameState = value;
+            }
         }
 
         public RenderTarget2D Drawn
@@ -384,50 +388,7 @@ namespace HackUCIProject
                 }
                 
 
-                //foreach (BaseSender sender in _senders)
-                //{
-                //    if (sender.TriggerType == TriggerType.hotPlates)
-                //    {
-                //        bool on = false;
-                //        foreach (Player player in _players)
-                //        {
-                //            if (player.HitBox.Intersects(sender.HitBox))
-                //            {
-                //                on = true;
-                //                break;
-                //            }
-                //        }
 
-                //        if (on && !sender.IsTriggered || !on && sender.IsTriggered)
-                //        {
-                //            sender.Trigger();
-                //        }
-                //    }
-                //    else if (sender.TriggerType == TriggerType.switches)
-                //    {
-                //        for (int i = 0; i < _players.Length; i++)
-                //        {
-                //            if (_players[i].HitBox.Intersects(sender.HitBox))
-                //            {
-                //                PlayerIndex currentPlayer = (PlayerIndex)i;
-                //                _pressA[i].Position = _players[i].Location;
-                //                _pressA[i].IsVisible = true;
-                //                if (InputManager.GetCurrentPlayerState(currentPlayer).Buttons.A == ButtonState.Pressed && InputManager.GetLastPlayerState(currentPlayer).Buttons.A != ButtonState.Pressed)
-                //                {
-                //                    if (_players[i].Tint == sender.Tint)
-                //                    {
-                //                        sender.Trigger();
-                //                    }
-                //                }
-                //                break;
-                //            }
-                //            else
-                //            {
-                //                _pressA[i].IsVisible = false;
-                //            }
-                //        }
-                //    }
-                //}
 
                 //checking for win
                 bool win = true;
