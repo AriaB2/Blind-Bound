@@ -22,6 +22,7 @@ namespace HackUCIProject
 
         Dictionary<ScreenState, Screen> _screens;
         StartScreen startScreen;
+        CreditScreen creditScreen;
 
         public Game1()
         {
@@ -50,6 +51,8 @@ namespace HackUCIProject
             }
 
             startScreen = new StartScreen(spriteBatch, new Vector2(0, 0), GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, spriteFontList);
+            creditScreen = new CreditScreen(spriteBatch, new Vector2(0, 0), GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+
 
 
 
@@ -60,13 +63,14 @@ namespace HackUCIProject
             _screens.Add(ScreenState.game, new GameScreen(spriteBatch, Vector2.Zero, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
             _screens.Add(ScreenState.levelSelection, new LevelSelection(spriteBatch, Vector2.Zero, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
             _screens.Add(ScreenState.startMenu, startScreen);
+            _screens.Add(ScreenState.credits, creditScreen);
 
             foreach (Screen screen in _screens.Values)
             {
                 screen.LoadContent(Content);
             }
-
-            Global.CurrentScreen = ScreenState.startMenu; //TODO: CHANGE TO START MENU
+            
+            Global.CurrentScreen = ScreenState.credits; //TODO: CHANGE TO START MENU
             //Global.CurrentScreen = ScreenState.game; //TODO: CHANGE TO START MENU
             //Global.CurrentScreen = ScreenState.startMenu;
     
