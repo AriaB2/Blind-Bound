@@ -62,8 +62,8 @@ namespace HackUCIProject
             //player load logic goes here;
             
 
-            _senders.Add(new BaseSender());
-            _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(100, 100), Color.White, batch);
+            _senders.Add(new BaseSender(TriggerType.hotPlates));
+            _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(14, 824), Color.White, batch);
 
             
 
@@ -72,12 +72,26 @@ namespace HackUCIProject
             reciever.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(1116, 113), Color.Red, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
             _senders[_senders.Count - 1].ObjectBeingTriggered = reciever;
             _sprites.Add(reciever);
-            _senders.Add(new BaseSender());
-            _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(1000, 100), Color.White, batch);
+            _senders.Add(new BaseSender(TriggerType.hotPlates));
+            _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(960,14), Color.White, batch);
             Bridge reciever2 = new Bridge(BridgeSide.Right);
-            reciever2.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(1520, 113), Color.Red, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
+            reciever2.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(1520, 113), Color.Yellow, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
             _senders[_senders.Count - 1].ObjectBeingTriggered = reciever2;
             _sprites.Add(reciever2);
+            _senders.Add(new BaseSender(TriggerType.hotPlates));
+            _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(1905,821), Color.White, batch);
+
+            Bridge reciever3 = new Bridge(BridgeSide.Left);
+            reciever3.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(713, 881), Color.Green, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
+            _senders[_senders.Count - 1].ObjectBeingTriggered = reciever3;
+            _sprites.Add(reciever3);
+            _senders.Add(new BaseSender(TriggerType.hotPlates));
+            _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(14, 540), Color.White, batch);
+            Bridge reciever4 = new Bridge(BridgeSide.Right);
+            reciever4.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(310, 882), Color.Blue, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
+            _senders[_senders.Count - 1].ObjectBeingTriggered = reciever4;
+            _sprites.Add(reciever4);
+            
             //after adding and loading all senders to the list of senders
             foreach (BaseSender sender in _senders)
             {
@@ -98,8 +112,12 @@ namespace HackUCIProject
             _players[0].Tint = Color.White;
             _players[1].Location = new Vector2(Width - _players[1].Width - 10, 10);
             _players[1].Tint = Color.Purple;
+
             _players[2].Location = new Vector2(10, Height - _players[2].Height);
-            _players[3].Location = new Vector2(Width - _players[3].Width - 10, Height - _players[3].Height - 10);
+            _players[2].Tint = Color.Red;
+            _players[3].Location = new Vector2(Width-_players[3].Width - 10, Height - _players[3].Height - 10);
+            _players[3].Tint = Color.Yellow;
+
             _drawn = new RenderTarget2D(_spriteBatch.GraphicsDevice, Convert.ToInt32(Width), Convert.ToInt32(Height));
 
 
@@ -140,7 +158,26 @@ namespace HackUCIProject
                 }
             }
 
+            foreach (BaseSender sender in _senders)
+            {
+                if (sender.TriggerType == TriggerType.hotPlates)
+                {
+                    bool on = false;
+                    foreach (Player player in _players)
+                    {
+                        if (player.HitBox.Intersects(sender.HitBox))
+                        {
+                            on = true;
+                            break;
+                        }
+                    }
 
+                    if (on && !sender.Triggered || !on && sender.Triggered)
+                    {
+                        sender.Trigger();
+                    }
+                }
+            }
             base.Update(gameTime);
         }
 

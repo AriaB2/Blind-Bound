@@ -31,4 +31,10 @@ namespace HackUCIProject
         Left,
         Right
     }
+
+    public enum TriggerType
+    {
+        switches,
+        hotPlates
+    }
 }
