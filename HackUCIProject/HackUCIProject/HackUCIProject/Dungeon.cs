@@ -95,7 +95,9 @@ namespace HackUCIProject
             _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(14, 540), Color.Blue, batch);
             Bridge reciever4 = new Bridge(BridgeSide.Left);
             reciever4.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(310, 882), Color.Blue, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
+            reciever4.SoundEffect = content.Load<SoundEffect>("SoundEffects/Clunk");
             _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(reciever4);
+
             _sprites.Add(reciever4);
 
             BaseSender blueSpot1 = new BaseSender(TriggerType.hotPlates);
