@@ -74,7 +74,7 @@ namespace HackUCIProject
             Global.CurrentScreen = ScreenState.credits; //TODO: CHANGE TO START MENU
 
 
-            Global.CurrentScreen = ScreenState.startMenu; //TODO: CHANGE TO START MENU
+            Global.CurrentScreen = ScreenState.game; //TODO: CHANGE TO START MENU
 
             //Global.CurrentScreen = ScreenState.game; //TODO: CHANGE TO START MENU
             //Global.CurrentScreen = ScreenState.startMenu;

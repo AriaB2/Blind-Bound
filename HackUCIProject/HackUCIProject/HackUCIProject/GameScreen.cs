@@ -26,7 +26,7 @@ namespace HackUCIProject
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content)
         {
             Color[] _colors = { Color.Pink, Color.Black, Color.Red, Color.Green };
-            _dungeon.LoadContent(content, "LevelMap/SacredDonutLevelTrapDoor-05", Vector2.Zero, Color.White, _spriteBatch);
+            _dungeon.LoadContent(content, "LevelMap/SacredDonutLevelLeverless-05", Vector2.Zero, Color.White, _spriteBatch);
             _dungeon.MapChanged += new EventHandler(_dungeon_MapChanged);
             int y = 0;
 
