@@ -34,15 +34,23 @@ namespace HackUCIProject
             set { _screenSize = value; }
         }
 
+        private Vector2 _boundaries;
+
+        public Vector2 Boundaries
+        {
+            get { return _boundaries; }
+            set { _boundaries = value; }
+        }
 
 
         private bool canMoveHorizontally;
         private bool canMoveVertically;
 
-        public virtual void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
-            Rectangle areaToCheck = new Rectangle((int)Left - ((int)_camera.Pos.X - (int)_screenSize.X / 2), (int)Top - ((int)_camera.Pos.Y - (int)_screenSize.Y / 2), 0, 0);
-            
+            //Rectangle areaToCheck = new Rectangle((int)Left - ((int)_camera.Pos.X - (int)_screenSize.X / 2), (int)Top - ((int)_camera.Pos.Y - (int)_screenSize.Y / 2), 0, 0);
+            Rectangle areaToCheck = new Rectangle((int)Left, (int)Top, 0, 0);
+
             Color[] pixels;
             canMoveVertically = true;
             canMoveHorizontally = true;
@@ -77,10 +85,10 @@ namespace HackUCIProject
             }
             else if (_speed.X > 0)
             {
-                areaToCheck.X = (int)Right - ((int)_camera.Pos.X - (int)_screenSize.X / 2);
+                areaToCheck.X = (int)Right; //- ((int)_camera.Pos.X - (int)_screenSize.X / 2);
                 areaToCheck.Height = (int)Height ;
                 areaToCheck.Width = 1;
-                if (areaToCheck.Right + areaToCheck.Width >= _screenSize.X)
+                if (areaToCheck.Right + areaToCheck.Width >= _boundaries.X)
                 {
                     canMoveHorizontally = false;
                     areaToCheck.X = (int)_screenSize.X - areaToCheck.Width-5;
@@ -106,7 +114,7 @@ namespace HackUCIProject
             }
             if (_speed.Y < 0)
             {
-                areaToCheck.X = (int)Left-((int)_camera.Pos.X - (int)_screenSize.X/2);
+                areaToCheck.X = (int)Left;//-((int)_camera.Pos.X - (int)_screenSize.X/2);
                 areaToCheck.Y -= 1;
                 if (areaToCheck.Y <= 0)
                 {
@@ -136,11 +144,11 @@ namespace HackUCIProject
             }
             else if (_speed.Y > 0)
             {
-                areaToCheck.X = (int)Left - ((int)_camera.Pos.X - (int)_screenSize.X / 2);
-                areaToCheck.Y = (int)Bottom - ((int)_camera.Pos.Y - (int)_screenSize.Y / 2);
+                areaToCheck.X = (int)Left; //- ((int)_camera.Pos.X - (int)_screenSize.X / 2);
+                areaToCheck.Y = (int)Bottom;// - ((int)_camera.Pos.Y - (int)_screenSize.Y / 2);
                 areaToCheck.Width = (int)Width;
                 areaToCheck.Height = 1;
-                if (areaToCheck.Bottom >= _screenSize.Y)
+                if (areaToCheck.Bottom >= _boundaries.Y)
                 {
                     canMoveVertically = false;
                 }
@@ -187,8 +195,9 @@ namespace HackUCIProject
         public void LoadContent(ContentManager content, string assetName, Vector2 location, Color tint, SpriteBatch batch, string keyMapAssetName)
         {
             _keyMap = content.Load<Texture2D>(keyMapAssetName);
-            
+            _boundaries = new Vector2(_keyMap.Width, _keyMap.Height);
             base.LoadContent(content, assetName, location, tint, batch);
+            
         }
     }
 }

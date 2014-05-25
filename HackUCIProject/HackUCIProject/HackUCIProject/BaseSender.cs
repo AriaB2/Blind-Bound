@@ -7,11 +7,13 @@ namespace HackUCIProject
 {
     public class BaseSender : BaseSprite, ITriggerable
     {
-        protected bool _triggered;
-        public bool Triggered
+        protected bool _isTriggered;
+        public bool IsTriggered
         {
-            get { return _triggered; }
+            get { return _isTriggered; }
         }
+
+        public event EventHandler Triggered;
 
         private ITriggerable _objectBeingTriggered;
 
@@ -24,7 +26,8 @@ namespace HackUCIProject
         public virtual void Trigger()
         {
             _objectBeingTriggered.Trigger();
-            _triggered = !_triggered;
+            _isTriggered = !_isTriggered;
+            Triggered(this, null);
         }
 
         private TriggerType _triggerType;

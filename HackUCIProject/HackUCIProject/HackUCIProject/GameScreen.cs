@@ -23,6 +23,7 @@ namespace HackUCIProject
         {
             Color[] _colors = { Color.Pink, Color.Black, Color.Red, Color.Green };
             _dungeon.LoadContent(content, "LevelMap/SacredDonutLevelWhite-05", Vector2.Zero, Color.White, _spriteBatch);
+            _dungeon.MapChanged += new EventHandler(_dungeon_MapChanged);
             int y = 0;
 
             for (int row = 0; row < 2; row++)
@@ -41,6 +42,16 @@ namespace HackUCIProject
             
         }
 
+        void _dungeon_MapChanged(object sender, EventArgs e)
+        {
+            Texture2D newKeyMap =_dungeon.CreateNewKeyMap();
+
+            for (int i = 0; i < _playerScreens.Length; i++)
+            {
+                _playerScreens[i].Player.KeyMap = newKeyMap;
+            }
+        }
+
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
             for (int i = 0; i < _playerScreens.Length; i++)
@@ -53,7 +64,6 @@ namespace HackUCIProject
 
         public override void Render()
         {
-            
             base.Render();
             foreach (PlayerScreen playerScreen in _playerScreens)
             {

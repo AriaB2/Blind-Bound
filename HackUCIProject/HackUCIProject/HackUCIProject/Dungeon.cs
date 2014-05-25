@@ -95,6 +95,7 @@ namespace HackUCIProject
             //after adding and loading all senders to the list of senders
             foreach (BaseSender sender in _senders)
             {
+                sender.Triggered += new EventHandler(sender_Triggered);
                 _sprites.Add(sender);
             }
             base.LoadContent(content, assetName, location, tint, batch);
@@ -121,6 +122,24 @@ namespace HackUCIProject
             _drawn = new RenderTarget2D(_spriteBatch.GraphicsDevice, Convert.ToInt32(Width), Convert.ToInt32(Height));
 
 
+        }
+
+        void sender_Triggered(object sender, EventArgs e)
+        {
+            MapChanged(this, null);
+        }
+
+        Texture2D _localKeyMap;
+        Color[] _colorData;  
+
+        public Texture2D CreateNewKeyMap()
+        {
+            Render();
+            _localKeyMap = new Texture2D(_spriteBatch.GraphicsDevice, Drawn.Width, Drawn.Height);
+            _colorData = new Color[Drawn.Width * Drawn.Height];
+            Drawn.GetData<Color>(0, new Rectangle(0, 0, Drawn.Width, Drawn.Height), _colorData, 0, _colorData.Length);
+            _localKeyMap.SetData<Color>(_colorData);
+            return _localKeyMap;
         }
 
        
@@ -150,7 +169,6 @@ namespace HackUCIProject
                             if (_players[i].Tint == sender.Tint)
                             {
                                 sender.Trigger();
-                                MapChanged(this, null);
                             }
                         }
                         break;
@@ -172,7 +190,7 @@ namespace HackUCIProject
                         }
                     }
 
-                    if (on && !sender.Triggered || !on && sender.Triggered)
+                    if (on && !sender.IsTriggered || !on && sender.IsTriggered)
                     {
                         sender.Trigger();
                     }

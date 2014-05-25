@@ -11,7 +11,7 @@ namespace HackUCIProject
     public class BaseReciever : BaseSprite, ITriggerable
     {
         protected bool _triggered;
-        public bool Triggered
+        public bool IsTriggered
         {
             get { return _triggered; }
         }
