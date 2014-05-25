@@ -15,7 +15,7 @@ namespace HackUCIProject
     {
         private WrapFadingFont _titleFont;
         private WrapSlidingFont _startFont;
-        private WrapSlidingFont _optionsFont;
+        //private WrapSlidingFont _optionsFont;
         private WrapSlidingFont _exitFont;
         private WrapSlidingFont _creditsFont;
 
@@ -101,13 +101,13 @@ namespace HackUCIProject
             _startFont.IsVisible = false;
             _sprites.Add(_startFont);
 
-            _optionsFont = new WrapSlidingFont(_spriteFontList[1], new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width, _spriteBatch.GraphicsDevice.Viewport.Height / 2 + 75), Vector2.Zero, 1.0f, Color.Black, _spriteBatch);
-            _optionsFont.Text.Append("Options");
-            _optionsFont.Origin = new Vector2(_optionsFont.Font.MeasureString("Options").X / 2, _optionsFont.Font.MeasureString("Options").Y / 2);
-            _optionsFont.TargetPosition = new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width / 2, _spriteBatch.GraphicsDevice.Viewport.Height / 2 + 75);
-            _optionsFont.EnableShadow = false;
-            _optionsFont.IsVisible = false;
-            _sprites.Add(_optionsFont);
+            //_optionsFont = new WrapSlidingFont(_spriteFontList[1], new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width, _spriteBatch.GraphicsDevice.Viewport.Height / 2 + 75), Vector2.Zero, 1.0f, Color.Black, _spriteBatch);
+            //_optionsFont.Text.Append("Options");
+            //_optionsFont.Origin = new Vector2(_optionsFont.Font.MeasureString("Options").X / 2, _optionsFont.Font.MeasureString("Options").Y / 2);
+            //_optionsFont.TargetPosition = new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width / 2, _spriteBatch.GraphicsDevice.Viewport.Height / 2 + 75);
+            //_optionsFont.EnableShadow = false;
+            //_optionsFont.IsVisible = false;
+            //_sprites.Add(_optionsFont);
 
             _exitFont = new WrapSlidingFont(_spriteFontList[1], new Vector2(0, _spriteBatch.GraphicsDevice.Viewport.Height / 2 + 175), Vector2.Zero, 1.0f, Color.Black, _spriteBatch);
             _exitFont.Text.Append("Exit");
@@ -125,11 +125,11 @@ namespace HackUCIProject
             _creditsFont.IsVisible = false;
             _sprites.Add(_creditsFont);
 
-            menu = new WrapSlidingFont[4];
+            menu = new WrapSlidingFont[3];
             menu[0] = _startFont;
-            menu[1] = _optionsFont;
-            menu[2] = _creditsFont;
-            menu[3] = _exitFont;
+            //menu[1] = _optionsFont;
+            menu[1] = _creditsFont;
+            menu[2] = _exitFont;
             menu[0].TintColor = Color.White;
         }
 
@@ -142,8 +142,8 @@ namespace HackUCIProject
             {
                 _startFont.IsVisible = true;
                 _startFont.Slide();
-                _optionsFont.IsVisible = true;
-                _optionsFont.Slide();
+                //_optionsFont.IsVisible = true;
+                //_optionsFont.Slide();
                 _exitFont.IsVisible = true;
                 _exitFont.Slide();
                 _creditsFont.IsVisible = true;
@@ -234,12 +234,12 @@ namespace HackUCIProject
                 //    Global.CurrentScreen = ScreenState.option;
                 //    resetScreen = true;
                 //}
-                else if (currentItem == 2)
+                else if (currentItem == 1)
                 {
                     Global.CurrentScreen = ScreenState.credits;
                     resetScreen = true;
                 }
-                else if (currentItem == 3)
+                else if (currentItem == 2)
                 {
                     EndGame = true;
                 }
