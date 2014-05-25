@@ -5,7 +5,19 @@ using System.Text;
 
 namespace HackUCIProject
 {
-    class Door
+    public class Door : BaseReciever
     {
+        public override void Trigger()
+        {
+            base.Trigger();
+        }
+
+        public override void Draw()
+        {
+            if (!_triggered)
+            {
+                base.Draw();
+            }
+        }
     }
 }

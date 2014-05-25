@@ -99,9 +99,6 @@ namespace HackUCIProject
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            
-            
             
             //Draw screen when screens are created`890.
             _screens[Global.CurrentScreen].Render();
