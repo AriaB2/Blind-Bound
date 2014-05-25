@@ -16,7 +16,7 @@ namespace HackUCIProject
         TimeSpan timeElapsed;
         WrappedFonts.WrapArcadeFont _continueLabel;
         WrappedFonts.WrapAccelDropInFont _gameOverLabel;
-        Song song;
+        
         
 
         public GameScreen(SpriteBatch spriteBatch, Vector2 location, int width, int height):
@@ -44,8 +44,9 @@ namespace HackUCIProject
                 }
                 y += _spriteBatch.GraphicsDevice.Viewport.Height / 2;
             }
-            song = content.Load<Song>("SoundEffects\\DST-3rdBallad");
-            MediaPlayer.Play(song);
+            
+            
+            
             _sprites.Add(_dungeon);
             _dungeon.MapStart();
 

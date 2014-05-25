@@ -21,6 +21,7 @@ namespace HackUCIProject.WrappedFonts
         
         public void Draw()
         {
+            
             base.Draw(_spriteBatch);
         }
     }

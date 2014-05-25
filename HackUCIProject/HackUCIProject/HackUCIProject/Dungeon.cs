@@ -17,6 +17,7 @@ namespace HackUCIProject
         public event EventHandler MapChanged;
 
         private RenderTarget2D _drawn;
+        List<WrappedFonts.WrapArcadeFont> _pressA;
 
         public void MapStart()
         {
@@ -72,13 +73,13 @@ namespace HackUCIProject
 
             SoundEffect doorOpen = content.Load<SoundEffect>("SoundEffects/Door Open");
             SoundEffect clunk = content.Load<SoundEffect>("SoundEffects/Clunk");
+            
             _players = new Ghost[4];
             _senders = new List<BaseSender>();
             _sprites = new List<IXNA>();
+            _pressA = new List<WrappedFonts.WrapArcadeFont>();
 
-            //player load logic goes here;
-
-
+            
             BaseSender blueSwitch2 = new BaseSender(TriggerType.switches);
             blueSwitch2.LoadContent(content, "LevelMap\\Lever", new Vector2(1, 540), Color.Blue, batch);
             blueSwitch2.Scale *= .35f;
@@ -206,12 +207,6 @@ namespace HackUCIProject
             greenBridge2.SoundEffect = clunk;
             _sprites.Add(greenBridge2);
 
-            _senders.Add(new BaseSender(TriggerType.switches));
-            _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(960, 14), Color.Green, batch);
-            Bridge reciever3 = new Bridge(BridgeSide.Right);
-            reciever3.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(713, 883), Color.Green, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
-            _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(reciever3);
-            _sprites.Add(reciever3);
 
             greenSwitch2.ObjectsBeingTriggered.Add(greenBridge2);
 
@@ -295,6 +290,17 @@ namespace HackUCIProject
             _goal.LoadContent(content, "LevelMap/Goal", new Vector2(868, 585), Color.Pink, batch);
             //_sprites.Add(_goal);
 
+
+            //player load logic goes here;
+            for (int i = 0; i < 4; i++)
+            {
+                _pressA.Add(new WrappedFonts.WrapArcadeFont(Global.Fonts[0], new Vector2(0, 0), new Color[] { Color.White, Color.Green, Color.Pink, Color.Red }, batch));
+                _pressA[i].Text.Append("Press A to use...");
+                //_pressA[i].SetCenterAsOrigin();
+                _pressA[i].IsVisible = false;
+                //_pressA[i].EnableShadow = false;
+                _sprites.Add(_pressA[i]);
+            }
         }
 
         void sender_Triggered(object sender, EventArgs e)
@@ -332,44 +338,96 @@ namespace HackUCIProject
                     player.Update(gameTime);
                 }
 
-                foreach (BaseSender sender in _senders)
+                for(int i = 0; i < _players.Length; i++)
                 {
-                    if (sender.TriggerType == TriggerType.hotPlates)
+                    Player player = _players[i];
+                    bool displayText = false;
+
+                    foreach (BaseSender sender in _senders)
                     {
-                        bool on = false;
-                        foreach (Player player in _players)
+                        if (player.HitBox.Intersects(sender.HitBox))
                         {
-                            if (player.HitBox.Intersects(sender.HitBox))
+                            if (sender.TriggerType == TriggerType.hotPlates)
                             {
-                                on = true;
-                                break;
+                                if (!sender.IsTriggered)
+                                {
+                                    sender.Trigger();
+                                }
                             }
+                            else
+                            {
+                                displayText = true;
+                                GamePadState input = InputManager.GetCurrentPlayerState(player.PlayerIndex);
+                                GamePadState oldInput = InputManager.GetLastPlayerState(player.PlayerIndex);
+                                if (input.IsButtonDown(Buttons.A) && !sender.IsTriggered && input.IsButtonUp(Buttons.A))
+                                {
+                                    sender.Trigger();
+                                }
+                            }
+                        }
+                    }
+                    if (displayText)
+                    {
+                        _pressA[i].IsVisible = true;
+                        _pressA[i].Position = player.Location;
+                        if (_pressA[i].Position.X + _pressA[i].Font.MeasureString(_pressA[i].Text).X > Width)
+                        {
+                            _pressA[i].Position = new Vector2(Width - _pressA[i].Font.MeasureString(_pressA[i].Text).X , _pressA[i].Position.Y);
                         }
 
-                        if (on && !sender.IsTriggered || !on && sender.IsTriggered)
-                        {
-                            sender.Trigger();
-                        }
+                        _pressA[i].ShadowPosition = _pressA[i].Position;
                     }
-                    else if (sender.TriggerType == TriggerType.switches)
+                    else
                     {
-                        for (int i = 0; i < _players.Length; i++)
-                        {
-                            if (_players[i].HitBox.Intersects(sender.HitBox))
-                            {
-                                PlayerIndex currentPlayer = (PlayerIndex)i;
-                                if (InputManager.GetCurrentPlayerState(currentPlayer).Buttons.A == ButtonState.Pressed && InputManager.GetLastPlayerState(currentPlayer).Buttons.A != ButtonState.Pressed)
-                                {
-                                    if (_players[i].Tint == sender.Tint)
-                                    {
-                                        sender.Trigger();
-                                    }
-                                }
-                                break;
-                            }
-                        }
+                        _pressA[i].IsVisible = false;
                     }
                 }
+                
+
+                //foreach (BaseSender sender in _senders)
+                //{
+                //    if (sender.TriggerType == TriggerType.hotPlates)
+                //    {
+                //        bool on = false;
+                //        foreach (Player player in _players)
+                //        {
+                //            if (player.HitBox.Intersects(sender.HitBox))
+                //            {
+                //                on = true;
+                //                break;
+                //            }
+                //        }
+
+                //        if (on && !sender.IsTriggered || !on && sender.IsTriggered)
+                //        {
+                //            sender.Trigger();
+                //        }
+                //    }
+                //    else if (sender.TriggerType == TriggerType.switches)
+                //    {
+                //        for (int i = 0; i < _players.Length; i++)
+                //        {
+                //            if (_players[i].HitBox.Intersects(sender.HitBox))
+                //            {
+                //                PlayerIndex currentPlayer = (PlayerIndex)i;
+                //                _pressA[i].Position = _players[i].Location;
+                //                _pressA[i].IsVisible = true;
+                //                if (InputManager.GetCurrentPlayerState(currentPlayer).Buttons.A == ButtonState.Pressed && InputManager.GetLastPlayerState(currentPlayer).Buttons.A != ButtonState.Pressed)
+                //                {
+                //                    if (_players[i].Tint == sender.Tint)
+                //                    {
+                //                        sender.Trigger();
+                //                    }
+                //                }
+                //                break;
+                //            }
+                //            else
+                //            {
+                //                _pressA[i].IsVisible = false;
+                //            }
+                //        }
+                //    }
+                //}
 
                 //checking for win
                 bool win = true;

@@ -229,11 +229,11 @@ namespace HackUCIProject
                     Global.CurrentScreen = ScreenState.levelSelection;
                     resetScreen = true;
                 }
-                else if (currentItem == 1)
-                {
-                    Global.CurrentScreen = ScreenState.option;
-                    resetScreen = true;
-                }
+                //else if (currentItem == 1)
+                //{
+                //    Global.CurrentScreen = ScreenState.option;
+                //    resetScreen = true;
+                //}
                 else if (currentItem == 2)
                 {
                     Global.CurrentScreen = ScreenState.credits;

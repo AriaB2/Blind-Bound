@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using HackUCIProject.WrappedFonts;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 namespace HackUCIProject
 {
@@ -17,6 +18,7 @@ namespace HackUCIProject
         protected BaseSprite _highlight;
         //protected float _tintIncrement;
         protected float _highlightTint;
+        protected Song song;
         //protected WrapArcadeFont _highlightText;
         //protected WrapArcadeFont _alphaText;
         //protected SpriteFont _font;
@@ -36,7 +38,7 @@ namespace HackUCIProject
             _map = new BaseSprite();
             _map.LoadContent(content, "LevelMap/SacredDonutLevel", new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width / 2, _spriteBatch.GraphicsDevice.Viewport.Height / 2), Color.White, 0f, Vector2.Zero, new Vector2(.25f, .25f), SpriteEffects.None,_spriteBatch, 0f);
             _map.Origin = new Vector2(_map.Image.Width / 2, _map.Image.Height / 2);
-            
+            song = content.Load<Song>("SoundEffects\\DST-3rdBallad");
             _playButton = new BaseSprite();
             _playButton.LoadContent(content, "LevelMap/PlayButton", new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width / 3, _spriteBatch.GraphicsDevice.Viewport.Height * 7 / 8), Color.White, 0f, Vector2.Zero, Vector2.One, SpriteEffects.None, _spriteBatch, 0f);
             _playButton.Origin = new Vector2(_playButton.Image.Width / 2, _playButton.Image.Height / 2);
@@ -97,6 +99,8 @@ namespace HackUCIProject
                 if (_highlight.Location == _playButton.Location)
                 {
                     Global.CurrentScreen = ScreenState.game;
+                    MediaPlayer.Play(song);
+                    MediaPlayer.IsRepeating = true;
                 }
                 else
                 {
