@@ -15,17 +15,20 @@ namespace HackUCIProject
 
         public event EventHandler Triggered;
 
-        private ITriggerable _objectBeingTriggered;
+        private List<ITriggerable> _objectsBeingTriggered;
 
-        public ITriggerable ObjectBeingTriggered
+        public List<ITriggerable> ObjectsBeingTriggered
         {
-            get { return _objectBeingTriggered; }
-            set { _objectBeingTriggered = value; }
+            get { return _objectsBeingTriggered; }
+            set { _objectsBeingTriggered = value; }
         }
 
         public virtual void Trigger()
         {
-            _objectBeingTriggered.Trigger();
+            foreach(ITriggerable objects in _objectsBeingTriggered)
+            {
+                objects.Trigger();
+            }
             _isTriggered = !_isTriggered;
             Triggered(this, null);
         }
@@ -36,6 +39,7 @@ namespace HackUCIProject
             base()
         {
             _triggerType = triggerType;
+            _objectsBeingTriggered = new List<ITriggerable>();
         }
 
         public TriggerType TriggerType

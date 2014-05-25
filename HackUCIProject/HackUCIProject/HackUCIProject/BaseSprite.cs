@@ -24,7 +24,7 @@ namespace HackUCIProject
             {
                 if (_frame != null)
                 {
-                    return _location.X + (_frame.Value.Width * _scale.X) - _origin.X;
+                    return _location.X + (_frame.Value.Width * _scale.X) - _origin.X * Scale.X ;
                 }
                 return _location.X + (_image.Width * _scale.X) - _origin.X * _scale.X;
             }
@@ -100,8 +100,8 @@ namespace HackUCIProject
             set 
             {
                 _scale = value;
-                _hitBox.Width *= (int)_scale.X;
-                _hitBox.Height *= (int)_scale.Y;
+                _hitBox.Width = (int)((float)_image.Width * _scale.X);
+                _hitBox.Height = (int)((float)_image.Height * _scale.Y);
             }
         }
 
@@ -191,8 +191,8 @@ namespace HackUCIProject
 
         public void UpdateHitBox()
         {
-            _hitBox.X = (int)_location.X;
-            _hitBox.Y = (int)_location.Y;
+            _hitBox.X = (int)Left;
+            _hitBox.Y = (int)Top;
         }
 
         public virtual void LoadContent(ContentManager content, string assetName, Vector2 location, Color tint, float rotation, Vector2 origin, Vector2 scale, SpriteEffects spriteEffects, SpriteBatch spriteBatch, float layerDepth)
@@ -207,7 +207,7 @@ namespace HackUCIProject
             _spriteBatch = spriteBatch;
             _layerDepth = layerDepth;
             _frame = null;
-            _hitBox = new Rectangle((int)_location.X, (int)_location.Y, (int)(_image.Width), (int)(_image.Height));
+            _hitBox = new Rectangle((int)_location.X, (int)_location.Y, (int)Width, (int)Height);
         }
 
         public virtual void LoadContent(ContentManager content, string assetName, Vector2 location, Color tint, SpriteBatch batch)
@@ -222,7 +222,7 @@ namespace HackUCIProject
             _frame = null;
             _spriteEffects = SpriteEffects.None;
             _layerDepth = 0;
-            _hitBox = new Rectangle((int)_location.X, (int)_location.Y, (int)(_image.Width), (int)(_image.Height));
+            _hitBox = new Rectangle((int)Left, (int)Top, (int)Width, (int)Height);
         }
 
         public virtual void Draw()
