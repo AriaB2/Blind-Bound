@@ -12,10 +12,17 @@ namespace HackUCIProject
 {
     public class CreditScreen : Screen
     {
-        List<string> _names;
+        
         string _sideKirbyOneText;
         string _sideKirbyTwoText;
         string _midKirbyText;
+
+        List<WrapSlidingFont> _creditSlideList;
+        List<WrapFadingFont> _creditFadeList;
+
+        int creditSlideStateCounter = 0;
+
+        List<string> _creditNames;
 
         WrapFadingFont _midKirbyFade;
         WrapDropInFont _midKirbyBounce;
@@ -23,6 +30,7 @@ namespace HackUCIProject
         WrapDropInFont _rightKirbyPartOne;
         WrapSlidingFont _leftKirbyPartTwo;
         WrapSlidingFont _rightKirbyPartTwo;
+
 
         TimeSpan _compressElapsedGameTime;
         TimeSpan _timeForCompress = new TimeSpan(0, 0, 0, 0, 60);
@@ -32,6 +40,13 @@ namespace HackUCIProject
 
         bool _compress = false;
         bool _startBounce = false;
+
+        int slidePositionY;
+        int slideTargetY;
+
+        int fadePositionY;
+
+
 
         public CreditScreen(SpriteBatch spriteBatch, Vector2 location, int width, int height)
             : base(spriteBatch, location, width, height)
@@ -43,13 +58,6 @@ namespace HackUCIProject
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content)
         {
             _backGroundColor = Color.Black;
-
-            _names = new List<string>();
-            _names.Add("Abdurrahman Alatas");
-            _names.Add("Aria Bidgoli");
-            _names.Add("Rene Elias");
-            _names.Add("Ben Villalobos");
-            _names.Add("Font Effects Library - https://github.com/GreatMindsRobotics/FontEffectsLib");
 
             _sideKirbyOneText = "(>^_^)>";
             _sideKirbyTwoText = "<(^_^<)";
@@ -68,6 +76,71 @@ namespace HackUCIProject
             _midKirbyBounce.EnableShadow = false;
             _midKirbyBounce.IsVisible = false;
             _sprites.Add(_midKirbyBounce);
+
+            _creditSlideList = new List<WrapSlidingFont>();
+            _creditFadeList = new List<WrapFadingFont>();
+            _creditNames = new List<string>();
+
+            
+            _creditNames.Add("Abdurrahman Alatas");
+            _creditNames.Add("Aria Bidgoli");
+            _creditNames.Add("Rene Elias");
+            _creditNames.Add("Ben Villalobos");
+            _creditNames.Add("Font Effects Library");
+            _creditNames.Add("(https://github.com/GreatMindsRobotics/FontEffectsLib)");
+
+            slidePositionY = _screen.Height;
+            slideTargetY = 100;
+
+            for (int i = 0; i < _creditNames.Count(); i++)
+            {
+                WrapSlidingFont tempFont;
+                if (i == _creditNames.Count - 1)
+                {
+                    tempFont = new WrapSlidingFont(content.Load<SpriteFont>("Fonts/StartScreenSpriteFont0"), Vector2.Zero, Vector2.Zero, 0.2f, Color.White, _spriteBatch);
+                }
+                else
+                {
+                    tempFont = new WrapSlidingFont(content.Load<SpriteFont>("Fonts/StartScreenSpriteFont2"), Vector2.Zero, Vector2.Zero, 0.2f, Color.White, _spriteBatch);
+                }
+                
+                _creditSlideList.Add(tempFont);
+                _creditSlideList[i].Text.Append(_creditNames[i]);
+                _creditSlideList[i].Origin = new Vector2(_creditSlideList[i].Font.MeasureString(_creditNames[i]).X / 2, _creditSlideList[i].Font.MeasureString(_creditNames[i]).Y / 2);
+                _creditSlideList[i].Position = new Vector2(_screen.Width / 2, slidePositionY);
+                _creditSlideList[i].TargetPosition = new Vector2(_screen.Width / 2, slideTargetY);
+                slidePositionY += 50;
+                slideTargetY += 50;
+            }
+
+            /*
+            for (int i = 0; i < _creditNames.Count(); i++)
+            {
+                WrapFadingFont tempFont;
+                if (i == _creditNames.Count - 1)
+                {
+                    tempFont = new WrapFadingFont(content.Load<SpriteFont>("Fonts/StartScreenSpriteFont0"), Vector2.Zero, Color.White, _spriteBatch);
+                }
+                else if (i == 0 || i == 5 || i == 7)
+                {
+                    tempFont = new WrapFadingFont(content.Load<SpriteFont>("Fonts/StartScreenSpriteFont4"), Vector2.Zero, Color.White, _spriteBatch);
+                }
+                else
+                {
+                    tempFont = new WrapFadingFont(content.Load<SpriteFont>("Fonts/StartScreenSpriteFont2"), Vector2.Zero, Color.White, _spriteBatch);
+                }
+                _creditFadeList.Add(tempFont);
+                _creditFadeList[i].Text.Append(_creditNames[i]);
+                _creditFadeList[i].Origin = new Vector2(_creditFadeList[i].Font.MeasureString(_creditNames[i]).X / 2, _creditFadeList[i].Font.MeasureString(_creditNames[i]).Y / 2);
+                _creditFadeList[i].Position = new Vector2(_screen.Width / 2, fadePositionY);
+                
+            }
+             * */
+
+            foreach (WrapSlidingFont creditText in _creditSlideList)
+            {
+                _sprites.Add(creditText);
+            }
 
             _leftKirbyPartOne = new WrapDropInFont(content.Load<SpriteFont>("Fonts/StartScreenSpriteFont3"), Vector2.Zero, Vector2.Zero, new Vector2(1.5f, 1.5f), Color.White, _spriteBatch);
             _leftKirbyPartOne.Text.Append(_sideKirbyOneText);
@@ -110,6 +183,7 @@ namespace HackUCIProject
 
         }
 
+     
         void _rightKirbyPartTwo_StateChanged(object sender, FontEffectsLib.CoreTypes.StateEventArgs e)
         {
             if (_rightKirbyPartTwo.State == SlidingFont.FontState.Done)
@@ -138,6 +212,13 @@ namespace HackUCIProject
                 _expandElapsedGameTime = new TimeSpan();
 
                 _startBounce = true;
+
+                slideTargetY = 100;
+
+                for (int i = 0; i < _creditSlideList.Count; i++ )
+                {
+                    _creditSlideList[i].Slide();
+                }
             }
         }
 
