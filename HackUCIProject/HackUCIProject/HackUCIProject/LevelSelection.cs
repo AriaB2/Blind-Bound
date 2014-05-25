@@ -98,6 +98,7 @@ namespace HackUCIProject
             {
                 if (_highlight.Location == _playButton.Location)
                 {
+                    
                     Global.CurrentScreen = ScreenState.game;
                     MediaPlayer.Play(song);
                     MediaPlayer.IsRepeating = true;

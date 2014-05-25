@@ -16,7 +16,7 @@ namespace HackUCIProject
         TimeSpan timeElapsed;
         WrappedFonts.WrapArcadeFont _continueLabel;
         WrappedFonts.WrapAccelDropInFont _gameOverLabel;
-        
+        Microsoft.Xna.Framework.Content.ContentManager Content;
         
 
         public GameScreen(SpriteBatch spriteBatch, Vector2 location, int width, int height):
@@ -28,6 +28,7 @@ namespace HackUCIProject
 
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content)
         {
+            Content = content;
             Color[] _colors = { Color.Pink, Color.Black, Color.Red, Color.Green };
             _dungeon.LoadContent(content, "LevelMap/SacredDonutLevelLeverless-05", Vector2.Zero, Color.White, _spriteBatch);
             _dungeon.MapChanged += new EventHandler(_dungeon_MapChanged);
@@ -94,8 +95,11 @@ namespace HackUCIProject
 
                 if (InputManager.CurrentPlayer1State.IsButtonDown(Microsoft.Xna.Framework.Input.Buttons.A))
                 {
+                    _sprites.Clear();
+                    _dungeon.GameState = GameState.playing;
                     Global.CurrentScreen = ScreenState.startMenu;
                     MediaPlayer.Stop();
+                    LoadContent(Content);
                 }
 
             }
