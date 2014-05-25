@@ -187,15 +187,19 @@ namespace HackUCIProject
 
             redSpot2.ObjectsBeingTriggered.Add(redTrapDoor2);
 
+            BaseSender greenSwitch2 = new BaseSender(TriggerType.switches);
+            greenSwitch2.LoadContent(content, "LevelMap\\Lever", new Vector2(960, 14), Color.Green, batch);
+            greenSwitch2.Scale *= .35f;
+            greenSwitch2.SetOriginCenter();
+            greenSwitch2.Rotation = (float)Math.PI / 2;
+            greenSwitch2.UpdateHitBox();
+            _senders.Add(greenSwitch2);
+            
+            Bridge greenBridge2 = new Bridge(BridgeSide.Right);
+            greenBridge2.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(713, 883), Color.Green, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
+            _sprites.Add(greenBridge2);
 
-            //_senders.Add(new BaseSender(TriggerType.switches));
-            _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(960, 14), Color.Green, batch);
-            Bridge reciever3 = new Bridge(BridgeSide.Right);
-            reciever3.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(713, 883), Color.Green, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
-            _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(reciever3);
-            //_sprites.Add(reciever3);
-
-
+            greenSwitch2.ObjectsBeingTriggered.Add(greenBridge2);
 
 
 
@@ -260,7 +264,7 @@ namespace HackUCIProject
             _players[0].Location = new Vector2(100, 100);
             _players[0].Tint = Color.Blue;
             _players[1].Location = new Vector2(Width - _players[1].Width - 10, 50);
-            _players[1].Tint = Color.Purple;
+            _players[1].Tint = Color.Green;
 
             _players[2].Location = new Vector2(50, Height - _players[2].Height);
             _players[2].Tint = Color.Red;
