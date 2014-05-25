@@ -64,27 +64,25 @@ namespace HackUCIProject
 
             _senders.Add(new BaseSender(TriggerType.hotPlates));
             _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(14, 824), Color.White, batch);
-
-            
-
-
             Bridge reciever = new Bridge(BridgeSide.Left);
             reciever.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(1116, 113), Color.Red, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
             _senders[_senders.Count - 1].ObjectBeingTriggered = reciever;
             _sprites.Add(reciever);
+
             _senders.Add(new BaseSender(TriggerType.hotPlates));
             _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(960,14), Color.White, batch);
             Bridge reciever2 = new Bridge(BridgeSide.Right);
             reciever2.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(1520, 113), Color.Yellow, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
             _senders[_senders.Count - 1].ObjectBeingTriggered = reciever2;
             _sprites.Add(reciever2);
-            _senders.Add(new BaseSender(TriggerType.hotPlates));
-            _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(1905,821), Color.White, batch);
 
+            _senders.Add(new BaseSender(TriggerType.hotPlates));
+            _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(1905, 821), Color.White, batch);
             Bridge reciever3 = new Bridge(BridgeSide.Left);
             reciever3.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(713, 881), Color.Green, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
             _senders[_senders.Count - 1].ObjectBeingTriggered = reciever3;
             _sprites.Add(reciever3);
+
             _senders.Add(new BaseSender(TriggerType.hotPlates));
             _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(14, 540), Color.White, batch);
             Bridge reciever4 = new Bridge(BridgeSide.Right);
