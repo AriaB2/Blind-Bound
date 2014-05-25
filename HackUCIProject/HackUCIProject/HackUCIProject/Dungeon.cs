@@ -79,28 +79,32 @@ namespace HackUCIProject
             //player load logic goes here;
             
 
-            _senders.Add(new BaseSender(TriggerType.hotPlates));
-            _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(14, 824), Color.Red, batch);
+            _senders.Add(new BaseSender(TriggerType.switches));
+            _senders[_senders.Count - 1].LoadContent(content, "LevelMap\\Lever", new Vector2(0, 806), Color.Red, batch);
             Bridge reciever = new Bridge(BridgeSide.Left);
             reciever.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(1116, 113), Color.Red, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
+            _senders[0].Scale *= .35f;
             _sprites.Add(reciever);
             _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(reciever);
-            _senders.Add(new BaseSender(TriggerType.hotPlates));
-            _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(1905, 821), Color.Yellow, batch);
+
+
+            _senders.Add(new BaseSender(TriggerType.switches));
+            _senders[_senders.Count - 1].LoadContent(content, "LevelMap\\Lever", new Vector2(1920, 840), Color.Yellow, batch);
             Bridge reciever2 = new Bridge(BridgeSide.Right);
             reciever2.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(1518, 113), Color.Yellow, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
             _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(reciever2);
             _sprites.Add(reciever2);
+            _senders[1].Scale *= .35f;
+            _senders[1].Rotation = (float)Math.PI;
 
-            
-            _senders.Add(new BaseSender(TriggerType.hotPlates));
+            _senders.Add(new BaseSender(TriggerType.switches));
             _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(960, 14), Color.Green, batch);
             Bridge reciever3 = new Bridge(BridgeSide.Right);
             reciever3.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(713, 883), Color.Green, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
             _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(reciever3);
             _sprites.Add(reciever3);
 
-            _senders.Add(new BaseSender(TriggerType.hotPlates));
+            _senders.Add(new BaseSender(TriggerType.switches));
             _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(14, 540), Color.Blue, batch);
             Bridge reciever4 = new Bridge(BridgeSide.Left);
             reciever4.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(310, 883), Color.Blue, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
