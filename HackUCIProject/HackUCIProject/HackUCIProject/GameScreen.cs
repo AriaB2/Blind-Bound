@@ -95,6 +95,7 @@ namespace HackUCIProject
                 if (InputManager.CurrentPlayer1State.IsButtonDown(Microsoft.Xna.Framework.Input.Buttons.A))
                 {
                     Global.CurrentScreen = ScreenState.startMenu;
+                    MediaPlayer.Stop();
                 }
 
             }
