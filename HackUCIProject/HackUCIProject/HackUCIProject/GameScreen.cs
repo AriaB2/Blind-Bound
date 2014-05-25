@@ -12,6 +12,9 @@ namespace HackUCIProject
         PlayerScreen[] _playerScreens;
         Dungeon _dungeon = new Dungeon();
 
+        WrappedFonts.WrapArcadeFont _continueLabel;
+        WrappedFonts.WrapAccelDropInFont _gameOverLabel;
+
         public GameScreen(SpriteBatch spriteBatch, Vector2 location, int width, int height):
             base(spriteBatch, location, width, height)
         {
@@ -40,6 +43,24 @@ namespace HackUCIProject
 
             _sprites.Add(_dungeon);
             _dungeon.MapStart();
+
+            _continueLabel = new WrappedFonts.WrapArcadeFont(Global.Fonts[0], new Vector2(_screen.Width / 2, _screen.Height / 1.5f), new Color[] { Color.White, Color.Green, Color.Pink, Color.Red }, _spriteBatch);
+            _continueLabel.Text.Append("Press A to continue...");
+            _continueLabel.SetCenterAsOrigin();
+            _continueLabel.IsVisible = false;
+
+            _gameOverLabel = new WrappedFonts.WrapAccelDropInFont(Global.Fonts[3], new Vector2(_screen.Width / 2, -200), new Vector2(_screen.Width / 2, _screen.Height / 2), Vector2.One, Color.Gold, new Vector2(0, 5), _spriteBatch);
+            _gameOverLabel.Text.Append("Game Over\nYou Win!!");
+            _gameOverLabel.SetCenterAsOrigin();
+            _gameOverLabel.StateChanged += new EventHandler<FontEffectsLib.CoreTypes.StateEventArgs>(_gameOverLabel_StateChanged);
+        }
+
+        void _gameOverLabel_StateChanged(object sender, FontEffectsLib.CoreTypes.StateEventArgs e)
+        {
+            if (_gameOverLabel.State == FontEffectsLib.FontTypes.DropInFont.FontState.Done)
+            {
+                _continueLabel.IsVisible = true;
+            }
         }
         
         void _dungeon_MapChanged(object sender, EventArgs e)
@@ -58,7 +79,18 @@ namespace HackUCIProject
             {
                 _playerScreens[i].Update(gameTime);
             }
+            if (_dungeon.GameState == GameState.levelComplete)
+            {
+                _continueLabel.Update(gameTime);
+                _gameOverLabel.Update(gameTime);
 
+                if (InputManager.CurrentPlayer1State.IsButtonDown(Microsoft.Xna.Framework.Input.Buttons.A))
+                {
+                    Global.CurrentScreen = ScreenState.startMenu;
+                }
+
+            }
+            
             base.Update(gameTime);
         }
 
@@ -79,6 +111,10 @@ namespace HackUCIProject
             {
                 playerScreen.Draw();
             }
+            _spriteBatch.Begin();
+            _continueLabel.Draw();
+            _gameOverLabel.Draw();
+            _spriteBatch.End();
         }
 
     }

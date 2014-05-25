@@ -49,7 +49,7 @@ namespace HackUCIProject
             {
                 spriteFontList.Add(Content.Load<SpriteFont>("Fonts/StartScreenSpriteFont" + i.ToString()));
             }
-
+            Global.Fonts = spriteFontList;
             startScreen = new StartScreen(spriteBatch, new Vector2(0, 0), GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, spriteFontList);
             creditScreen = new CreditScreen(spriteBatch, new Vector2(0, 0), GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
 

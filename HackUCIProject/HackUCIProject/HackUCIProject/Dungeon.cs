@@ -20,7 +20,18 @@ namespace HackUCIProject
 
         public void MapStart()
         {
+            _gameState = GameState.playing;
             MapChanged(this, EventArgs.Empty);
+        }
+
+        private GameState _gameState;
+
+        public GameState GameState
+        {
+            get
+            {
+                return _gameState;
+            }
         }
 
         public RenderTarget2D Drawn
@@ -53,7 +64,7 @@ namespace HackUCIProject
             set { _senders = value; }
         }
 
-
+        private BaseSprite _goal;
 
         public override void LoadContent(ContentManager content, string assetName, Vector2 location, Color tint, SpriteBatch batch)
         {
@@ -222,6 +233,9 @@ namespace HackUCIProject
 
             _drawn = new RenderTarget2D(_spriteBatch.GraphicsDevice, Convert.ToInt32(Width), Convert.ToInt32(Height));
 
+            _goal = new BaseSprite();
+            _goal.LoadContent(content, "LevelMap/Goal", new Vector2(868, 585), Color.Pink, batch);
+            _sprites.Add(_goal);
 
         }
 
@@ -248,54 +262,74 @@ namespace HackUCIProject
 
         public override void Update(GameTime gameTime)
         {
-            foreach (IXNA sprite in _sprites)
+            if (_gameState == GameState.playing)
             {
-                sprite.Update(gameTime);
-            }
-
-            foreach (Player player in _players)
-            {
-                player.Update(gameTime);
-            }
-
-            foreach (BaseSender sender in _senders)
-            {
-                if (sender.TriggerType == TriggerType.hotPlates)
+                foreach (IXNA sprite in _sprites)
                 {
-                    bool on = false;
-                    foreach (Player player in _players)
-                    {
-                        if (player.HitBox.Intersects(sender.HitBox))
-                        {
-                            on = true;
-                            break;
-                        }
-                    }
-
-                    if (on && !sender.IsTriggered || !on && sender.IsTriggered)
-                    {
-                        sender.Trigger();
-                    }
+                    sprite.Update(gameTime);
                 }
-                else if (sender.TriggerType == TriggerType.switches)
+
+                foreach (Player player in _players)
                 {
-                    for (int i = 0; i < _players.Length; i++)
+                    player.Update(gameTime);
+                }
+
+                foreach (BaseSender sender in _senders)
+                {
+                    if (sender.TriggerType == TriggerType.hotPlates)
                     {
-                        if (_players[i].HitBox.Intersects(sender.HitBox))
+                        bool on = false;
+                        foreach (Player player in _players)
                         {
-                            PlayerIndex currentPlayer = (PlayerIndex)i;
-                            if (InputManager.GetCurrentPlayerState(currentPlayer).Buttons.A == ButtonState.Pressed && InputManager.GetLastPlayerState(currentPlayer).Buttons.A != ButtonState.Pressed)
+                            if (player.HitBox.Intersects(sender.HitBox))
                             {
-                                if (_players[i].Tint == sender.Tint)
-                                {
-                                    sender.Trigger();
-                                }
+                                on = true;
+                                break;
                             }
-                            break;
+                        }
+
+                        if (on && !sender.IsTriggered || !on && sender.IsTriggered)
+                        {
+                            sender.Trigger();
+                        }
+                    }
+                    else if (sender.TriggerType == TriggerType.switches)
+                    {
+                        for (int i = 0; i < _players.Length; i++)
+                        {
+                            if (_players[i].HitBox.Intersects(sender.HitBox))
+                            {
+                                PlayerIndex currentPlayer = (PlayerIndex)i;
+                                if (InputManager.GetCurrentPlayerState(currentPlayer).Buttons.A == ButtonState.Pressed && InputManager.GetLastPlayerState(currentPlayer).Buttons.A != ButtonState.Pressed)
+                                {
+                                    if (_players[i].Tint == sender.Tint)
+                                    {
+                                        sender.Trigger();
+                                    }
+                                }
+                                break;
+                            }
                         }
                     }
                 }
+
+                //checking for win
+                bool win = true;
+                foreach (Player player in _players)
+                {
+                    if (!player.HitBox.Intersects(_goal.HitBox))
+                    {
+                        win = false;
+                        break;
+                    }
+                }
+
+                if (win)
+                {
+                    _gameState = GameState.levelComplete;
+                }
             }
+
             base.Update(gameTime);
         }
 
