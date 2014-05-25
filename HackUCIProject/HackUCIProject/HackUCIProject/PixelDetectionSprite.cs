@@ -69,18 +69,12 @@ namespace HackUCIProject
                 {
                     pixels = new Color[areaToCheck.Width * areaToCheck.Height];
                     _keyMap.GetData<Color>(0, areaToCheck, pixels, 0, pixels.Length);
-                    foreach (Color c in pixels)
+
+                    if (pixels.Contains(Color.Black))
                     {
-                        if (c == Color.Black)
-                        {
-                            canMoveHorizontally = false;
-                            break;
-                        }
-                        else
-                        {
-                            break;
-                        }
+                        canMoveHorizontally = false;
                     }
+                    
                 }
             }
             else if (_speed.X > 0)
@@ -98,17 +92,9 @@ namespace HackUCIProject
                 {
                     pixels = new Color[areaToCheck.Width * areaToCheck.Height];
                     _keyMap.GetData<Color>(0, areaToCheck, pixels, 0, pixels.Length);
-                    foreach (Color c in pixels)
+                    if (pixels.Contains(Color.Black))
                     {
-                        if (c == Color.Black)
-                        {
-                            canMoveHorizontally = false;
-                            break;
-                        }
-                        else
-                        {
-                            break;
-                        }
+                        canMoveHorizontally = false;
                     }
                 }
             }
@@ -128,17 +114,10 @@ namespace HackUCIProject
                 {
                     pixels = new Color[areaToCheck.Width * areaToCheck.Height];
                     _keyMap.GetData<Color>(0, areaToCheck, pixels, 0, pixels.Length);
-                    foreach (Color c in pixels)
+
+                    if (pixels.Contains(Color.Black))
                     {
-                        if (c == Color.Black)
-                        {
-                            canMoveVertically = false;
-                            break;
-                        }
-                        else
-                        {
-                            break;
-                        }
+                        canMoveVertically = false;
                     }
                 }
             }
@@ -157,17 +136,10 @@ namespace HackUCIProject
                 {
                     pixels = new Color[areaToCheck.Width * areaToCheck.Height];
                     _keyMap.GetData<Color>(0, areaToCheck, pixels, 0, pixels.Length);
-                    foreach (Color c in pixels)
+
+                    if (pixels.Contains(Color.Black))
                     {
-                        if (c == Color.Black)
-                        {
-                            canMoveVertically = false;
-                            break;
-                        }
-                        else
-                        {
-                            break;
-                        }
+                        canMoveVertically = false;
                     }
                 }
             }
