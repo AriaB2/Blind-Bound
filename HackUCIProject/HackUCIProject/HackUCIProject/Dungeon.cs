@@ -74,12 +74,6 @@ namespace HackUCIProject
             _senders[_senders.Count - 1].ObjectBeingTriggered = reciever;
             _sprites.Add(reciever);
 
-            //BaseSender blueSpot1 = new BaseSender(TriggerType.hotPlates);
-            //blueSpot1.LoadContent(content, "LevelMap\\HotSpot", new Vector2(197, 1), Color.Blue, batch);
-            //blueSpot1.ObjectBeingTriggered = reciever; // change this to blueDoor1
-            //_sprites.Add(blueSpot1);
-
-
             _senders.Add(new BaseSender(TriggerType.hotPlates));
             _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(1905, 821), Color.Yellow, batch);
             Bridge reciever2 = new Bridge(BridgeSide.Right);
@@ -101,7 +95,12 @@ namespace HackUCIProject
             reciever4.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(310, 882), Color.Blue, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
             _senders[_senders.Count - 1].ObjectBeingTriggered = reciever4;
             _sprites.Add(reciever4);
-            
+
+            BaseSender blueSpot1 = new BaseSender(TriggerType.hotPlates);
+            blueSpot1.LoadContent(content, "LevelMap\\HotSpot", new Vector2(197, 1), Color.Blue, batch);
+            blueSpot1.ObjectBeingTriggered = reciever; // change this to blueDoor1
+            _sprites.Add(blueSpot1);
+
             //after adding and loading all senders to the list of senders
             foreach (BaseSender sender in _senders)
             {
