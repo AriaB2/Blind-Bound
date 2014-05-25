@@ -59,13 +59,14 @@ namespace HackUCIProject
             canMoveHorizontally = true;
             if (_speed.X < 0)
             {
-                areaToCheck.X -= 1;
+                areaToCheck.X -= 2;
                 if (areaToCheck.X <= 0)
                 {
                     canMoveHorizontally = false;
                     areaToCheck.X = 0;
                 }
-                areaToCheck.Height = (int)Height;
+                areaToCheck.Height = (int)Height - 4;
+                areaToCheck.Y += 1;
                 areaToCheck.Width = 1;
                 
                 if (canMoveHorizontally)
@@ -83,7 +84,8 @@ namespace HackUCIProject
             else if (_speed.X > 0)
             {
                 areaToCheck.X = (int)Right; //- ((int)_camera.Pos.X - (int)_screenSize.X / 2);
-                areaToCheck.Height = (int)Height ;
+                areaToCheck.Height = (int)Height - 4;
+                areaToCheck.Y += 2;
                 areaToCheck.Width = 1;
                 if (areaToCheck.Right + areaToCheck.Width >= _boundaries.X)
                 {
@@ -103,14 +105,14 @@ namespace HackUCIProject
             }
             if (_speed.Y < 0)
             {
-                areaToCheck.X = (int)Left;//-((int)_camera.Pos.X - (int)_screenSize.X/2);
+                areaToCheck.X = (int)Left + 2;//-((int)_camera.Pos.X - (int)_screenSize.X/2);
                 areaToCheck.Y -= 1;
                 if (areaToCheck.Y <= 0)
                 {
                     areaToCheck.Y = 0;
                     canMoveVertically = false;
                 }
-                areaToCheck.Width = (int)Width;
+                areaToCheck.Width = (int)Width - 4;
                 areaToCheck.Height = 1;
 
                 if (canMoveVertically)
@@ -126,9 +128,9 @@ namespace HackUCIProject
             }
             else if (_speed.Y > 0)
             {
-                areaToCheck.X = (int)Left; //- ((int)_camera.Pos.X - (int)_screenSize.X / 2);
+                areaToCheck.X = (int)Left + 2; //- ((int)_camera.Pos.X - (int)_screenSize.X / 2);
                 areaToCheck.Y = (int)Bottom;// - ((int)_camera.Pos.Y - (int)_screenSize.Y / 2);
-                areaToCheck.Width = (int)Width;
+                areaToCheck.Width = (int)Width - 4;
                 areaToCheck.Height = 1;
                 if (areaToCheck.Bottom >= _boundaries.Y)
                 {

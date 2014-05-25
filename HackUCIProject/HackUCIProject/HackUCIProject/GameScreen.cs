@@ -11,7 +11,8 @@ namespace HackUCIProject
     {
         PlayerScreen[] _playerScreens;
         Dungeon _dungeon = new Dungeon();
-
+        TimeSpan updateTime = new TimeSpan(0, 0, 0, 0,500);
+        TimeSpan timeElapsed;
         WrappedFonts.WrapArcadeFont _continueLabel;
         WrappedFonts.WrapAccelDropInFont _gameOverLabel;
 
@@ -75,6 +76,7 @@ namespace HackUCIProject
 
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
+            timeElapsed += gameTime.ElapsedGameTime;
             for (int i = 0; i < _playerScreens.Length; i++)
             {
                 _playerScreens[i].Update(gameTime);
@@ -90,7 +92,16 @@ namespace HackUCIProject
                 }
 
             }
-            
+            if (timeElapsed >= updateTime)
+            {
+                Texture2D newKeyMap = _dungeon.CreateNewKeyMap();
+
+                for (int i = 0; i < _playerScreens.Length; i++)
+                {
+                    _playerScreens[i].Player.KeyMap = newKeyMap;
+                }
+                timeElapsed = TimeSpan.Zero;
+            }
             base.Update(gameTime);
         }
 
