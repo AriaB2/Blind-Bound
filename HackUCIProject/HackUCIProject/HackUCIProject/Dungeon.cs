@@ -83,11 +83,9 @@ namespace HackUCIProject
             _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(14, 824), Color.Red, batch);
             Bridge reciever = new Bridge(BridgeSide.Left);
             reciever.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(1116, 113), Color.Red, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
-            
             _sprites.Add(reciever);
-
-            _senders.Add(new BaseSender(TriggerType.hotPlates));
             _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(reciever);
+            _senders.Add(new BaseSender(TriggerType.hotPlates));
             _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(1905, 821), Color.Yellow, batch);
             Bridge reciever2 = new Bridge(BridgeSide.Right);
             reciever2.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(1518, 113), Color.Yellow, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
@@ -106,7 +104,9 @@ namespace HackUCIProject
             _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(14, 540), Color.Blue, batch);
             Bridge reciever4 = new Bridge(BridgeSide.Left);
             reciever4.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(310, 882), Color.Blue, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
+            reciever4.SoundEffect = content.Load<SoundEffect>("SoundEffects/Clunk");
             _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(reciever4);
+
             _sprites.Add(reciever4);
 
             BaseSender blueSpot1 = new BaseSender(TriggerType.hotPlates);

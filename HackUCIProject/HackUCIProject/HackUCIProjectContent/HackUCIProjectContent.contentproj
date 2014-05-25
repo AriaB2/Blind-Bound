@@ -224,6 +224,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SoundEffects\Clunk.mp3">
+      <Name>Clunk</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="LevelMap\goal.png">
       <Name>goal</Name>
       <Importer>TextureImporter</Importer>
