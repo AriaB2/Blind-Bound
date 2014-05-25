@@ -56,7 +56,7 @@ namespace HackUCIProject
             Global.CurrentScreen = ScreenState.none; //TODO: CHANGE TO START MENU
             
 
-
+             
             _screens.Add(ScreenState.game, new GameScreen(spriteBatch, Vector2.Zero, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
             _screens.Add(ScreenState.levelSelection, new LevelSelection(spriteBatch, Vector2.Zero, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
             _screens.Add(ScreenState.startMenu, startScreen);
@@ -69,6 +69,7 @@ namespace HackUCIProject
             Global.CurrentScreen = ScreenState.startMenu; //TODO: CHANGE TO START MENU
             //Global.CurrentScreen = ScreenState.game; //TODO: CHANGE TO START MENU
             //Global.CurrentScreen = ScreenState.startMenu;
+    
         }
         protected override void UnloadContent()
         {
