@@ -12,7 +12,8 @@ namespace HackUCIProject
         levelSelection,
         game,
         levelComplete,
-        option
+        option,
+        credits
         //add defeat screen
     }
 

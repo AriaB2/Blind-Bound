@@ -13,15 +13,21 @@ namespace HackUCIProject
 
     public class StartScreen : Screen 
     {
-        private WrapFadingFont _fadingFont;
-        private WrapSlidingFont _slidingFont;
-        private WrapSlidingFont _slidingFont1;
-        private WrapSlidingFont _slidingFont2;
+        private WrapFadingFont _titleFont;
+        private WrapSlidingFont _startFont;
+        private WrapSlidingFont _optionsFont;
+        private WrapSlidingFont _exitFont;
+        private WrapSlidingFont _creditsFont;
+
+        public bool EndGame = false;
+
+        private WrapSlidingFont[] menu;
+        int currentItem = 0;
 
         TimeSpan _elapsedGameTIme = new TimeSpan();
         TimeSpan _timeForScale = new TimeSpan(0, 0, 0, 0, 1);
 
-
+        bool resetScreen = false;
 
         int fadeFontStateNum = 0;
 
@@ -66,7 +72,7 @@ namespace HackUCIProject
       _arcadeFont.ColorCyclesPerSecond = 0.2f;
       _sprites.Add(_arcadeFont);
       */
-
+            
 
             _backGroundImage = new BaseSprite();
             _backGroundColor = Color.Beige;
@@ -79,39 +85,51 @@ namespace HackUCIProject
             _sprites.Add(_backGroundImage);
 
 
-            _fadingFont = new WrapFadingFont(_spriteFontList[6], new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width / 2 , _spriteBatch.GraphicsDevice.Viewport.Height / 2 - 50), Color.DarkRed, _spriteBatch);
-            _fadingFont.Text.Append("BlindBound");
-            _fadingFont.EnableShadow = false;
-            _fadingFont.StateChanged += new EventHandler<FontEffectsLib.CoreTypes.StateEventArgs>(_fadingFont_StateChanged);
-            _fadingFont.Origin = new Vector2(_fadingFont.Font.MeasureString("BlindBound").X / 2, _fadingFont.Font.MeasureString("BlindBound").Y / 2);
-            _sprites.Add(_fadingFont);
+            _titleFont = new WrapFadingFont(_spriteFontList[6], new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width / 2 , _spriteBatch.GraphicsDevice.Viewport.Height / 2 - 50), Color.DarkRed, _spriteBatch);
+            _titleFont.Text.Append("BlindBound");
+            _titleFont.EnableShadow = false;
+            _titleFont.StateChanged += new EventHandler<FontEffectsLib.CoreTypes.StateEventArgs>(_fadingFont_StateChanged);
+            _titleFont.Origin = new Vector2(_titleFont.Font.MeasureString("BlindBound").X / 2, _titleFont.Font.MeasureString("BlindBound").Y / 2);
+            _sprites.Add(_titleFont);
 
-            _slidingFont = new WrapSlidingFont(_spriteFontList[1], new Vector2(0, _spriteBatch.GraphicsDevice.Viewport.Height / 2 + 25), Vector2.Zero, 1.0f, Color.Black, _spriteBatch);
-            _slidingFont.Text.Append("Start");
-            _slidingFont.Origin = new Vector2(_slidingFont.Font.MeasureString("Start").X/2, _slidingFont.Font.MeasureString("Start").Y/2);
-            _slidingFont.TargetPosition = new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width / 2, _spriteBatch.GraphicsDevice.Viewport.Height / 2 + 25);
-            _slidingFont.EnableShadow = false;
-            _slidingFont.IsVisible = false;
-            _sprites.Add(_slidingFont);
+            _startFont = new WrapSlidingFont(_spriteFontList[1], new Vector2(0, _spriteBatch.GraphicsDevice.Viewport.Height / 2 + 25), Vector2.Zero, 1.0f, Color.Black, _spriteBatch);
+            _startFont.Text.Append("Start");
+            _startFont.Origin = new Vector2(_startFont.Font.MeasureString("Start").X/2, _startFont.Font.MeasureString("Start").Y/2);
+            _startFont.TargetPosition = new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width / 2, _spriteBatch.GraphicsDevice.Viewport.Height / 2 + 25);
+            _startFont.EnableShadow = false;
+            _startFont.IsVisible = false;
+            _sprites.Add(_startFont);
 
-            _slidingFont1 = new WrapSlidingFont(_spriteFontList[1], new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width, _spriteBatch.GraphicsDevice.Viewport.Height / 2 + 75), Vector2.Zero, 1.0f, Color.Black, _spriteBatch);
-            _slidingFont1.Text.Append("Options");
-            _slidingFont1.Origin = new Vector2(_slidingFont1.Font.MeasureString("Options").X / 2, _slidingFont1.Font.MeasureString("Options").Y / 2);
-            _slidingFont1.TargetPosition = new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width / 2, _spriteBatch.GraphicsDevice.Viewport.Height / 2 + 75);
-            _slidingFont1.EnableShadow = false;
-            _slidingFont1.IsVisible = false;
-            _sprites.Add(_slidingFont1);
+            _optionsFont = new WrapSlidingFont(_spriteFontList[1], new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width, _spriteBatch.GraphicsDevice.Viewport.Height / 2 + 75), Vector2.Zero, 1.0f, Color.Black, _spriteBatch);
+            _optionsFont.Text.Append("Options");
+            _optionsFont.Origin = new Vector2(_optionsFont.Font.MeasureString("Options").X / 2, _optionsFont.Font.MeasureString("Options").Y / 2);
+            _optionsFont.TargetPosition = new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width / 2, _spriteBatch.GraphicsDevice.Viewport.Height / 2 + 75);
+            _optionsFont.EnableShadow = false;
+            _optionsFont.IsVisible = false;
+            _sprites.Add(_optionsFont);
 
-            _slidingFont2 = new WrapSlidingFont(_spriteFontList[1], new Vector2(0, _spriteBatch.GraphicsDevice.Viewport.Height / 2 + 125), Vector2.Zero, 1.0f, Color.Black, _spriteBatch);
-            _slidingFont2.Text.Append("Exit");
-            _slidingFont2.Origin = new Vector2(_slidingFont2.Font.MeasureString("Exit").X / 2, _slidingFont2.Font.MeasureString("Exit").Y / 2);
-            _slidingFont2.TargetPosition = new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width / 2, _spriteBatch.GraphicsDevice.Viewport.Height / 2 + 125);
-            _slidingFont2.EnableShadow = false;
-            _slidingFont2.IsVisible = false;
-            _sprites.Add(_slidingFont2);
-            
-            
+            _exitFont = new WrapSlidingFont(_spriteFontList[1], new Vector2(0, _spriteBatch.GraphicsDevice.Viewport.Height / 2 + 175), Vector2.Zero, 1.0f, Color.Black, _spriteBatch);
+            _exitFont.Text.Append("Exit");
+            _exitFont.Origin = new Vector2(_exitFont.Font.MeasureString("Exit").X / 2, _exitFont.Font.MeasureString("Exit").Y / 2);
+            _exitFont.TargetPosition = new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width / 2, _spriteBatch.GraphicsDevice.Viewport.Height / 2 + 175);
+            _exitFont.EnableShadow = false;
+            _exitFont.IsVisible = false;
+            _sprites.Add(_exitFont);
 
+            _creditsFont = new WrapSlidingFont(_spriteFontList[1], new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width, _spriteBatch.GraphicsDevice.Viewport.Height / 2 + 125), Vector2.Zero, 1.0f, Color.Black, _spriteBatch);
+            _creditsFont.Text.Append("Credits");
+            _creditsFont.Origin = new Vector2(_exitFont.Font.MeasureString("Credits").X / 2, _exitFont.Font.MeasureString("Credits").Y / 2);
+            _creditsFont.TargetPosition = new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width / 2, _spriteBatch.GraphicsDevice.Viewport.Height / 2 + 125);
+            _creditsFont.EnableShadow = false;
+            _creditsFont.IsVisible = false;
+            _sprites.Add(_creditsFont);
+
+            menu = new WrapSlidingFont[4];
+            menu[0] = _startFont;
+            menu[1] = _optionsFont;
+            menu[2] = _creditsFont;
+            menu[3] = _exitFont;
+            menu[0].TintColor = Color.White;
         }
 
        
@@ -121,35 +139,105 @@ namespace HackUCIProject
             fadeFontStateNum++;
             if (fadeFontStateNum == 2)
             {
-                _slidingFont.IsVisible = true;
-                _slidingFont.Slide();
-                _slidingFont1.IsVisible = true;
-                _slidingFont1.Slide();
-                _slidingFont2.IsVisible = true;
-                _slidingFont2.Slide();
+                _startFont.IsVisible = true;
+                _startFont.Slide();
+                _optionsFont.IsVisible = true;
+                _optionsFont.Slide();
+                _exitFont.IsVisible = true;
+                _exitFont.Slide();
+                _creditsFont.IsVisible = true;
+                _creditsFont.Slide();
             }
         }
 
         public override void Update(GameTime gameTime)
         {
-            if (_fadingFont.State == FadingFont.FontState.Fading)
+
+            if (resetScreen)
+            {
+                fadeFontStateNum = 0;
+                _titleFont.Reset();
+                for (int i = 0; i < menu.Length; i++)
+                {
+                    menu[i].Reset();
+                    menu[i].IsVisible = false;
+                    //menu[i].Slide();
+                    resetScreen = false;
+                }
+            }
+
+            if (_titleFont.State == FadingFont.FontState.Fading)
             {
                 _elapsedGameTIme += gameTime.ElapsedGameTime;
                 if (_elapsedGameTIme >= _timeForScale)
                 {
-                    _fadingFont.Scale += new Vector2(0.02f, 0.02f);
+                    _titleFont.Scale += new Vector2(0.02f, 0.02f);
                     _elapsedGameTIme = new TimeSpan();
                 }
             }
-            if (_fadingFont.State == FadingFont.FontState.NotFading && _fadingFont.Scale.X != 1.0f && _fadingFont.Scale.Y != 1.0f)
+            
+            else if (_titleFont.State == FadingFont.FontState.NotFading && _titleFont.Scale.X != 1.0f && _titleFont.Scale.Y != 1.0f)
             {
                 _elapsedGameTIme += gameTime.ElapsedGameTime;
                 if (_elapsedGameTIme >= _timeForScale)
                 {
-                    _fadingFont.Scale -= new Vector2(0.02f, 0.02f);
+                    _titleFont.Scale -= new Vector2(0.02f, 0.02f);
                     _elapsedGameTIme = new TimeSpan();
                 }
             }
+            
+            if (InputManager.CurrentPlayer1State.ThumbSticks.Left.Y > 0 && InputManager.LastPlayer1State.ThumbSticks.Left.Y <= 0)
+            {
+                menu[currentItem].TintColor = Color.Black;
+                currentItem--;
+                if (currentItem < 0)
+                {
+                    currentItem = menu.Length - 1;
+                }
+                menu[currentItem].TintColor = Color.White;
+
+            }
+
+            else if (InputManager.CurrentPlayer1State.ThumbSticks.Left.Y < 0 && InputManager.LastPlayer1State.ThumbSticks.Left.Y >= 0)
+            {
+                menu[currentItem].TintColor = Color.Black;
+                currentItem++;
+
+                if (currentItem >= menu.Length)
+                {
+                    currentItem = 0;
+                }
+
+                menu[currentItem].TintColor = Color.White;
+
+            }
+
+            if (InputManager.CurrentPlayer1State.Buttons.A == Microsoft.Xna.Framework.Input.ButtonState.Pressed && InputManager.LastPlayer1State.Buttons.A == Microsoft.Xna.Framework.Input.ButtonState.Released)
+            {
+                if (currentItem == 0)
+                {
+                    Global.CurrentScreen = ScreenState.levelSelection;
+                    resetScreen = true;
+                }
+                else if (currentItem == 1)
+                {
+                    Global.CurrentScreen = ScreenState.option;
+                    resetScreen = true;
+                }
+                else if (currentItem == 2)
+                {
+                    Global.CurrentScreen = ScreenState.credits;
+                    resetScreen = true;
+                }
+                else if (currentItem == 3)
+                {
+                    EndGame = true;
+                }
+            }
+
+            
+
+            
           
             base.Update(gameTime);
         }
