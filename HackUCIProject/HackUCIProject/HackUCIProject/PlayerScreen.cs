@@ -9,8 +9,8 @@ namespace HackUCIProject
 {
     public class PlayerScreen : Screen
     {
-        Player _player;
-        public Player Player
+        Ghost _player;
+        public Ghost Player
         {
             get
             {
@@ -21,7 +21,7 @@ namespace HackUCIProject
         int _width;
         int _height;
 
-        public PlayerScreen(SpriteBatch spriteBatch, Vector2 location, int width, int height, Player player, Dungeon dungeon) :
+        public PlayerScreen(SpriteBatch spriteBatch, Vector2 location, int width, int height, Ghost player, Dungeon dungeon) :
             base(spriteBatch, location, width, height)
         {
             _player = player;

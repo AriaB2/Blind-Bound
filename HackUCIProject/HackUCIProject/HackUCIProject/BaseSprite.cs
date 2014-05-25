@@ -14,7 +14,7 @@ namespace HackUCIProject
         {
             get
             {
-                return _location.X - Origin.X;
+                return _location.X - Origin.X * Scale.X;
             }
         }
 
@@ -26,7 +26,7 @@ namespace HackUCIProject
                 {
                     return _location.X + (_frame.Value.Width * _scale.X) - _origin.X;
                 }
-                return _location.X + (_image.Width * _scale.X) - _origin.X;
+                return _location.X + (_image.Width * _scale.X) - _origin.X * _scale.X;
             }
         }
 
@@ -34,7 +34,7 @@ namespace HackUCIProject
         {
             get
             {
-                return _location.Y - _origin.Y;
+                return _location.Y - _origin.Y * Scale.Y;
             }
         }
 
@@ -44,9 +44,9 @@ namespace HackUCIProject
             {
                 if (_frame != null)
                 {
-                    return _location.Y - _origin.Y + (_frame.Value.Height*_scale.Y);
+                    return _location.Y - _origin.Y * _scale.Y + (_frame.Value.Height*_scale.Y);
                 }
-                return _location.Y - _origin.Y + (_image.Height * _scale.Y);
+                return _location.Y - _origin.Y * _scale.Y + (_image.Height * _scale.Y);
             }
         }
 
@@ -97,7 +97,12 @@ namespace HackUCIProject
         public Vector2 Scale
         {
             get { return _scale; }
-            set { _scale = value; }
+            set 
+            {
+                _scale = value;
+                _hitBox.Width *= (int)_scale.X;
+                _hitBox.Height *= (int)_scale.Y;
+            }
         }
 
         protected Rectangle? _frame;
