@@ -70,8 +70,8 @@ namespace HackUCIProject
         {
             //temporary hardcoded level to have some sort of product. In the future will implement an xml format or something
 
-
-
+            SoundEffect doorOpen = content.Load<SoundEffect>("SoundEffects/Door Open");
+            SoundEffect clunk = content.Load<SoundEffect>("SoundEffects/Clunk");
             _players = new Ghost[4];
             _senders = new List<BaseSender>();
             _sprites = new List<IXNA>();
@@ -86,7 +86,7 @@ namespace HackUCIProject
 
             Bridge blueBridge2 = new Bridge(BridgeSide.Left);
             blueBridge2.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(310, 883), Color.Blue, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
-            blueBridge2.SoundEffect = content.Load<SoundEffect>("SoundEffects/Clunk");
+            blueBridge2.SoundEffect = clunk;
 
             blueSwitch2.ObjectsBeingTriggered.Add(blueBridge2);
             _sprites.Add(blueBridge2);
@@ -98,10 +98,10 @@ namespace HackUCIProject
 
             Door blueDoor1 = new Door();
             blueDoor1.LoadContent(content, "LevelMap\\Door-07", new Vector2(203, 945), Color.Blue, batch);
-            blueDoor1.SoundEffect = content.Load<SoundEffect>("SoundEffects/Door Open");
+            blueDoor1.SoundEffect = doorOpen;
             blueDoor1.Rotation = (float)(Math.PI / 2);
             blueDoor1.Scale *= .75f;
-
+            blueDoor1.SoundEffect = doorOpen;
             blueSpot1.ObjectsBeingTriggered.Add(blueDoor1);
             _sprites.Add(blueDoor1);
 
@@ -112,6 +112,7 @@ namespace HackUCIProject
             TrapDoor yellowTrapDoor2 = new TrapDoor();
             yellowTrapDoor2.LoadContent(content, "LevelMap\\TrapdoorOpen", new Vector2(150, 345), Color.Yellow, batch);
             yellowTrapDoor2.Scale *= .20f;
+            yellowTrapDoor2.SoundEffect = clunk;
             _sprites.Add(yellowTrapDoor2);
 
 
@@ -126,7 +127,7 @@ namespace HackUCIProject
             Bridge redBridge1 = new Bridge(BridgeSide.Left);
             redBridge1.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(1116, 113), Color.Red, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
             _sprites.Add(redBridge1);
-            
+            redBridge1.SoundEffect = clunk;
             redSwitch1.ObjectsBeingTriggered.Add(redBridge1);
 
 
@@ -141,6 +142,7 @@ namespace HackUCIProject
             Bridge yellowBridge1 = new Bridge(BridgeSide.Right);
             yellowBridge1.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(1518, 113), Color.Yellow, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
             yellowSwitch1.ObjectsBeingTriggered.Add(yellowBridge1);
+            yellowBridge1.SoundEffect = clunk;
             _sprites.Add(yellowBridge1);
 
             BaseSender yellowSpot3 = new BaseSender(TriggerType.hotPlates);
@@ -150,6 +152,7 @@ namespace HackUCIProject
             TrapDoor yellowTrapDoor3 = new TrapDoor();
             yellowTrapDoor3.LoadContent(content, "LevelMap\\TrapdoorOpen", new Vector2(388, 515), Color.Yellow, batch);
             yellowTrapDoor3.Scale *= .22f;
+            yellowTrapDoor3.SoundEffect = clunk;
             _sprites.Add(yellowTrapDoor3);
 
             yellowSpot3.ObjectsBeingTriggered.Add(yellowTrapDoor3);
@@ -161,6 +164,7 @@ namespace HackUCIProject
             Door greenDoor1 = new Door();
             greenDoor1.LoadContent(content, "LevelMap\\Door-07", new Vector2(68, 192), Color.Green, batch);
             greenDoor1.Scale *= .75f;
+            greenDoor1.SoundEffect = doorOpen;
             _sprites.Add(greenDoor1);
 
             greenSpot1.ObjectsBeingTriggered.Add(greenDoor1);
@@ -172,6 +176,7 @@ namespace HackUCIProject
             Door greenDoor3 = new Door();
             greenDoor3.LoadContent(content, "LevelMap\\Door-07", new Vector2(930, 765), Color.Green, batch);
             greenDoor3.Scale *= .75f;
+            greenDoor3.SoundEffect = doorOpen;
             _sprites.Add(greenDoor3);
 
             greenSpot3.ObjectsBeingTriggered.Add(greenDoor3);
@@ -183,6 +188,7 @@ namespace HackUCIProject
             TrapDoor redTrapDoor2 = new TrapDoor();
             redTrapDoor2.LoadContent(content, "LevelMap\\TrapdoorOpen", new Vector2(1722, 723), Color.Red, batch);
             redTrapDoor2.Scale *= .20f;
+            redTrapDoor2.SoundEffect = clunk;
             _sprites.Add(redTrapDoor2);
 
             redSpot2.ObjectsBeingTriggered.Add(redTrapDoor2);
@@ -197,6 +203,7 @@ namespace HackUCIProject
             
             Bridge greenBridge2 = new Bridge(BridgeSide.Right);
             greenBridge2.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(713, 883), Color.Green, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
+            greenBridge2.SoundEffect = clunk;
             _sprites.Add(greenBridge2);
 
             greenSwitch2.ObjectsBeingTriggered.Add(greenBridge2);
@@ -213,7 +220,10 @@ namespace HackUCIProject
                 blueDoors.Add(new Door());
             }
             blueDoors[0].LoadContent(content, "LevelMap\\Door-07", new Vector2(1685, 498), Color.Blue, batch);
+            blueDoors[0].SoundEffect = doorOpen;
+            
             blueDoors[1].LoadContent(content, "LevelMap\\Door-07", new Vector2(1115, 501), Color.Blue, batch);
+            blueDoors[1].SoundEffect = doorOpen;
             foreach (Door door in blueDoors)
             {
                 blueSpot2.ObjectsBeingTriggered.Add(door);
@@ -238,6 +248,7 @@ namespace HackUCIProject
             Door doorReciever3 = new Door();
             _senders.Add(redSpot3);
             doorReciever3.LoadContent(content, "LevelMap\\Door-07", new Vector2(1218, 498), Color.Red, batch);
+          //  doorReciever3.SoundEffect = doorOpen;
             _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(doorReciever3);
             doorReciever3.Scale *= .75f;
             doorReciever3.Rotation = (float)(Math.PI / 2);

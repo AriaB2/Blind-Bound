@@ -11,7 +11,7 @@ namespace HackUCIProject
     {
         PlayerScreen[] _playerScreens;
         Dungeon _dungeon = new Dungeon();
-        TimeSpan updateTime = new TimeSpan(0, 0, 0, 0,500);
+        TimeSpan updateTime = new TimeSpan(0, 0, 0, 2,0);
         TimeSpan timeElapsed;
         WrappedFonts.WrapArcadeFont _continueLabel;
         WrappedFonts.WrapAccelDropInFont _gameOverLabel;
