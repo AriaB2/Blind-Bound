@@ -17,6 +17,11 @@ namespace HackUCIProject
 
         private RenderTarget2D _drawn;
 
+        public void MapStart()
+        {
+            MapChanged(this, EventArgs.Empty);
+        }
+
         public RenderTarget2D Drawn
         {
             get
