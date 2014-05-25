@@ -66,7 +66,7 @@ namespace HackUCIProject
                 screen.LoadContent(Content);
             }
 
-            Global.CurrentScreen = ScreenState.levelSelection; //TODO: CHANGE TO START MENU
+            Global.CurrentScreen = ScreenState.startMenu; //TODO: CHANGE TO START MENU
             //Global.CurrentScreen = ScreenState.game; //TODO: CHANGE TO START MENU
             //Global.CurrentScreen = ScreenState.startMenu;
         }
@@ -78,7 +78,10 @@ namespace HackUCIProject
         protected override void Update(GameTime gameTime)
         {
             input.Update();
-
+            if (Global.CurrentScreen == ScreenState.startMenu && startScreen.EndGame)
+            {
+                Exit();
+            }
             fpsCounter += gameTime.ElapsedGameTime;
             if (fpsCounter >= TimeSpan.FromSeconds(1))
             {
