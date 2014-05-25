@@ -28,6 +28,7 @@ namespace HackUCIProject
         TimeSpan _timeForScale = new TimeSpan(0, 0, 0, 0, 1);
 
         bool resetScreen = false;
+        bool skippedIntro = false;
 
         int fadeFontStateNum = 0;
 
@@ -152,11 +153,12 @@ namespace HackUCIProject
 
         public override void Update(GameTime gameTime)
         {
-
             if (resetScreen)
             {
+                skippedIntro = false;
                 fadeFontStateNum = 0;
                 _titleFont.Reset();
+                _titleFont.Scale = Vector2.One;
                 for (int i = 0; i < menu.Length; i++)
                 {
                     menu[i].Reset();
@@ -211,8 +213,16 @@ namespace HackUCIProject
                 menu[currentItem].TintColor = Color.White;
 
             }
-
-            if (InputManager.CurrentPlayer1State.Buttons.A == Microsoft.Xna.Framework.Input.ButtonState.Pressed && InputManager.LastPlayer1State.Buttons.A == Microsoft.Xna.Framework.Input.ButtonState.Released)
+            if (InputManager.CurrentPlayer1State.Buttons.A == Microsoft.Xna.Framework.Input.ButtonState.Pressed && fadeFontStateNum <= 2 && !skippedIntro)
+            {
+                for (int i = 0; i < menu.Length; i++)
+                {
+                    menu[i].Position = menu[i].TargetPosition;
+                    menu[i].IsVisible = true;
+                }
+                skippedIntro = true;
+            }
+            else if (InputManager.CurrentPlayer1State.Buttons.A == Microsoft.Xna.Framework.Input.ButtonState.Pressed && InputManager.LastPlayer1State.Buttons.A == Microsoft.Xna.Framework.Input.ButtonState.Released)
             {
                 if (currentItem == 0)
                 {
@@ -234,6 +244,8 @@ namespace HackUCIProject
                     EndGame = true;
                 }
             }
+
+
 
             
 

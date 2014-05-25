@@ -69,8 +69,13 @@ namespace HackUCIProject
             {
                 screen.LoadContent(Content);
             }
+
             
             Global.CurrentScreen = ScreenState.credits; //TODO: CHANGE TO START MENU
+
+
+            Global.CurrentScreen = ScreenState.game; //TODO: CHANGE TO START MENU
+
             //Global.CurrentScreen = ScreenState.game; //TODO: CHANGE TO START MENU
             //Global.CurrentScreen = ScreenState.startMenu;
     
@@ -103,14 +108,10 @@ namespace HackUCIProject
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            
-            
             
             //Draw screen when screens are created`890.
             _screens[Global.CurrentScreen].Render();
             _screens[Global.CurrentScreen].Draw();
-
             
             spriteBatch.Begin();
             spriteBatch.DrawString(spriteFontList[0], string.Format("{0}", fps), Vector2.Zero, Color.White);

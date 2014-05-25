@@ -22,7 +22,7 @@ namespace HackUCIProject
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content)
         {
             Color[] _colors = { Color.Pink, Color.Black, Color.Red, Color.Green };
-            _dungeon.LoadContent(content, "LevelMap/SacredDonutLevelWhiteWithWalls-05", Vector2.Zero, Color.White, _spriteBatch);
+            _dungeon.LoadContent(content, "LevelMap/SacredDonutLevelTrapDoor-05", Vector2.Zero, Color.White, _spriteBatch);
             _dungeon.MapChanged += new EventHandler(_dungeon_MapChanged);
             int y = 0;
 
@@ -40,9 +40,8 @@ namespace HackUCIProject
 
             _sprites.Add(_dungeon);
             _dungeon.MapStart();
-
         }
-
+        
         void _dungeon_MapChanged(object sender, EventArgs e)
         {
             Texture2D newKeyMap =_dungeon.CreateNewKeyMap();

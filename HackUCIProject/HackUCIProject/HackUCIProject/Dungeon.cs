@@ -36,9 +36,9 @@ namespace HackUCIProject
             set { _sprites = value; }
         }
 
-        private Player[] _players;
+        private Ghost[] _players;
 
-        public Player[] Players
+        public Ghost[] Players
         {
             get { return _players; }
             set { _players = value; }
@@ -60,7 +60,7 @@ namespace HackUCIProject
 
 
 
-            _players = new Player[4];
+            _players = new Ghost[4];
             _senders = new List<BaseSender>();
             _sprites = new List<IXNA>();
 
@@ -71,14 +71,15 @@ namespace HackUCIProject
             _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(14, 824), Color.Red, batch);
             Bridge reciever = new Bridge(BridgeSide.Left);
             reciever.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(1116, 113), Color.Red, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
-            _senders[_senders.Count - 1].ObjectBeingTriggered = reciever;
+            
             _sprites.Add(reciever);
 
             _senders.Add(new BaseSender(TriggerType.hotPlates));
+            _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(reciever);
             _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(1905, 821), Color.Yellow, batch);
             Bridge reciever2 = new Bridge(BridgeSide.Right);
             reciever2.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(1518, 113), Color.Yellow, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
-            _senders[_senders.Count - 1].ObjectBeingTriggered = reciever2;
+            _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(reciever2);
             _sprites.Add(reciever2);
 
             
@@ -86,22 +87,90 @@ namespace HackUCIProject
             _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(960, 14), Color.Green, batch);
             Bridge reciever3 = new Bridge(BridgeSide.Right);
             reciever3.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(713, 883), Color.Green, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
-            _senders[_senders.Count - 1].ObjectBeingTriggered = reciever3;
+            _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(reciever3);
             _sprites.Add(reciever3);
 
             _senders.Add(new BaseSender(TriggerType.hotPlates));
             _senders[_senders.Count - 1].LoadContent(content, "Square", new Vector2(14, 540), Color.Blue, batch);
             Bridge reciever4 = new Bridge(BridgeSide.Left);
             reciever4.LoadContent(content, "LevelMap\\BridgeRetracted", new Vector2(310, 882), Color.Blue, batch, "LevelMap\\BridgeRetracted", "LevelMap\\BridgeExtended");
-            _senders[_senders.Count - 1].ObjectBeingTriggered = reciever4;
+            _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(reciever4);
             _sprites.Add(reciever4);
 
             BaseSender blueSpot1 = new BaseSender(TriggerType.hotPlates);
             blueSpot1.LoadContent(content, "LevelMap\\HotSpot", new Vector2(197, 1), Color.Blue, batch);
-            blueSpot1.ObjectBeingTriggered = reciever; // change this to blueDoor1
+            Door doorReciever = new Door();
             _sprites.Add(blueSpot1);
+            _senders.Add(blueSpot1);
+            doorReciever.LoadContent(content, "LevelMap\\Door-07", new Vector2(203, 945), Color.Blue, batch);
+            _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(doorReciever);
+            doorReciever.Rotation = (float)(Math.PI / 2);
+            doorReciever.Scale *= .75f;
+            _sprites.Add(doorReciever);
+
+            BaseSender blueSpot2 = new BaseSender(TriggerType.hotPlates);
+            blueSpot2.LoadContent(content, "LevelMap\\HotSpot", new Vector2(604, 517), Color.Blue, batch);
+            _sprites.Add(blueSpot2);
+            _senders.Add(blueSpot2);
+            List<Door> blueDoors = new List<Door>(2);
+            for (int i = 0; i < 2; i++)
+            {
+                blueDoors.Add(new Door());
+            }
+            blueDoors[0].LoadContent(content, "LevelMap\\Door-07", new Vector2(1685, 498), Color.Blue, batch);
+            blueDoors[1].LoadContent(content, "LevelMap\\Door-07", new Vector2(1115, 501), Color.Blue, batch);
+            foreach (Door door in blueDoors)
+            {
+                blueSpot2.ObjectsBeingTriggered.Add(door);
+            }
+            blueDoors[0].Rotation = (float)(Math.PI / 2);
+            blueDoors[0].Scale *= .75f;
+            blueDoors[1].Scale *= .75f;
+            _sprites.Add(blueDoors[0]);
+            _sprites.Add(blueDoors[1]);
+
+            BaseSender greenSpot1 = new BaseSender(TriggerType.hotPlates);
+            greenSpot1.LoadContent(content, "LevelMap\\HotSpot", new Vector2(1799, 264), Color.Green, batch);
+            Door doorReciever2 = new Door();
+            _sprites.Add(greenSpot1);
+            _senders.Add(greenSpot1);
+            doorReciever2.LoadContent(content, "LevelMap\\Door-07", new Vector2(68 , 192), Color.Green, batch);
+            _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(doorReciever2);
+            doorReciever2.Scale *= .75f;
+            _sprites.Add(doorReciever2);
+
+            BaseSender yellowSpot1 = new BaseSender(TriggerType.hotPlates);
+            yellowSpot1.LoadContent(content, "LevelMap\\HotSpot", new Vector2(1377, 901), Color.Yellow, batch);
+            TrapDoor trapDoorReciever = new TrapDoor();
+            _sprites.Add(yellowSpot1);
+            _senders.Add(yellowSpot1);
+            trapDoorReciever.LoadContent(content, "LevelMap\\TrapdoorOpen", new Vector2(150, 345), Color.Yellow, batch);
+            _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(trapDoorReciever);
+            trapDoorReciever.Scale *= .20f;
+            _sprites.Add(trapDoorReciever);
+
+            BaseSender yellowSpot2 = new BaseSender(TriggerType.hotPlates);
+            yellowSpot2.LoadContent(content, "LevelMap\\HotSpot", new Vector2(1883, 502), Color.Yellow, batch);
+            TrapDoor trapDoorReciever3 = new TrapDoor();
+            _sprites.Add(yellowSpot2);
+            _senders.Add(yellowSpot2);
+            trapDoorReciever3.LoadContent(content, "LevelMap\\TrapdoorOpen", new Vector2(387, 518), Color.Yellow, batch);
+            _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(trapDoorReciever3);
+            trapDoorReciever3.Scale *= .20f;
+            _sprites.Add(trapDoorReciever3);
+
+            BaseSender redSpot1 = new BaseSender(TriggerType.hotPlates);
+            redSpot1.LoadContent(content, "LevelMap\\HotSpot", new Vector2(939, 901), Color.Red, batch);
+            TrapDoor trapDoorReciever2 = new TrapDoor();
+            _sprites.Add(redSpot1);
+            _senders.Add(redSpot1);
+            trapDoorReciever2.LoadContent(content, "LevelMap\\TrapdoorOpen", new Vector2(1722, 723), Color.Red, batch);
+            _senders[_senders.Count - 1].ObjectsBeingTriggered.Add(trapDoorReciever2);
+            trapDoorReciever2.Scale *= .20f;
+            _sprites.Add(trapDoorReciever2);
 
             //after adding and loading all senders to the list of senders
+
             foreach (BaseSender sender in _senders)
             {
                 sender.Triggered += new EventHandler(sender_Triggered);
@@ -111,19 +180,20 @@ namespace HackUCIProject
 
             for (int i = 0; i < _players.Length; i++)
             {
-                _players[i] = new Player((PlayerIndex)i);
-                _players[i].LoadContent(content, "Square", new Vector2(300, 140), Global.MainColors[i], batch, "LevelMap/SacredDonutLevelWhite-05");
+                _players[i] = new Ghost((PlayerIndex)i);
+                _players[i].LoadContent(content, "Ghost", new Vector2(300, 140), Global.MainColors[i], batch, "LevelMap/SacredDonutLevelWhite-05");
                 _players[i].Speed = Vector2.One;
                 _players[i].SetOriginCenter();
+                _players[i].Scale = new Vector2(.1f, .1f);
                 _sprites.Add(_players[i]);
             }
 
             _players[0].Location = new Vector2(100, 100);
             _players[0].Tint = Color.White;
-            _players[1].Location = new Vector2(Width - _players[1].Width - 10, 10);
+            _players[1].Location = new Vector2(Width - _players[1].Width - 10, 50);
             _players[1].Tint = Color.Purple;
 
-            _players[2].Location = new Vector2(10, Height - _players[2].Height);
+            _players[2].Location = new Vector2(50, Height - _players[2].Height);
             _players[2].Tint = Color.Red;
             _players[3].Location = new Vector2(Width-_players[3].Width - 10, Height - _players[3].Height - 10);
             _players[3].Tint = Color.Yellow;

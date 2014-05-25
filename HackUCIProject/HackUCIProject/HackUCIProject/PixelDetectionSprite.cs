@@ -18,6 +18,9 @@ namespace HackUCIProject
             set { _keyMap = value; }
         }
 
+
+
+
         private Camera2DMatrix _camera;
 
         public Camera2DMatrix Camera
@@ -164,7 +167,7 @@ namespace HackUCIProject
         }
 
 
-        public void LoadContent(ContentManager content, string assetName, Vector2 location, Color tint, SpriteBatch batch, string keyMapAssetName)
+        public virtual void LoadContent(ContentManager content, string assetName, Vector2 location, Color tint, SpriteBatch batch, string keyMapAssetName)
         {
             _keyMap = content.Load<Texture2D>(keyMapAssetName);
             _boundaries = new Vector2(_keyMap.Width, _keyMap.Height);
