@@ -28,6 +28,8 @@ namespace HackUCIProject
 
         public override void LoadContent(Microsoft.Xna.Framework.Content.ContentManager content)
         {
+            _backGroundColor = Color.Black;
+
             _names = new List<string>();
             _names.Add("Abdurrahman Alatas");
             _names.Add("Aria Bidgoli");
@@ -44,6 +46,7 @@ namespace HackUCIProject
             _midKirbyFade.Origin = new Vector2(_midKirbyFade.Font.MeasureString(_midKirbyText).X / 2, _midKirbyFade.Font.MeasureString(_midKirbyText).Y / 2);
             _midKirbyFade.Position = new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width / 2, _spriteBatch.GraphicsDevice.Viewport.Height / 2);
             _midKirbyFade.EnableShadow = false;
+            _sprites.Add(_midKirbyFade);
         }
 
 
