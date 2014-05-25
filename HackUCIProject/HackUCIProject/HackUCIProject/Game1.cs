@@ -48,12 +48,12 @@ namespace HackUCIProject
                 spriteFontList.Add(Content.Load<SpriteFont>("Fonts/StartScreenSpriteFont" + i.ToString()));
             }
 
-            startScreen = new StartScreen(spriteBatch, new Vector2(10, 10), GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, spriteFontList);
+            startScreen = new StartScreen(spriteBatch, new Vector2(0, 0), GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, spriteFontList);
 
 
 
             Global.CurrentScreen = ScreenState.none; //TODO: CHANGE TO START MENU
-            startScreen = new StartScreen(spriteBatch, new Vector2(10, 10), GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, Content.Load<SpriteFont>("StartScreenSpriteFont0"));
+            
 
 
             _screens.Add(ScreenState.game, new GameScreen(spriteBatch, Vector2.Zero, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height));
@@ -67,7 +67,7 @@ namespace HackUCIProject
 
             Global.CurrentScreen = ScreenState.levelSelection; //TODO: CHANGE TO START MENU
             Global.CurrentScreen = ScreenState.game; //TODO: CHANGE TO START MENU
-            Global.CurrentScreen = ScreenState.game;
+            //Global.CurrentScreen = ScreenState.startMenu;
         }
         protected override void UnloadContent()
         {
